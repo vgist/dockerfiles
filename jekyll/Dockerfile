@@ -1,5 +1,5 @@
 FROM alpine:3.4
-MAINTAINER Register <registerdedicated+docker(at)gmail.com>
+MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
 
 RUN set -xe && \
     apk -U add gcc g++ make libatomic readline readline-dev libxml2 libxml2-dev \
