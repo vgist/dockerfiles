@@ -10,7 +10,7 @@
 
 #### Creating an instance:
 
-    docker run -it --name shadowsocks -p 8443:8443 -e SERVER_PORT=8443 -e METHOD=aes-256-cfb -e PASSWORD=EQdFUYal registercn/shadowsocks-libev
+    docker run -d --name shadowsocks -p 8443:8443 -p 8443:8443/udp -e SERVER_PORT=8443 -e METHOD=aes-256-cfb -e PASSWORD=EQdFUYal registercn/shadowsocks-libev
 
 #### Compose example:
 
