@@ -20,5 +20,7 @@ VOLUME ["/var/www"]
 
 EXPOSE 4000
 
-CMD ["jekyll", "server", "--watch", "--force_polling", "--host", "0.0.0.0"]
+ENTRYPOINT ["jekyll"]
+
+CMD ["server", "--watch", "--force_polling", "--host", "0.0.0.0"]
 
