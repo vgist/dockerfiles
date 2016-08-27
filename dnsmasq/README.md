@@ -15,4 +15,4 @@
 
 #### Creating an instance:
 
-    docker run -it --name dnsmasq -p 53:53/tcp -p 53:53/udp -v ./dnsmasq.d:/etc/dnsmasq.d registercn/dnsmasq
+    docker run -d --name dnsmasq -p 53:53/tcp -p 53:53/udp -v ./dnsmasq.d:/etc/dnsmasq.d registercn/dnsmasq
