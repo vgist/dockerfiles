@@ -1,9 +1,9 @@
-FROM alpine:3.4
+FROM alpine:edge
 MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
 
 # Let's roll
 RUN set -xe && \
-    apk add -U --no-cache nginx && \
+    apk add -U --no-cache nginx nginx-mod-http-geoip && \
     mkdir -p /run/nginx && \
     mkdir -p /usr/share/nginx/html/ && \
     touch /usr/share/nginx/html/index.html && \

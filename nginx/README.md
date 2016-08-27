@@ -5,7 +5,7 @@
 
 #### Creating an instance:
 
-    docker run -it --name nginx -p 8080:80 -p 8443:443  registercn/nginx
+    docker run -d --name nginx -p 8080:80 -p 8443:443  registercn/nginx
 
 #### Compose example:
 
