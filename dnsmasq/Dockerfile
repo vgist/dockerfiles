@@ -2,7 +2,7 @@ FROM alpine:3.4
 MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
 
 RUN set -xe && \
-    apk add -U --no-cache dnsmasq && \
+    apk add --no-cache dnsmasq && \
     rm -rf /var/cache/apk/* &&\
 
     # Set
