@@ -3,7 +3,7 @@ MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
 
 # Let's roll
 RUN set -xe && \
-    apk add -U --no-cache nginx nginx-mod-http-geoip && \
+    apk add --no-cache nginx nginx-mod-http-geoip && \
     mkdir -p /run/nginx && \
     mkdir -p /usr/share/nginx/html/ && \
     touch /usr/share/nginx/html/index.html && \

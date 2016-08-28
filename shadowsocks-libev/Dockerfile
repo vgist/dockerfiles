@@ -7,7 +7,7 @@ ENV SS_DIR shadowsocks-libev-$SS_VER
 ENV SS_DEP autoconf build-base curl libtool linux-headers openssl-dev asciidoc xmlto
 
 RUN set -ex && \
-    apk add -U --no-cache $SS_DEP && \
+    apk add --no-cache $SS_DEP && \
     curl -sSL $SS_URL | tar xz && \
     cd $SS_DIR && \
     ./configure && \

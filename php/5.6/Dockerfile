@@ -10,7 +10,7 @@ ENV PHP_MAX_POST        30M
 
 # Let's roll
 RUN set -xe && \
-    apk add -U --no-cache tzdata && \
+    apk add --no-cache tzdata && \
     cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && \
     echo "${TIMEZONE}" > /etc/timezone && \
     apk add --no-cache \

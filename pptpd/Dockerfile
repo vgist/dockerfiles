@@ -2,7 +2,7 @@ FROM alpine:3.4
 MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
 
 RUN set -xe && \
-    apk add -U --no-cache iptables ppp pptpd && \
+    apk add --no-cache iptables ppp pptpd && \
     rm -rf /var/cache/apk/*
 
 COPY etc/pptpd.conf /etc/pptpd.conf
