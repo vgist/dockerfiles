@@ -9,8 +9,7 @@ ENV PROVIDER_NAME 2.dnscrypt-cert.soltysiak.com
 ENV PROVIDER_KEY 25C4:E188:2915:4697:8F9C:2BBD:B6A7:AFA4:01ED:A051:0508:5D53:03E7:1928:C066:8F21
 
 RUN set -xe && \
-    echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
-    apk add -U --no-cache dnscrypt-proxy && \
+    apk add --no-cache dnscrypt-proxy && \
     rm -rf /var/cache/apk/*
 
 EXPOSE $LOCAL_PORT/tcp $LOCAL_PORT/udp
