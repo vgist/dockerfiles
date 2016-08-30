@@ -62,7 +62,7 @@ RUN set -xe && \
     # Cleaning up
     mkdir -p /var/www && \
     chown -Rf nobody:nobody /var/www && \
-    apk del tzdata && \
+    apk del --purge tzdata && \
     rm -rf /var/cache/apk/*
 
 # Set Workdir
