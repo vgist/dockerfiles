@@ -52,10 +52,10 @@ RUN set -xe && \
     sed -i "s|;*error_log\s*=\s*log/php/error.log|error_log = /dev/stderr|g" /etc/php5/php-fpm.conf && \
     sed -i "s|;*listen\s*=\s*127.0.0.1:9000|listen = 9000|g" /etc/php5/php-fpm.conf && \
     sed -i "s|;*chdir\s*=\s*/var/www|chdir = /var/www|g" /etc/php5/php-fpm.conf && \
-    sed -i "s|pm.max_children =.*|pm.max_children = 12|i" /etc/php5/php-fpm.d/www.conf && \
-    sed -i "s|pm.start_servers =.*|pm.start_servers = 6|i" /etc/php5/php-fpm.d/www.conf && \
-    sed -i "s|pm.min_spare_servers =.*|pm.min_spare_servers = 2|i" /etc/php5/php-fpm.d/www.conf && \
-    sed -i "s|pm.max_spare_servers =.*|pm.max_spare_servers = 10|i" /etc/php5/php-fpm.d/www.conf && \
+    sed -i "s|pm.max_children =.*|pm.max_children = 12|i" /etc/php5/php-fpm.conf && \
+    sed -i "s|pm.start_servers =.*|pm.start_servers = 6|i" /etc/php5/php-fpm.conf && \
+    sed -i "s|pm.min_spare_servers =.*|pm.min_spare_servers = 2|i" /etc/php5/php-fpm.conf && \
+    sed -i "s|pm.max_spare_servers =.*|pm.max_spare_servers = 10|i" /etc/php5/php-fpm.conf && \
     sed -i "s|;*date.timezone =.*|date.timezone = ${TIMEZONE}|i" /etc/php5/php.ini && \
     sed -i "s|;*memory_limit =.*|memory_limit = ${PHP_MEMORY_LIMIT}|i" /etc/php5/php.ini && \
     sed -i "s|;*upload_max_filesize =.*|upload_max_filesize = ${MAX_UPLOAD}|i" /etc/php5/php.ini && \
