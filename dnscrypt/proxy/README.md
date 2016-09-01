@@ -25,8 +25,10 @@
 
 #### Creating an instance:
 
-    docker run -it --name dnscrypt-proxy -p 5353:5353/tcp -p 5353:5353/udp \
-        -e LOCAL_IP=0.0.0.0
+    docker run -it --name dnscrypt-proxy \
+        -p 5353:5353/tcp \
+        -p 5353:5353/udp \
+        -e LOCAL_IP=0.0.0.0 \
         -e LOCAL_PORT=5353 \
         -e PROVIDER_NAME=2.dnscrypt-cert.soltysiak.com \
         -e RESOLVER_IP=178.216.201.222 -e RESOLVER_PORT=2053 \
