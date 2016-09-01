@@ -6,7 +6,11 @@ RUN set -xe && \
     rm -rf /var/cache/apk/* &&\
 
     # Set
-    echo "conf-dir=/etc/dnsmasq.d/,*.conf" >> /etc/dnsmasq.conf
+    echo "conf-dir=/etc/dnsmasq.d/,*.conf" >> /etc/dnsmasq.conf && \
+    echo "no-negcache" >> /etc/dnsmasq.conf && \
+    echo "local-ttl=300" >> /etc/dnsmasq.conf && \
+    echo "no-poll" >> /etc/dnsmasq.conf && \
+    echo "cache-size=10000" >> /etc/dnsmasq.conf
 
 COPY dnsmasq.d /etc/
 
