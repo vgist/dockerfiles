@@ -15,7 +15,8 @@ wrapper:
         - "443:443/udp"
         - "443:443/tcp"
     environment:
-        - LISTEN_ADDR=0.0.0.0:443
+        - LISTEN_IP=0.0.0.0
+        - LISTEN_PORT=443
         - RESOLVER_IP=8.8.8.8
         - RESOLVER_PORT=53
         - PROVIDER_NAME=2.dnscrypt-cert.easypi.info
