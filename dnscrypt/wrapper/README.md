@@ -16,7 +16,8 @@ wrapper:
         - "443:443/tcp"
     environment:
         - LISTEN_ADDR=0.0.0.0:443
-        - RESOLVER_ADDR=8.8.8.8:53
+        - RESOLVER_IP=8.8.8.8
+        - RESOLVER_PORT=53
         - PROVIDER_NAME=2.dnscrypt-cert.easypi.info
     restart: always
 ```
