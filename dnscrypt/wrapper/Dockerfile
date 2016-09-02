@@ -22,6 +22,7 @@ RUN set -xe && \
     ./configure --prefix=/usr && \
     make install && \
     cd .. && \
+    rm -rf dnscrypt-wrapper-$DNSCRYPT_VERSION && \
     apk del --purge $BUILD_DEP && \
     rm -rf /var/cache/apk/* && \
 
