@@ -17,7 +17,7 @@ RUN set -xe && \
     apk add --no-cache $BUILD_DEP && \
     curl -sSL $DNSCRYPT_URL | tar xz && \
     cd dnscrypt-wrapper-$DNSCRYPT_VERSION && \
-    sed -i -e '59d' -e '46,57d' compat.h && \
+    curl -sSL https://github.com/cofyc/dnscrypt-wrapper/commit/fa4fb293589c94d6b59903c8cddb170a0439c52a.diff | patch -p1 && \
     make configure && \
     ./configure --prefix=/usr && \
     make install && \
