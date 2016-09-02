@@ -10,6 +10,7 @@
 
 ```
 wrapper:
+    container_name: dnsctypt-wrapper
     image: registercn/dnscrypt-wrapper
     ports:
         - "443:443/udp"
@@ -21,4 +22,8 @@ wrapper:
         - RESOLVER_PORT=53
         - PROVIDER_NAME=2.dnscrypt-cert.easypi.info
     restart: always
-```
+``
+
+##### Public key
+
+    docker exec -it dnscrypt-wrapper cat README.txt
