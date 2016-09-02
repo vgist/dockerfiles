@@ -22,7 +22,7 @@ wrapper:
         - RESOLVER_PORT=53
         - PROVIDER_NAME=2.dnscrypt-cert.easypi.info
     restart: always
-``
+```
 
 ##### Public key
 
