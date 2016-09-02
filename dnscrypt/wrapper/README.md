@@ -10,7 +10,7 @@
 
 ```
 wrapper:
-    image: vimagick/dnscrypt-wrapper
+    image: registercn/dnscrypt-wrapper
     ports:
         - "443:443/udp"
         - "443:443/tcp"
