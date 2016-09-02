@@ -22,7 +22,7 @@ RUN set -xe && \
     ./configure --prefix=/usr && \
     make install && \
     cd .. && \
-    apk del $BUILD_DEP && \
+    apk del --purge $BUILD_DEP && \
     rm -rf /var/cache/apk/* && \
 
     mkdir -p /var/lib/dnscrypt-wrapper && \
