@@ -25,6 +25,8 @@ ENV TIMEOUT     300
 ENV DNS_ADDR    8.8.8.8
 ENV DNS_ADDR_2  8.8.4.4
 
+USER nobody
+
 EXPOSE $SERVER_PORT/tcp $SERVER_PORT/udp
 
 CMD ss-server -s $SERVER_ADDR \
