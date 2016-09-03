@@ -15,6 +15,7 @@
             - "5353:5353/udp"
             - "5353:5353/tcp"
         environment:
+            - USER=nobody
             - LOCAL_IP=0.0.0.0
             - LOCAL_PORT=5353
             - RESOLVER_IP=178.216.201.222
@@ -33,3 +34,7 @@
         -e PROVIDER_NAME=2.dnscrypt-cert.soltysiak.com \
         -e RESOLVER_IP=178.216.201.222 -e RESOLVER_PORT=2053 \
         registercn/dnscrypt-proxy
+
+##### Please note:
+
+You can't run the container on the port below than 1024 because of the running user nobody, but you can forward the port.
