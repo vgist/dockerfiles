@@ -3,10 +3,11 @@ MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
 
 # Environments
 ENV TIMEZONE            Asia/Shanghai
-ENV PHP_MEMORY_LIMIT    128M
+ENV PHP_MEMORY_LIMIT    256M
 ENV MAX_UPLOAD          20M
 ENV PHP_MAX_FILE_UPLOAD 20
 ENV PHP_MAX_POST        30M
+ENV MAX_INPUT_VARS      4000
 
 # Let's roll
 RUN set -xe && \
@@ -61,6 +62,7 @@ RUN set -xe && \
     sed -i "s|;*upload_max_filesize =.*|upload_max_filesize = ${MAX_UPLOAD}|i" /etc/php5/php.ini && \
     sed -i "s|;*max_file_uploads =.*|max_file_uploads = ${PHP_MAX_FILE_UPLOAD}|i" /etc/php5/php.ini && \
     sed -i "s|;*post_max_size =.*|post_max_size = ${PHP_MAX_POST}|i" /etc/php5/php.ini && \
+    sed -i "s|;\s*max_input_vars =.*|max_input_vars = ${MAX_INPUT_VARS}|i" /etc/php5/php.ini && \
     sed -i "s|;*cgi.fix_pathinfo=.*|cgi.fix_pathinfo= 0|i" /etc/php5/php.ini && \
 
     # Cleaning up
