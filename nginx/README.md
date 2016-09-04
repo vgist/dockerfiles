@@ -16,7 +16,7 @@
             - "8443:443"
         volumes:
             - ./path/www:/var/www
-            - ./path/www.conf:/etc/nginx/conf.d/www.conf:ro
+            - ./path/conf.d:/etc/nginx/conf.d:ro
         restart: always
 
 #### Nginx + PHP-FPM
@@ -33,7 +33,7 @@
                 - "8080:80"
             volumes:
                 - ./localhost:/var/www
-                - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+                - ./nginx/conf.d:/etc/nginx/conf.d:ro
             links:
                 - phpfpm
             restart: always
@@ -48,8 +48,6 @@
             image: registercn/mariadb
             volumes:
                 - ./data:/var/lib/mysql
-            environment:
-                - MYSQL_ROOT_PASSWORD=123456
             restart: always
 
 ##### Nginx conf
