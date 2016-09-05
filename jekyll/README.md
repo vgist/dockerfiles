@@ -24,4 +24,4 @@ run container with `-u uid:gid`
 
 #### Just build:
 
-    docker run --rm -it -v /jekyll/path:/var/www registercn/jekyll build # override CMD
+    docker run --rm -it -v /jekyll/path:/var/www registercn/jekyll jekyll build # override CMD
