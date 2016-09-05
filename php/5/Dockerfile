@@ -2,7 +2,6 @@ FROM alpine:3.4
 MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
 
 # Environments
-ENV TIMEZONE            Asia/Shanghai
 ENV PHP_MEMORY_LIMIT    256M
 ENV MAX_UPLOAD          20M
 ENV PHP_MAX_FILE_UPLOAD 20
@@ -11,9 +10,6 @@ ENV MAX_INPUT_VARS      4000
 
 # Let's roll
 RUN set -xe && \
-    apk add --no-cache tzdata && \
-    cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && \
-    echo "${TIMEZONE}" > /etc/timezone && \
     apk add --no-cache \
     php5-mcrypt \
     php5-soap \
@@ -68,7 +64,6 @@ RUN set -xe && \
     # Cleaning up
     mkdir -p /var/www && \
     chown -Rf nobody:nobody /var/www && \
-    apk del --purge tzdata && \
     rm -rf /var/cache/apk/*
 
 # Set Workdir
