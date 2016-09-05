@@ -1,16 +1,13 @@
 FROM alpine:3.4
 MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
 
+ENV GITHUB_PAGES_VERSION 94
+
 RUN set -xe && \
-    apk --no-cache add gcc g++ make libatomic readline readline-dev libxml2 libxml2-dev \
-        ncurses-terminfo-base ncurses-terminfo \
-        libxslt libxslt-dev zlib zlib-dev \
-        ruby ruby-dev yaml yaml-dev \
-        libffi-dev build-base ruby-io-console ruby-irb ruby-json ruby-rake && \
-    echo 'gem: --no-document' > /etc/gemrc && \
-    gem install --no-ri --no-rdoc github-pages && \
-    apk del gcc g++ make build-base zlib-dev ruby-dev readline-dev \
-        yaml-dev libffi-dev libxml2-dev && \
+    apk add --no-cache --virtual .build-deps build-base && \
+    apk add --no-cache --virtual .run-deps libffi-dev zlib-dev libxml2-dev libxslt-dev ruby ruby-dev ruby-bundler ruby-rake ruby-rdoc ruby-irb && \
+    gem install --no-document github-pages:${GITHUB_PAGES_VERSION} && \
+    apk del .build-deps && \
     rm -rf /var/cache/apk/* && \
     mkdir -p /var/www
 

@@ -2,19 +2,16 @@ FROM alpine:3.4
 MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
 
 ENV SS_VER 2.5.0
-ENV SS_URL https://github.com/shadowsocks/shadowsocks-libev/archive/v$SS_VER.tar.gz
-ENV SS_DIR shadowsocks-libev-$SS_VER
-ENV SS_DEP autoconf build-base curl libtool linux-headers openssl-dev asciidoc xmlto
 
 RUN set -ex && \
-    apk add --no-cache $SS_DEP && \
-    curl -sSL $SS_URL | tar xz && \
-    cd $SS_DIR && \
+    apk add --no-cache --virtual .build-deps autoconf build-base curl libtool linux-headers openssl-dev asciidoc xmlto && \
+    curl -sSL https://github.com/shadowsocks/shadowsocks-libev/archive/v$SS_VER.tar.gz | tar xz && \
+    cd shadowsocks-libev-$SS_VER && \
     ./configure && \
     make && make install && \
     cd .. && \
-    rm -rf $SS_DIR && \
-    apk del --purge $SS_DEP && \
+    rm -rf shadowsocks-libev-$SS_VER && \
+    apk del .build-deps && \
     rm -rf /var/cache/apk/*
 
 ENV SERVER_ADDR 0.0.0.0
