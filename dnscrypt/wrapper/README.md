@@ -1,3 +1,5 @@
+![](https://img.shields.io/badge/dnscrypt--wrapper-0.2.2-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-edge-brightgreen.svg) ![](https://img.shields.io/docker/stars/registercn/dnscrypt-wrapper.svg) ![](https://img.shields.io/docker/pulls/registercn/dnscrypt-wrapper.svg)
+
 #### Environment:
 
 - RESOLVER_IP

@@ -1,3 +1,5 @@
+![](https://img.shields.io/badge/dnscrypt--proxy-1.7.0-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-edge-brightgreen.svg) ![](https://img.shields.io/docker/stars/registercn/dnscrypt-proxy.svg) ![](https://img.shields.io/docker/pulls/registercn/dnscrypt-proxy.svg)
+
 #### Environment:
 
 - LOCAL_IP

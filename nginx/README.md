@@ -1,3 +1,5 @@
+![](https://img.shields.io/badge/NGINX-1.10.1-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-edge-brightgreen.svg) ![](https://img.shields.io/docker/stars/registercn/nginx.svg) ![](https://img.shields.io/docker/pulls/registercn/nginx.svg)
+
 #### Volume
 
 - /var/www

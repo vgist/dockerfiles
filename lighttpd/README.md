@@ -1,3 +1,5 @@
+![](https://img.shields.io/badge/Lighttpd-1.4.39-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-3.4-brightgreen.svg) ![](https://img.shields.io/docker/stars/registercn/lighttpd.svg) ![](https://img.shields.io/docker/pulls/registercn/lighttpd.svg)
+
 #### Volume
 
 - /var/www

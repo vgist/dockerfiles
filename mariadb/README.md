@@ -1,3 +1,5 @@
+![](https://img.shields.io/badge/MariaDB-10.1.14-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-3.4-brightgreen.svg) ![](https://img.shields.io/docker/stars/registercn/mariadb.svg) ![](https://img.shields.io/docker/pulls/registercn/mariadb.svg)
+
 #### Volume:
 
 - /var/lib/mysql
