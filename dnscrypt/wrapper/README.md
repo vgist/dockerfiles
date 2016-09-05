@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/dnscrypt--wrapper-0.2.2-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-edge-brightgreen.svg) ![](https://img.shields.io/docker/stars/gists/dnscrypt-wrapper.svg) ![](https://img.shields.io/docker/pulls/rgists/dnscrypt-wrapper.svg)
+![](https://img.shields.io/badge/dnscrypt--wrapper-0.2.2-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-edge-brightgreen.svg) ![](https://img.shields.io/docker/stars/gists/dnscrypt-wrapper.svg) ![](https://img.shields.io/docker/pulls/gists/dnscrypt-wrapper.svg)
 
 #### Environment:
 
