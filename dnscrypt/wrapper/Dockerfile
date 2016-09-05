@@ -10,7 +10,7 @@ ENV PROVIDER_NAME 2.dnscrypt-cert.easypi.info
 ENV DNSCRYPT_VERSION 0.2.2
 
 RUN set -xe && \
-    apk add -U --no-cache --virtual .run-deps libevent libsodium && \
+    apk add --no-cache --virtual .run-deps libevent libsodium && \
     apk add --no-cache --virtual .build-deps autoconf bsd-compat-headers build-base curl libevent-dev libexecinfo-dev libsodium-dev && \
     curl -sSL https://github.com/Cofyc/dnscrypt-wrapper/archive/v$DNSCRYPT_VERSION.tar.gz | tar xz && \
     cd dnscrypt-wrapper-$DNSCRYPT_VERSION && \
