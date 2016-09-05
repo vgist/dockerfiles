@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/NGINX-1.10.1-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-edge-brightgreen.svg) ![](https://img.shields.io/docker/stars/registercn/nginx.svg) ![](https://img.shields.io/docker/pulls/registercn/nginx.svg)
+![](https://img.shields.io/badge/NGINX-1.10.1-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-edge-brightgreen.svg) ![](https://img.shields.io/docker/stars/gists/nginx.svg) ![](https://img.shields.io/docker/pulls/gists/nginx.svg)
 
 #### Volume
 
@@ -7,12 +7,12 @@
 
 #### Creating an instance:
 
-    docker run -d --name nginx -p 8080:80 -p 8443:443  registercn/nginx
+    docker run -d --name nginx -p 8080:80 -p 8443:443  gists/nginx
 
 #### Compose example:
 
     nginx:
-        image: registercn/nginx
+        image: gists/nginx
         ports:
             - "8080:80"
             - "8443:443"
@@ -30,7 +30,7 @@
     services:
         nginx:
             container_name: nginx
-            image: registercn/nginx
+            image: gists/nginx
             ports:
                 - "8080:80"
             volumes:
@@ -41,13 +41,13 @@
             restart: always
         phpfpm:
             container_name: phpfpm
-            image: registercn/php:latest
+            image: gists/php:latest
             volumes:
                 - ./localhost:/var/www
             restart: always
         mariadb:
             container_name: mariadb
-            image: registercn/mariadb
+            image: gists/mariadb
             volumes:
                 - ./data:/var/lib/mysql
             restart: always

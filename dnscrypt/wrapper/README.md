@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/dnscrypt--wrapper-0.2.2-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-edge-brightgreen.svg) ![](https://img.shields.io/docker/stars/registercn/dnscrypt-wrapper.svg) ![](https://img.shields.io/docker/pulls/registercn/dnscrypt-wrapper.svg)
+![](https://img.shields.io/badge/dnscrypt--wrapper-0.2.2-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-edge-brightgreen.svg) ![](https://img.shields.io/docker/stars/gists/dnscrypt-wrapper.svg) ![](https://img.shields.io/docker/pulls/rgists/dnscrypt-wrapper.svg)
 
 #### Environment:
 
@@ -13,7 +13,7 @@
 ```
 wrapper:
     container_name: dnsctypt-wrapper
-    image: registercn/dnscrypt-wrapper
+    image: gists/dnscrypt-wrapper
     ports:
         - "443:443/udp"
         - "443:443/tcp"

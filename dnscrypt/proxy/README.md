@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/dnscrypt--proxy-1.7.0-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-edge-brightgreen.svg) ![](https://img.shields.io/docker/stars/registercn/dnscrypt-proxy.svg) ![](https://img.shields.io/docker/pulls/registercn/dnscrypt-proxy.svg)
+![](https://img.shields.io/badge/dnscrypt--proxy-1.7.0-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-edge-brightgreen.svg) ![](https://img.shields.io/docker/stars/gists/dnscrypt-proxy.svg) ![](https://img.shields.io/docker/pulls/gists/dnscrypt-proxy.svg)
 
 #### Environment:
 
@@ -12,7 +12,7 @@
 #### Compose example:
 
     dnscrypt-proxy:
-        image: registercn/dnscrypt-proxy
+        image: gists/dnscrypt-proxy
         ports:
             - "5353:5353/udp"
             - "5353:5353/tcp"
@@ -35,7 +35,7 @@
         -e LOCAL_PORT=5353 \
         -e PROVIDER_NAME=2.dnscrypt-cert.soltysiak.com \
         -e RESOLVER_IP=178.216.201.222 -e RESOLVER_PORT=2053 \
-        registercn/dnscrypt-proxy
+        gists/dnscrypt-proxy
 
 ##### Please note:
 

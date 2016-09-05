@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/MariaDB-10.1.14-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-3.4-brightgreen.svg) ![](https://img.shields.io/docker/stars/registercn/mariadb.svg) ![](https://img.shields.io/docker/pulls/registercn/mariadb.svg)
+![](https://img.shields.io/badge/MariaDB-10.1.14-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-3.4-brightgreen.svg) ![](https://img.shields.io/docker/stars/gists/mariadb.svg) ![](https://img.shields.io/docker/pulls/gists/mariadb.svg)
 
 #### Volume:
 
@@ -17,7 +17,7 @@
 #### Compose example:
 
     mariadb:
-        image: registercn/mariadb:latest
+        image: gists/mariadb:latest
         environment:
             MYSQL_ROOT_PASSWORD=123456
         ports:
@@ -28,4 +28,4 @@
 
 #### Creating an instance:
 
-    docker run -it --name mariadb -p 3306:3306 -v /path/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 registercn/mariadb
+    docker run -it --name mariadb -p 3306:3306 -v /path/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 gists/mariadb

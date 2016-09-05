@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/shadowsocks--libev-2.5.0-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-3.4-brightgreen.svg) ![](https://img.shields.io/docker/stars/registercn/shadowsocks-libev.svg) ![](https://img.shields.io/docker/pulls/registercn/shadowsocks-libev.svg)
+![](https://img.shields.io/badge/shadowsocks--libev-2.5.0-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-3.4-brightgreen.svg) ![](https://img.shields.io/docker/stars/gists/shadowsocks-libev.svg) ![](https://img.shields.io/docker/pulls/gists/shadowsocks-libev.svg)
 
 #### Environment:
 
@@ -11,12 +11,12 @@
 
 #### Creating an instance:
 
-    docker run -d --name shadowsocks -p 8443:8443 -p 8443:8443/udp -e SERVER_PORT=8443 -e PASSWORD=EQdFUYal registercn/shadowsocks-libev
+    docker run -d --name shadowsocks -p 8443:8443 -p 8443:8443/udp -e SERVER_PORT=8443 -e PASSWORD=EQdFUYal gists/shadowsocks-libev
 
 #### Compose example:
 
     shadowsocks:
-      image: registercn/shadowsocks-libev
+      image: gists/shadowsocks-libev
       ports:
         - "8443:8443/tcp"
         - "8443:8443/udp"
@@ -29,4 +29,4 @@
 
 You can't run the container on the port below than 1024 because of the running user nobody, but you can forward the port.
 
-    docker run -d --name shadowsocks -p 443:8443 -p 443:8443/udp -e SERVER_PORT=8443 -e PASSWORD=EQdFUYal registercn/shadowsocks-libev
+    docker run -d --name shadowsocks -p 443:8443 -p 443:8443/udp -e SERVER_PORT=8443 -e PASSWORD=EQdFUYal gists/shadowsocks-libev
