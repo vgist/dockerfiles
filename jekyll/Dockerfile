@@ -7,7 +7,7 @@ RUN set -xe && \
     apk add --no-cache --virtual .build-deps build-base libffi-dev libxml2-dev readline-dev ruby-dev yaml-dev zlib-dev && \
     apk add --no-cache --virtual .run-deps ruby ruby-bundler ruby-json ruby-rake && \
     gem install --no-document jekyll:${JEKYLL_VERSION} && \
-    gem install --no-document jekyll-coffeescript jekyll-feed jekyll-gist jekyll-paginate jekyll-redirect-from jekyll-sitemap minima
+    gem install --no-document jekyll-coffeescript jekyll-feed jekyll-gist jekyll-paginate jekyll-redirect-from jekyll-sitemap minima && \
     apk del .build-deps && \
     rm -rf /var/cache/apk/* && \
     mkdir -p /var/www
