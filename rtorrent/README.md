@@ -13,7 +13,7 @@
 
 #### Compose example:
 
-    rutorrent:
+    rtorrent:
       image: gists/rtorrent
       ports:
         - "80:8080"
@@ -22,5 +22,5 @@
         - USERNAME=yourname
         - PASSWORD=yourpassword
         - UID=1000
-        - UID=1000
+        - GID=1000
       restart: always

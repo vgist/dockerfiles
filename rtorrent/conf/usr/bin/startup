@@ -2,7 +2,9 @@
 
 addgroup -g ${GID} torrent && adduser -h /home/torrent -s /bin/sh -G torrent -D -u ${UID} torrent
 
-mkdir -p /download/{torrents,.watch,.session}
+mkdir -p /download/torrents
+mkdir -p /download/.watch
+mkdir -p /download/.session
 
 htpasswd -b -c /var/www/rutorrent/.htpasswd $USERNAME $PASSWORD
 
