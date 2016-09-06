@@ -16,6 +16,7 @@ RUN set -xe && \
                                     php5-fpm \
                                     php5-json \
                                     xmlrpc-c \
+                                    rtorrent \
                                     libtorrent \
                                     curl \
                                     gzip \
@@ -23,15 +24,7 @@ RUN set -xe && \
                                     unrar \
                                     supervisor \
                                     geoip && \
-    apk add --no-cache --virtual .build-deps \
-                                    build-base \
-                                    git \
-                                    automake \
-                                    autoconf \
-                                    cppunit-dev \
-                                    openssl-dev \
-                                    ncurses-dev \
-                                    curl-dev && \
+    apk add --no-cache --virtual .build-deps build-base && \
     cd /tmp && \
     curl -sSL https://github.com/Rudde/mktorrent/archive/v1.0.tar.gz | tar xz && \
     cd /tmp/mktorrent-1.0 && \
