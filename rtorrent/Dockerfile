@@ -24,7 +24,7 @@ RUN set -xe && \
                                     unrar \
                                     supervisor \
                                     geoip && \
-    apk add --no-cache --virtual .build-deps build-base && \
+    apk add --no-cache --virtual .build-deps build-base git && \
     cd /tmp && \
     curl -sSL https://github.com/Rudde/mktorrent/archive/v1.0.tar.gz | tar xz && \
     cd /tmp/mktorrent-1.0 && \
