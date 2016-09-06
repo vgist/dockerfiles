@@ -35,7 +35,7 @@ RUN set -xe && \
     git clone https://github.com/Phlooo/ruTorrent-MaterialDesign.git /var/www/rutorrent/plugins/theme/themes/materialdesign && \
 
     apk del .build-deps && \
-    rm -rf /var/cache/apk/* /tmp/*
+    cd / && rm -rf /var/cache/apk/* /tmp/*
 
 COPY conf /
 
