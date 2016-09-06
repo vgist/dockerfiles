@@ -1,19 +1,39 @@
 FROM alpine:3.4
 MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
 
-ENV UID     1000
-ENV GID     1000
+ENV RPC_PORT    9091
+ENV PEERPORT    51413
+ENV USERNAME    username
+ENV PASSWORD    password
 
 # Let's roll
 RUN set -xe && \
     apk add --no-cache transmission-daemon && \
-    rm -rf /var/cache/apk/*
 
-COPY startup /usr/bin/startup
-COPY settings.json /
+    mkdir -p /data/.config && \
+    mkdir -p /data/.incompletes && \
+    mkdir -p /data/downloads && \
+    mkdir -p /data/watch && \
+    chown -R transmission:transmission /data && \
 
-VOLUME /download
+COPY settings.json /data/.config/settings.json
 
-EXPOSE 9091
+VOLUME /data/downloads
 
-CMD ["/usr/bin/startup"]
+WORKDIR /data
+
+EXPOSE $RPC_PORT $PEERPORT $PEERPORT/UDP
+
+USER transmission
+
+CMD /usr/bin/transmission-daemon \
+                        --foreground \
+                        --config-dir /data/.config \
+                        --port $RPC_PORT \
+                        --peerport $PEERPORT \
+                        --username $USERNAME \
+                        --password $PASSWORD \
+                        --auth \
+                        --encryption-preferred \
+                        --no-lpd \
+                        --no-dht

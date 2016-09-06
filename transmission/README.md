@@ -1,15 +1,19 @@
+![](https://img.shields.io/badge/Transmission-2.92-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-3.4-brightgreen.svg) ![](https://img.shields.io/docker/stars/gists/transmission.svg) ![](https://img.shields.io/docker/pulls/gists/transmission.svg)
+
 #### Volume
 
-- /download
+- /data/downloads
 
 #### Environment:
 
-- UID
-- GID
+- RPC_PORT
+- PEERPORT
+- USERNAME
+- PASSWORD
 
 #### Creating an instance:
 
-docker run -d -p 8080:9091 -v /your/data:/download gists/transmission
+docker run -d -p 8080:9091 -v /your/data:/data/downloads gists/transmission
 
 #### Compose example:
 
@@ -17,9 +21,11 @@ docker run -d -p 8080:9091 -v /your/data:/download gists/transmission
       image: gists/transmission
       ports:
         - "8080:9091"
+        - "51413:51413"
+        - "51413:51413/udp"
       volumes:
-        - /your/data:/download
+        - /your/data:/data/downloads
       environment:
-        - UID=1000
-        - GID=1000
+        - USERNAME=admin
+        - PASSWORD=password
       restart: always
