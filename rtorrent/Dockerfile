@@ -2,7 +2,7 @@ FROM alpine:3.4
 MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
 
 ENV USERNAME        admin
-ENV PASSWORD=${PASSWORD:-$(hostname)}
+ENV PASSWORD        password
 ENV UID             1000
 ENV GID             1000
 
@@ -33,7 +33,7 @@ RUN set -xe && \
                                     ncurses-dev \
                                     curl-dev && \
     cd /tmp && \
-    curl -sSL https://github.com/Rudde/mktorrent/archive/v1.0.tar.gz | tar xz &&
+    curl -sSL https://github.com/Rudde/mktorrent/archive/v1.0.tar.gz | tar xz && \
     cd /tmp/mktorrent-1.0 && \
     make && make install && \
 
@@ -42,7 +42,7 @@ RUN set -xe && \
     git clone https://github.com/Phlooo/ruTorrent-MaterialDesign.git /var/www/rutorrent/plugins/theme/themes/materialdesign && \
 
     apk del .build-deps && \
-    rm -rf /var/cache/apk/* /tmp/* \
+    rm -rf /var/cache/apk/* /tmp/*
 
 COPY conf /
 
