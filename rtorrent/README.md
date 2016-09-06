@@ -21,6 +21,4 @@
       environment:
         - USERNAME=yourname
         - PASSWORD=yourpassword
-        - UID=1000
-        - GID=1000
       restart: always
