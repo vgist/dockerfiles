@@ -2,7 +2,7 @@ FROM alpine:3.4
 MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
 
 ENV USERNAME        admin
-ENV PASSWORD        password
+ENV PASSWORD=password
 ENV UID             1000
 ENV GID             1000
 
