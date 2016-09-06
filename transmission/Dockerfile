@@ -14,7 +14,7 @@ RUN set -xe && \
     mkdir -p /data/.incompletes && \
     mkdir -p /data/downloads && \
     mkdir -p /data/watch && \
-    chown -R transmission:transmission /data && \
+    chown -R transmission:transmission /data
 
 COPY settings.json /data/.config/settings.json
 
@@ -23,8 +23,6 @@ VOLUME /data/downloads
 WORKDIR /data
 
 EXPOSE $RPC_PORT $PEERPORT $PEERPORT/UDP
-
-USER transmission
 
 CMD /usr/bin/transmission-daemon \
                         --foreground \
