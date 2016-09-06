@@ -1,5 +1,5 @@
 <?php
 
 $useExternal = 'mktorrent';
-$pathToCreatetorrent = '/usr/bin/mktorrent';
+$pathToCreatetorrent = '/usr/local/bin/mktorrent';
 $recentTrackersMaxCount = 15;
