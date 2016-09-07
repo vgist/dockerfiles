@@ -9,7 +9,6 @@ RUN set -xe && \
     gem install --no-document jekyll:${JEKYLL_VERSION} && \
     gem install --no-document jekyll-coffeescript jekyll-feed jekyll-gist jekyll-paginate jekyll-redirect-from jekyll-sitemap minima && \
     apk del .build-deps && \
-    rm -rf /var/cache/apk/* && \
     mkdir -p /var/www
 
 WORKDIR /var/www
@@ -19,4 +18,3 @@ VOLUME ["/var/www"]
 EXPOSE 4000
 
 CMD ["jekyll", "server", "--watch", "--force_polling", "--host", "0.0.0.0"]
-

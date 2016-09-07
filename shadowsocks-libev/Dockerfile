@@ -11,8 +11,7 @@ RUN set -ex && \
     make && make install && \
     cd .. && \
     rm -rf shadowsocks-libev-$SS_VER && \
-    apk del .build-deps && \
-    rm -rf /var/cache/apk/*
+    apk del .build-deps
 
 ENV SERVER_ADDR 0.0.0.0
 ENV SERVER_PORT 8443
