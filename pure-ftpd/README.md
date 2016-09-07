@@ -27,11 +27,11 @@
         - /your/data:/home/ftpuser
       restart: always
 
-# ftpuser is OS user, test_user is the FTP virtual user
+#### ftpuser is OS user, test_user is the FTP virtual user
 
     pure-pw useradd test_user -u ftpuser -d /home/ftpuser/test_user -m
 
-# refresh pure-ftpd password file or the new ftp user is unable to login
+#### refresh pure-ftpd password file or the new ftp user is unable to login
 
     pure-pw mkdb
 
