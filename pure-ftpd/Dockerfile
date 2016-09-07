@@ -17,10 +17,10 @@ VOLUME /home/ftpuser /etc/pureftpd.pdb
 EXPOSE 21 30000-30009
 
 CMD /usr/sbin/pure-ftpd \
-                        -P $PUBLIC_HOST
-                        -p $PASV_PORT
-                        -l puredb:/etc/pureftpd.pdb
-                        -C 10
-                        -E
-                        -j
+                        -P $PUBLIC_HOST \
+                        -p $PASV_PORT \
+                        -l puredb:/etc/pureftpd.pdb \
+                        -C 10 \
+                        -E \
+                        -j \
                         -R
