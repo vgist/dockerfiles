@@ -61,10 +61,8 @@ RUN set -xe && \
     sed -i "s|;\s*max_input_vars =.*|max_input_vars = ${MAX_INPUT_VARS}|i" /etc/php5/php.ini && \
     sed -i "s|;*cgi.fix_pathinfo=.*|cgi.fix_pathinfo= 0|i" /etc/php5/php.ini && \
 
-    # Cleaning up
     mkdir -p /var/www && \
-    chown -Rf nobody:nobody /var/www && \
-    rm -rf /var/cache/apk/*
+    chown -Rf nobody:nobody /var/www
 
 # Set Workdir
 WORKDIR /var/www

@@ -67,7 +67,7 @@ RUN set -xe && \
 
     apk del .build-deps && \
     cd / && \
-    rm -rf /var/cache/apk/* /tmp/*
+    rm -rf /tmp/*
 
 COPY conf /
 

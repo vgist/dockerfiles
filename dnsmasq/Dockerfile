@@ -3,7 +3,6 @@ MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
 
 RUN set -xe && \
     apk add --no-cache dnsmasq && \
-    rm -rf /var/cache/apk/* &&\
 
     # Set
     echo "conf-dir=/etc/dnsmasq.d/,*.conf" >> /etc/dnsmasq.conf && \

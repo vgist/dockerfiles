@@ -3,7 +3,6 @@ MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
 
 RUN set -ex && \
     apk add --no-cache lighttpd && \
-    rm -rf /var/cache/apk/* && \
 
     rm -rf /var/www/localhost && \
     chown nobody:nobody -R /var/www && \

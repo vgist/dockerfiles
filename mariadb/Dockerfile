@@ -6,8 +6,7 @@ RUN set -ex && \
     mkdir -p /run/mysqld && \
     chown mysql:mysql /run/mysqld && \
     sed -Ei -e 's/^(bind-address|log)/#&/' \
-        -e 's/^\[mysqld\]$/&\nskip-host-cache\nskip-name-resolve\nuser=mysql/' /etc/mysql/my.cnf && \
-    rm -f /var/cache/apk/*
+        -e 's/^\[mysqld\]$/&\nskip-host-cache\nskip-name-resolve\nuser=mysql/' /etc/mysql/my.cnf
 
 COPY docker-entrypoint.sh /
 
