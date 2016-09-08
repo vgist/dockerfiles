@@ -1,7 +1,7 @@
 FROM alpine:3.4
 MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
 
-ENV JEKYLL_VERSION  3.2.1
+ARG JEKYLL_VERSION=3.2.1
 
 RUN set -xe && \
     apk add --no-cache --virtual .build-deps build-base libffi-dev libxml2-dev readline-dev ruby-dev yaml-dev zlib-dev && \

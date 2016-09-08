@@ -6,7 +6,7 @@ mkdir -p /download/torrents
 mkdir -p /download/.watch
 mkdir -p /download/.session
 
-htpasswd -b -c /var/www/rutorrent/.htpasswd $USERNAME $PASSWORD
+htpasswd -b -c /var/www/rutorrent/.htpasswd $USERNAME ${PASSWORD:-$(hostname)}
 
 chown -R torrent:torrent /download
 chown -R torrent:torrent /var/www

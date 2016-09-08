@@ -6,14 +6,24 @@
 
 #### Environment:
 
-- USERNAME
-- PASSWORD
-- UID
-- GID
+| Environment | Default value |
+|-------------|---------------|
+| USERNAME    | admin         |
+| PASSWORD    | $(hostname)   |
+| UID         | 1000          |
+| GID         | 1000          |
 
-#### Creating an instance:
+#### Custom usage:
 
-    docker run -d --name rtorrent -p 80:8080  -p 12345:55000 -v /your/data:/download -e USERNAME=yourname -e PASSWORD=yourpassword gists/rtorrent
+    docker run \
+        -d \
+        --name rtorrent \
+        -p 80:8080 \
+        -p 12345:55000 \
+        -v /your/data:/download \
+        -e USERNAME=yourname \
+        -e PASSWORD=yourpassword \
+        gists/rtorrent
 
 #### Compose example:
 
