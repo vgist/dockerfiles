@@ -15,13 +15,13 @@
 #### Creating an instance:
 
     docker run \
-    --name pure-ftpd \
-    -d \
-    -p 21:21 \
-    -p 30000-30009:30000-30009 \
-    -v $(pwd)/pureftpd:/etc/pureftpd \
-    -v /your/data:/home/ftpuser \
-    gists/pure-ftpd
+        -d \
+        --name pure-ftpd \
+        -p 21:21 \
+        -p 30000-30009:30000-30009 \
+        -v $(pwd)/pureftpd:/etc/pureftpd \
+        -v /your/data:/home/ftpuser \
+        gists/pure-ftpd
 
 **since docker version 1.5 ports can be exported in range**
 
