@@ -9,7 +9,6 @@
 
 | Environment | Default value |
 |-------------|---------------|
-| LISTEN_PORT | 21            |
 | PUBLIC_HOST | localhost     |
 
 #### Custom usage:
