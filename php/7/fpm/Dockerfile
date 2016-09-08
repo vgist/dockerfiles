@@ -36,7 +36,7 @@ RUN set -xe && \
     php7-pdo_dblib \
     php7-curl \
     php7-ctype \
-    php7-fpm && \
+    php7-fpm
 
 COPY entrypoint.sh /usr/bin/entrypoint.sh
 
