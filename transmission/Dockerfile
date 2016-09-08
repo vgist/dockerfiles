@@ -4,7 +4,7 @@ MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
 ENV RPC_PORT    9091
 ENV PEERPORT    51413
 ENV USERNAME    username
-ENV PASSWORD    password
+ENV PASSWORD=
 
 # Let's roll
 RUN set -xe && \
@@ -30,7 +30,7 @@ CMD /usr/bin/transmission-daemon \
                         --port $RPC_PORT \
                         --peerport $PEERPORT \
                         --username $USERNAME \
-                        --password $PASSWORD \
+                        --password ${PASSWORD:-$(hostname)} \
                         --auth \
                         --encryption-preferred \
                         --no-lpd \
