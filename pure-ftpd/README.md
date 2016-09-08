@@ -3,37 +3,45 @@
 #### Volume
 
 - /home/ftpuser
-- /etc/pureftpd.pdb
+- /etc/pureftpd
 
 #### Environment:
 
 - LISTEN_PORT
-- PASV_PORT
 - PUBLIC_HOST
 
 #### Creating an instance:
 
-    docker run -d -p 21:21 -p 30000-30009:30000-30009 -v $(pwd)/pureftpd.pdb:/etc/pureftpd.pdb -v /your/data:/home/ftpuser gists/pure-ftpd
+    docker run -d -p 21:21 -p 30000-30009:30000-30009 -v $(pwd)/pureftpd:/etc/pureftpd -v /your/data:/home/ftpuser gists/pure-ftpd
 
 #### Compose example:
 
     transmission:
       image: gists/pure-ftpd
+      container_name: pure-ftpd
       ports:
         - "21:21"
         - "30000-30009:30000-30009"
       volumes:
-        - ./pureftpd.pdb:/etc/pureftpd.pdb
         - /your/data:/home/ftpuser
+        - ./pureftpd:/etc/pureftpd
       restart: always
+
+##### ftpuser permision
+
+    docker exec -it pure-ftpd chown -R /home/ftpuser
 
 ##### ftpuser is OS user, test_user is the FTP virtual user
 
-    pure-pw useradd test_user -u ftpuser -d /home/ftpuser/test_user -m
+    docker exec -it pure-ftpd pure-pw useradd test -m -u ftpuser -d /home/ftpuser/test
 
 ##### refresh pure-ftpd password file or the new ftp user is unable to login
 
-    pure-pw mkdb
+    docker exec -it pure-ftpd pure-pw mkdb
+
+##### backup pureftpd.passwd
+
+    docker exec -it pure-ftpd cp /etc/pureftpd.passwd /etc/pureftpd/pureftpd.passwd
 
 #### pure-ftpd
 
