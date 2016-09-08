@@ -12,7 +12,7 @@
 | LISTEN_PORT | 21            |
 | PUBLIC_HOST | localhost     |
 
-#### Creating an instance:
+#### Custom usage:
 
     docker run \
         -d \
