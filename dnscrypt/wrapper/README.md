@@ -2,11 +2,13 @@
 
 #### Environment:
 
-- RESOLVER_IP
-- RESOLVER_PORT
-- LISTEN_IP
-- LISTEN_PORT
-- PROVIDER_NAME
+| Environment   | Default value               |
+|---------------|-----------------------------|
+| RESOLVER_IP   | 8.8.8.8                     |
+| RESOLVER_PORT | 53                          |
+| LISTEN_IP     | 0.0.0.0                     |
+| LISTEN_PORT   | 443                         |
+| PROVIDER_NAME | 2.dnscrypt-cert.easypi.info |
 
 #### Custom usage:
 
