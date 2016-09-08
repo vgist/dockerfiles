@@ -16,7 +16,7 @@
 
 #### Compose example:
 
-    transmission:
+    pure-ftpd:
       image: gists/pure-ftpd
       container_name: pure-ftpd
       ports:
