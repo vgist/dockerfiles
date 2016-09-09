@@ -7,6 +7,7 @@ set -e
 [[ "$DEBUG" == "true" ]] && set -x
 
 # Set environments
+sed -i "s|include = /etc/php5/fpm.d/\*.conf||g" /etc/php5/php-fpm.conf
 sed -i "s|;*daemonize\s*=\s*yes|daemonize = no|g" /etc/php5/php-fpm.conf
 sed -i "s|;*error_log\s*=\s*log/php/error.log|error_log = /dev/stderr|g" /etc/php5/php-fpm.conf
 sed -i "s|;*listen\s*=\s*127.0.0.1:9000|listen = 9000|g" /etc/php5/php-fpm.conf
