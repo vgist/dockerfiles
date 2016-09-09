@@ -4,9 +4,15 @@
 
 - /etc/ppp
 
-#### Creating an instance:
+#### Custom usage:
 
-    docker run -it --name pptpd --privileged -p 1723:1723 -v /local_path/chap-secrets gists/pptpd
+    docker run \
+        -d \
+        --name pptpd \
+        --privileged \
+        -p 1723:1723 \
+        -v /local_path/chap-secrets:/etc/ppp/chap-secrets:ro \
+        gists/pptpd
 
 #### Compose example:
 

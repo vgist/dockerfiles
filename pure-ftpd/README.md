@@ -7,16 +7,26 @@
 
 #### Environment:
 
-- LISTEN_PORT
-- PUBLIC_HOST
+| Environment | Default value |
+|-------------|---------------|
+| PUBLIC_HOST | localhost     |
 
-#### Creating an instance:
+#### Custom usage:
 
-    docker run -d -p 21:21 -p 30000-30009:30000-30009 -v $(pwd)/pureftpd:/etc/pureftpd -v /your/data:/home/ftpuser gists/pure-ftpd
+    docker run \
+        -d \
+        --name pure-ftpd \
+        -p 21:21 \
+        -p 30000-30009:30000-30009 \
+        -v $(pwd)/pureftpd:/etc/pureftpd \
+        -v /your/data:/home/ftpuser \
+        gists/pure-ftpd
+
+**since docker version 1.5 ports can be exported in range**
 
 #### Compose example:
 
-    transmission:
+    pure-ftpd:
       image: gists/pure-ftpd
       container_name: pure-ftpd
       ports:
@@ -45,13 +55,12 @@
 
 #### pure-ftpd
 
-```
 /usr/sbin/pure-ftpd # path to pure-ftpd executable
--C 10 # --maxclientsperip (no more than 10 requests from the same ip)
--l puredb:/etc/pureftpd.pdb # --login (login file for virtual users)
--E # --noanonymous (only real users)
--j # --createhomedir (auto create home directory if it doesnt already exist)
--R # --nochmod (prevent usage of the CHMOD command)
--P $PUBLIC_HOST # IP/Host setting for PASV support, passed in your the PUBLIC_HOST env var
--p 30000:30009 # PASV port ranges
-```
+
+    -C|--maxclientsperip                # num no more than num requests from the same ip
+    -l|--login puredb:/etc/pureftpd.pdb # login file for virtual users
+    -E|--noanonymous                    # only real users
+    -j|--createhomedir                  # auto create home directory if it doesnt already exist
+    -R|--nochmod                        # prevent usage of the CHMOD command
+    -P IP/Host                          # setting for PASV support, passed in your the PUBLIC_HOST env var
+    -p 30000:30009                      # PASV port ranges

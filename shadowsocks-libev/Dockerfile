@@ -1,7 +1,15 @@
 FROM alpine:3.4
 MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
 
-ENV SS_VER 2.5.0
+ARG SS_VER=2.5.0
+
+ENV SERVER_ADDR 0.0.0.0
+ENV SERVER_PORT 8443
+ENV PASSWORD=
+ENV METHOD      aes-256-cfb
+ENV TIMEOUT     300
+ENV DNS_ADDR    8.8.8.8
+ENV DNS_ADDR_2  8.8.4.4
 
 RUN set -ex && \
     apk add --no-cache --virtual .build-deps autoconf build-base curl libtool linux-headers openssl-dev asciidoc xmlto && \
@@ -12,14 +20,6 @@ RUN set -ex && \
     cd .. && \
     rm -rf shadowsocks-libev-$SS_VER && \
     apk del .build-deps
-
-ENV SERVER_ADDR 0.0.0.0
-ENV SERVER_PORT 8443
-ENV PASSWORD=
-ENV METHOD      aes-256-cfb
-ENV TIMEOUT     300
-ENV DNS_ADDR    8.8.8.8
-ENV DNS_ADDR_2  8.8.4.4
 
 USER nobody
 

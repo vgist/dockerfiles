@@ -4,6 +4,16 @@
 
 - /etc/dnsmasq.d
 
+#### Custom usage:
+
+    docker run \
+        -d \
+        --name dnsmasq \
+        -p 53:53/tcp \
+        -p 53:53/udp \
+        -v ./dnsmasq.d:/etc/dnsmasq.d \
+        gists/dnsmasq
+
 #### Compose example:
 
     dnsmasq:
@@ -14,7 +24,3 @@
       volumes:
         - ./dnsmasq.d:/etc/dnsmasq.d
       restart: always
-
-#### Creating an instance:
-
-    docker run -d --name dnsmasq -p 53:53/tcp -p 53:53/udp -v ./dnsmasq.d:/etc/dnsmasq.d gists/dnsmasq

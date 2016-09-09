@@ -4,7 +4,7 @@
 
 - /var/www
 
-#### Creating an instance:
+#### Custom usage:
 
     docker run -d --name lighttpd -p 80:80 gists/lighttpd
 
