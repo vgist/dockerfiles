@@ -24,7 +24,7 @@ RUN set -ex && \
                                   asciidoc \
                                   xmlto && \
     cd /tmp && \
-    curl -sSL $SS_URL | tar xz --strip-components 1 && \
+    curl -sSL $SS_URL | tar xz --strip 1 && \
     ./configure && \
     make install && \
     cd .. && \
