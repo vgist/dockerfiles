@@ -2,13 +2,16 @@ FROM alpine:3.4
 MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
 
 ARG PUREFTPD_VERSION=1.0.43
+ARG URL=http://download.pureftpd.org/pub/pure-ftpd/releases/pure-ftpd-$PUREFTPD_VERSION.tar.gz
 
 ENV PUBLIC_HOST         localhost
+ENV MIN_PASV_PORT       30000
+ENV MAX_PASV_PORT       30009
 
 RUN set -ex && \
-    apk add --no-cache --virtual .build-deps build-base curl && \
-    curl -sSL http://download.pureftpd.org/pub/pure-ftpd/releases/pure-ftpd-$PUREFTPD_VERSION.tar.gz | tar xz && \
-    cd pure-ftpd-$PUREFTPD_VERSION && \
+    apk add --no-cache --virtual .build-deps build-base curl tar && \
+    cd /tmp && \
+    curl -sSL $URL --strip-components 1 | tar xz && \
 
     ./configure --prefix=/usr \
                 --without-humor \
@@ -21,7 +24,7 @@ RUN set -ex && \
                 --with-welcomemsg && \
     make install-strip && \
     cd .. && \
-    rm -rf pure-ftpd-$PUREFTPD_VERSION && \
+    rm -rf /tmp/* && \
     apk del .build-deps && \
 
     addgroup -g 1000 -S ftpuser && \
@@ -31,13 +34,13 @@ COPY entrypoint.sh /usr/bin/entrypoint.sh
 
 VOLUME /home/ftpuser
 
-EXPOSE 21 30000-30009
+EXPOSE 21 $MIN_PASV_PORT-$MAX_PASV_PORT
 
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 
 CMD /usr/sbin/pure-ftpd \
                         -P $PUBLIC_HOST \
-                        -p 30000:30009 \
+                        -p $MIN_PASV_PORT:MAX_PASV_PORT \
                         -l puredb:/etc/pureftpd.pdb \
                         -E \
                         -j \

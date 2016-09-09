@@ -7,9 +7,11 @@
 
 #### Environment:
 
-| Environment | Default value |
-|-------------|---------------|
-| PUBLIC_HOST | localhost     |
+| Environment   | Default value |
+|---------------|---------------|
+| PUBLIC_HOST   | localhost     |
+| MIN_PASV_PORT | 30000         |
+| MAX_PASV_PORT | 30009         |
 
 #### Custom usage:
 
