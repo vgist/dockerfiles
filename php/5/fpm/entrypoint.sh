@@ -2,7 +2,9 @@
 #
 # entrypoint.sh
 
-set -xe
+set -e
+
+[[ "$DEBUG" == "true" ]] && set -x
 
 # Set environments
 sed -i "s|;*daemonize\s*=\s*yes|daemonize = no|g" /etc/php5/php-fpm.conf

@@ -13,3 +13,4 @@
 | PHP_MAX_FILE_UPLOAD | 20            |
 | PHP_MAX_POST        | 64M           |
 | MAX_INPUT_VARS      | 4000          |
+| TIMEZONE            | Asia/Shanghai |

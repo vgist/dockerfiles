@@ -7,6 +7,7 @@ ENV MAX_UPLOAD          64M
 ENV PHP_MAX_FILE_UPLOAD 20
 ENV PHP_MAX_POST        64M
 ENV MAX_INPUT_VARS      4000
+ENV TIMEZONE            Asia/Shanghai
 
 # Let's roll
 RUN set -xe && \
