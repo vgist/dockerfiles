@@ -2,7 +2,9 @@
 #
 # entrypoint.sh
 
-set -xe
+set -e
+
+[[ "$DEBUG" == "true" ]] && set -x
 
 # enable IP forwarding
 sysctl -w net.ipv4.ip_forward=1
