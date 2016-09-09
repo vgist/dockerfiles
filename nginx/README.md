@@ -5,9 +5,13 @@
 - /var/www
 - /etc/nginx/conf.d
 
-#### Creating an instance:
+#### Custom usage:
 
-    docker run -d --name nginx -p 8080:80 -p 8443:443  gists/nginx
+    docker run \
+        -d \
+        --name nginx \
+        -p 80:80 \
+        gists/nginx
 
 #### Compose example:
 
@@ -52,7 +56,7 @@
                 - ./data:/var/lib/mysql
             restart: always
 
-##### Nginx conf
+##### Nginx conf with php-fpm
 
     server {
     ...

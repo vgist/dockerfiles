@@ -4,15 +4,31 @@
 
 - /var/www
 
-#### Creating an instance:
+#### Custom usage:
 
-    docker run -d -p 4000:4000 -v /jekyll/path:/var/www gists/jekyll
+    docker run \
+        -d \
+        --name jekyll \
+        -p 4000:4000 \
+        -v /jekyll/path:/var/www \
+        gists/jekyll
 
-#### Volume permission
+Run container with `-u uid:gid`
 
-run container with `-u uid:gid`
+    docker run \
+        -d \
+        -u 1000:1000 \
+        -p 4000:4000 \
+        -v /jekyll/path:/var/www \
+        gists/jekyll
 
-    docker run -u 1000:1000 -d -p 4000:4000 -v /jekyll/path:/var/www gists/jekyll
+Just build
+
+    docker run \
+        --rm \
+        -it \
+        -v /jekyll/path:/var/www \
+        gists/jekyll jekyll build # override CMD
 
 #### Compose example:
 
@@ -23,7 +39,3 @@ run container with `-u uid:gid`
         volumes:
             - ./:/var/www
         restart: always
-
-#### Just build:
-
-    docker run --rm -it -v /jekyll/path:/var/www gists/jekyll jekyll build # override CMD

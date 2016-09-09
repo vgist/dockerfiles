@@ -6,14 +6,23 @@
 
 #### Environment:
 
-- RPC_PORT
-- PEERPORT
-- USERNAME
-- PASSWORD
+| Environment | Default value |
+|-------------|---------------|
+| RPC_PORT    | 9091          |
+| PEERPORT    | 51413         |
+| USERNAME    | username      |
+| PASSWORD    | $(hostname)   |
 
-#### Creating an instance:
+#### Custom usage:
 
-docker run -d -p 8080:9091 -v /your/data:/data/downloads gists/transmission
+    docker run \
+        -d \
+        --name transmission \
+        -p 8080:9091 \
+        -v /your/data:/data/downloads \
+        -e USERNAME=username
+        -e PASSWORD=password
+        gists/transmission
 
 #### Compose example:
 

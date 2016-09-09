@@ -14,6 +14,16 @@
 - MYSQL_RANDOM_ROOT_PASSWORD: generate a random initial password for the root user (using pwgen)
 - MYSQL_ONETIME_PASSWORD: Sets root (not the user specified in MYSQL_USER!) user as expired once init is complete, forcing a password change on first login.
 
+#### Custom usage:
+
+    docker run \
+        -d \
+        --name mariadb \
+        -p 3306:3306 \
+        -v /path/data:/var/lib/mysql \
+        -e MYSQL_ROOT_PASSWORD=123456 \
+        gists/mariadb
+
 #### Compose example:
 
     mariadb:
@@ -25,7 +35,3 @@
         volumes:
             - /path/data:/var/lib/mysql
         restart: always
-
-#### Creating an instance:
-
-    docker run -it --name mariadb -p 3306:3306 -v /path/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 gists/mariadb
