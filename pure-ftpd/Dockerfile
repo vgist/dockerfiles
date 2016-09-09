@@ -11,7 +11,7 @@ ENV MAX_PASV_PORT       30009
 RUN set -ex && \
     apk add --no-cache --virtual .build-deps build-base curl tar && \
     cd /tmp && \
-    curl -sSL $URL --strip-components 1 | tar xz && \
+    curl -sSL $URL | tar xz --strip 1 && \
 
     ./configure --prefix=/usr \
                 --without-humor \
