@@ -40,7 +40,7 @@ ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 
 CMD /usr/sbin/pure-ftpd \
                         -P $PUBLIC_HOST \
-                        -p $MIN_PASV_PORT:MAX_PASV_PORT \
+                        -p $MIN_PASV_PORT:$MAX_PASV_PORT \
                         -l puredb:/etc/pureftpd.pdb \
                         -E \
                         -j \
