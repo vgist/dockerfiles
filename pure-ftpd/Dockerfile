@@ -14,6 +14,7 @@ RUN set -ex && \
     curl -sSL $URL | tar xz --strip 1 && \
 
     ./configure --prefix=/usr \
+                --sysconfdir=/etc/pureftpd \
                 --without-humor \
                 --with-minimal \
                 --with-throttling \
@@ -28,11 +29,12 @@ RUN set -ex && \
     apk del .build-deps && \
 
     addgroup -g 1000 -S ftpuser && \
-    adduser -u 1000 -G ftpuser -h /home/ftpuser -D -s /sbin/nologin ftpuser
+    adduser -u 1000 -G ftpuser -h /home/ftpuser -D -s /sbin/nologin ftpuser && \
+    mkdir /etc/pureftpd
 
 COPY entrypoint.sh /usr/bin/entrypoint.sh
 
-VOLUME /home/ftpuser
+VOLUME /home/ftpuser /etc/pureftpd
 
 EXPOSE 21 $MIN_PASV_PORT-$MAX_PASV_PORT
 
@@ -41,7 +43,7 @@ ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 CMD /usr/sbin/pure-ftpd \
                         -P $PUBLIC_HOST \
                         -p $MIN_PASV_PORT:$MAX_PASV_PORT \
-                        -l puredb:/etc/pureftpd.pdb \
+                        -l puredb:/etc/pureftpd/pureftpd.pdb \
                         -E \
                         -j \
                         -R

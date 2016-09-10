@@ -41,7 +41,7 @@
 
 ##### ftpuser permision
 
-    docker exec -it pure-ftpd chown -R /home/ftpuser
+    docker exec -it pure-ftpd chown ftpuser:ftpuser -R /home/ftpuser
 
 ##### ftpuser is OS user, test_user is the FTP virtual user
 
@@ -50,10 +50,6 @@
 ##### refresh pure-ftpd password file or the new ftp user is unable to login
 
     docker exec -it pure-ftpd pure-pw mkdb
-
-##### backup pureftpd.passwd
-
-    docker exec -it pure-ftpd cp /etc/pureftpd.passwd /etc/pureftpd/pureftpd.passwd
 
 #### pure-ftpd
 
