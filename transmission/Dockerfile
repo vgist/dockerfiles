@@ -30,8 +30,4 @@ CMD /usr/bin/transmission-daemon \
                         --port $RPC_PORT \
                         --peerport $PEERPORT \
                         --username $USERNAME \
-                        --password ${PASSWORD:-$(hostname)} \
-                        --auth \
-                        --encryption-preferred \
-                        --no-lpd \
-                        --no-dht
+                        --password ${PASSWORD:-$(hostname)}
