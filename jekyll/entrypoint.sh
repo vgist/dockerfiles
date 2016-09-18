@@ -12,4 +12,4 @@ mkdir -p /var/www
 [[ $(stat -c %U /var/www) == "jekyll" ]] || chown -R jekyll /var/www
 [[ $(stat -c %G /var/www) == "jekyll" ]] || chgrp -R jekyll /var/www
 
-exec "$@"
+exec su-exec jekyll:jekyll "$@"
