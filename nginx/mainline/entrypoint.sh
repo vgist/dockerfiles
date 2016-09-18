@@ -6,7 +6,6 @@ set -e
 
 [[ "$DEBUG" == "true" ]] && set -x
 
-deluser nginx
 addgroup -g ${GID} -S nginx && adduser -u ${UID} -G nginx -H -D -s /sbin/nologin nginx
 mkdir -p /var/www
 
