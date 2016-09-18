@@ -12,6 +12,9 @@ ARG FANCYINDEX_VERSION=0.4.1
 ARG HEADERS_MORE_VERSION=0.31
 ARG GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8
 
+ENV UID     100
+ENV GID     101
+
 # Let's roll
 RUN set -xe && \
     apk add --no-cache --virtual .build-deps \
@@ -61,8 +64,8 @@ RUN set -xe && \
     --http-uwsgi-temp-path=/var/lib/nginx/tmp/uwsgi \
     --http-scgi-temp-path=/var/lib/nginx/tmp/scgi \
     \
-    --user=nobody \
-    --group=nobody \
+    --user=nginx \
+    --group=nginx \
     --with-file-aio \
     --with-threads \
     --with-ipv6 \
@@ -97,7 +100,7 @@ RUN set -xe && \
     --add-dynamic-module=nginx-rtmp-module-${RTMP_VERSION} \
     --add-dynamic-module=nginx-upload-progress-module-${UPLOAD_PROGRESS_VERSION} \
     --add-dynamic-module=echo-nginx-module-${ECHO_VERSION} \
-    --add-dynamic-module=ngx-fancyindex-${FANCYINDEX_VERSION} \ 
+    --add-dynamic-module=ngx-fancyindex-${FANCYINDEX_VERSION} \
     --add-dynamic-module=headers-more-nginx-module-${HEADERS_MORE_VERSION} && \
     make -j $(getconf _NPROCESSORS_ONLN) && \
     make install && \
@@ -105,9 +108,6 @@ RUN set -xe && \
     mkdir -p /etc/nginx/conf.d && \
     mkdir -p /etc/nginx/modules && \
     mkdir -p /var/lib/nginx/tmp && \
-    chown -R nobody /var/lib/nginx/tmp && \
-    mkdir -p /var/www && \
-    chown -Rf nobody /var/www && \
     ln -sf /dev/stdout /var/log/nginx/access.log && \
     ln -sf /dev/stderr /var/log/nginx/error.log && \
 
@@ -126,9 +126,9 @@ RUN set -xe && \
     mv /tmp/envsubst /usr/bin/ && \
     cd .. && \
     rm -rf /tmp/nginx && \
-    rm -r "$GNUPGHOME" 
+    rm -r "$GNUPGHOME"
 
-COPY index.html /var/www/index.html
+COPY entrypoint.sh /usr/bin/entrypoint.sh
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY modules.conf /etc/nginx/modules/nginx.conf
 COPY default.conf /etc/nginx/conf.d/default.conf
@@ -137,5 +137,7 @@ VOLUME ["/var/www"]
 VOLUME ["/etc/nginx/conf.d"]
 
 EXPOSE 80 443
+
+ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 
 CMD ["nginx", "-g", "daemon off;"]

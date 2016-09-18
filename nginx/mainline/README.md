@@ -26,6 +26,13 @@
 - ngx_rtmp_module.so
 - ngx_stream_module.so
 
+#### Environment:
+
+| Environment | Variable | Default value |
+|-------------|----------|---------------|
+| UID         | user id  | 100           |
+| GID         | group id | 101           |
+
 #### Volume
 
 - /var/www
