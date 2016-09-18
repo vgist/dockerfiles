@@ -1,5 +1,12 @@
 ![](https://img.shields.io/badge/Lighttpd-1.4.39-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-3.4-brightgreen.svg) ![](https://img.shields.io/docker/stars/gists/lighttpd.svg) ![](https://img.shields.io/docker/pulls/gists/lighttpd.svg)
 
+#### Environment:
+
+| Environment | Variable | Default value |
+|-------------|----------|---------------|
+| UID         | user id  | 100           |
+| GID         | group id | 101           |
+
 #### Volume
 
 - /var/www
