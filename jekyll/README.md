@@ -1,5 +1,12 @@
 ![](https://img.shields.io/badge/Jekyll-3.2.1-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-3.4-brightgreen.svg) ![](https://img.shields.io/docker/stars/gists/jekyll.svg) ![](https://img.shields.io/docker/pulls/gists/jekyll.svg)
 
+#### Environment:
+
+| Environment   | Default value |
+|---------------|---------------|
+| UID           | 1000          |
+| GID           | 1000          |
+
 #### Volume:
 
 - /var/www
@@ -9,15 +16,6 @@
     docker run \
         -d \
         --name jekyll \
-        -p 4000:4000 \
-        -v /jekyll/path:/var/www \
-        gists/jekyll
-
-Run container with `-u uid:gid`
-
-    docker run \
-        -d \
-        -u 1000:1000 \
         -p 4000:4000 \
         -v /jekyll/path:/var/www \
         gists/jekyll
