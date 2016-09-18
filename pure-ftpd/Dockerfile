@@ -7,6 +7,8 @@ ARG URL=http://download.pureftpd.org/pub/pure-ftpd/releases/pure-ftpd-$PUREFTPD_
 ENV PUBLIC_HOST         localhost
 ENV MIN_PASV_PORT       30000
 ENV MAX_PASV_PORT       30009
+ENV UID                 1000
+ENV GID                 1000
 
 RUN set -ex && \
     apk add --no-cache --virtual .build-deps build-base curl tar && \
@@ -27,9 +29,6 @@ RUN set -ex && \
     cd .. && \
     rm -rf /tmp/* && \
     apk del .build-deps && \
-
-    addgroup -g 1000 -S ftpuser && \
-    adduser -u 1000 -G ftpuser -h /home/ftpuser -D -s /sbin/nologin ftpuser && \
     mkdir /etc/pureftpd
 
 COPY entrypoint.sh /usr/bin/entrypoint.sh

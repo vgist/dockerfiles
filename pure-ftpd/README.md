@@ -12,6 +12,8 @@
 | PUBLIC_HOST   | localhost     |
 | MIN_PASV_PORT | 30000         |
 | MAX_PASV_PORT | 30009         |
+| UID           | 1000          |
+| GID           | 1000          |
 
 #### Custom usage:
 
