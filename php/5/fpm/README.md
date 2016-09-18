@@ -4,13 +4,19 @@
 - ![](https://img.shields.io/badge/PHP7-7.0.10-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-edge-brightgreen.svg) 7, 7-fpm ([7/fpm/Dockerfile](https://github.com/iHavee/dockerfiles/blob/master/php/7/fpm/Dockerfile))
 - ![](https://img.shields.io/badge/PHP-5.6.25-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-3.4-brightgreen.svg) 5, 5-fpm ([5/fpm/Dockerfile](https://github.com/iHavee/dockerfiles/blob/master/php/5/fpm/Dockerfile))
 
-# Environment
+#### Environment:
 
-| Environment         | Default value |
-|---------------------|---------------|
-| PHP_MEMORY_LIMIT    | 256M          |
-| MAX_UPLOAD          | 64M           |
-| PHP_MAX_FILE_UPLOAD | 20            |
-| PHP_MAX_POST        | 64M           |
-| MAX_INPUT_VARS      | 4000          |
-| TIMEZONE            | Asia/Shanghai |
+| Environment          | Variable             | Default value |
+|----------------------|----------------------|---------------|
+| MEMORY_LIMIT         | memory_limit         | 256M          |
+| UPLOAD_MAX_FILESIZE  | upload_max_filesize  | 64M           |
+| MAX_FILE_UPLOADS     | max_file_uploads     | 20            |
+| POST_MAX_SIZE        | post_max_size        | 64M           |
+| MAX_INPUT_VARS       | max_input_vars       | 4000          |
+| DATE_TIMEZONE        | date.timezone        | Asia/Shanghai |
+| PM_MAX_CHILDREN      | pm.max_children      | 6             |
+| PM_START_SERVERS     | pm.start_servers     | 4             |
+| PM_MIN_SPARE_SERVERS | pm.min_spare_servers | 2             |
+| PM_MAX_SPARE_SERVERS | pm.max_spare_servers | 6             |
+| UID                  | user id              | 100           |
+| GID                  | group id             | 101           |
