@@ -5,11 +5,7 @@ ENV UID     100
 ENV GID     101
 
 RUN set -ex && \
-    apk add --no-cache lighttpd && \
-
-    rm -rf /var/www/localhost && \
-    mkdir -p /var/lib/lighttpd/cache/compress && \
-    chown lighttpd:lighttpd -R /var/lib/lighttpd/cache/compress
+    apk add --no-cache lighttpd
 
 COPY entrypoint.sh /usr/bin/entrypoint.sh
 COPY lighttpd.conf /etc/lighttpd/lighttpd.conf

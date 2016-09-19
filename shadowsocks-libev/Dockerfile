@@ -14,15 +14,15 @@ ENV DNS_ADDR_2  8.8.4.4
 
 RUN set -ex && \
     apk add --no-cache --virtual .build-deps \
-                                  tar \
-                                  autoconf \
-                                  build-base \
-                                  curl \
-                                  libtool \
-                                  linux-headers \
-                                  openssl-dev \
-                                  asciidoc \
-                                  xmlto && \
+                                tar \
+                                autoconf \
+                                build-base \
+                                curl \
+                                libtool \
+                                linux-headers \
+                                openssl-dev \
+                                asciidoc \
+                                xmlto && \
     cd /tmp && \
     curl -sSL $SS_URL | tar xz --strip 1 && \
     ./configure && \
