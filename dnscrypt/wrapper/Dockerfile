@@ -34,7 +34,7 @@ RUN set -xe && \
     cd .. && \
     rm -rf $$DNSCRYPT_BUILDDIR && \
     apk del .build-deps && \
-    mkdir -p /var/lib/dnscrypt-wrapper && \
+    mkdir -p /var/lib/dnscrypt-wrapper
 
 COPY entrypoint.sh /usr/bin/entrypoint.sh
 
