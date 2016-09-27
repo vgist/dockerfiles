@@ -37,8 +37,8 @@ RUN set -ex && \
             | sort -u \
     )" && \
     apk add --no-cache --virtual .run-deps $runDeps && \
-    apk del .build-deps
-    rm -rf /tmp/* && \
+    apk del .build-deps && \
+    rm -rf /tmp/*
 
 USER nobody
 
