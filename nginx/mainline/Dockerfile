@@ -126,7 +126,8 @@ RUN set -xe && \
     mv /tmp/envsubst /usr/bin/ && \
     cd .. && \
     rm -rf /tmp/nginx && \
-    rm -r "$GNUPGHOME"
+    rm -rf "$GNUPGHOME" && \
+    mkdir -p /var/www
 
 COPY entrypoint.sh /usr/bin/entrypoint.sh
 COPY nginx.conf /etc/nginx/nginx.conf

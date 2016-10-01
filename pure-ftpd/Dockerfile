@@ -11,7 +11,10 @@ ENV UID                 1000
 ENV GID                 1000
 
 RUN set -ex && \
-    apk add --no-cache --virtual .build-deps build-base curl tar && \
+    apk add --no-cache --virtual .build-deps \
+                                build-base \
+                                curl \
+                                tar && \
     cd /tmp && \
     curl -sSL $URL | tar xz --strip 1 && \
 

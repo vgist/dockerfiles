@@ -81,6 +81,8 @@
             image: gists/php:latest
             volumes:
                 - ./localhost:/var/www
+            links:
+                - mariadb
             restart: always
         mariadb:
             container_name: mariadb

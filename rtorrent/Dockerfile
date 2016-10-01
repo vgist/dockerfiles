@@ -12,32 +12,32 @@ ENV GID             1000
 # Let's roll
 RUN set -xe && \
     apk add --no-cache --virtual .run-deps \
-                                    apache2-utils \
-                                    imagemagick \
-                                    ffmpeg \
-                                    ca-certificates \
-                                    nginx \
-                                    php5-fpm \
-                                    php5-json \
-                                    xmlrpc-c \
-                                    rtorrent \
-                                    libtorrent \
-                                    curl \
-                                    gzip \
-                                    zip \
-                                    unrar \
-                                    supervisor \
-                                    geoip && \
+                                apache2-utils \
+                                imagemagick \
+                                ffmpeg \
+                                ca-certificates \
+                                nginx \
+                                php5-fpm \
+                                php5-json \
+                                xmlrpc-c \
+                                rtorrent \
+                                libtorrent \
+                                curl \
+                                gzip \
+                                zip \
+                                unrar \
+                                supervisor \
+                                geoip && \
     apk add --no-cache --virtual .build-deps \
-                                    build-base \
-                                    git \
-                                    libtool \
-                                    automake \
-                                    autoconf \
-                                    cppunit-dev \
-                                    openssl-dev \
-                                    ncurses-dev \
-                                    curl-dev && \
+                                build-base \
+                                git \
+                                libtool \
+                                automake \
+                                autoconf \
+                                cppunit-dev \
+                                openssl-dev \
+                                ncurses-dev \
+                                curl-dev && \
 
     cd /tmp && \
     curl -sSL https://github.com/Rudde/mktorrent/archive/v${MKTORRENT_VER}.tar.gz | tar xz && \
