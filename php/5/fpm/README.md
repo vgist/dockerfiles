@@ -20,3 +20,26 @@
 | PM_MAX_SPARE_SERVERS | pm.max_spare_servers | 6             |
 | UID                  | user id              | 100           |
 | GID                  | group id             | 101           |
+
+#### Volume:
+
+- /var/www
+
+#### Custom usage:
+
+    docker run \
+        -d \
+        --name php-fpm \
+        -v /path/www:/var/www \
+        -e UPLOAD_MAX_FILESIZE=128M
+        gists/php:7
+
+#### Compose example:
+
+    php-fpm:
+        image: gists/php:7
+        volumes:
+            - ./path/www:/var/www
+        environment:
+            - UPLOAD_MAX_FILESIZE=128M
+        restart: always
