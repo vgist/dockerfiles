@@ -13,10 +13,11 @@ RUN set -xe && \
                     libstdc++ \
                     libgcc \
                     musl \
-                    ttf-dejavu && \
-    addgroup -g ${GID} -S firefox && \
-    adduser -u ${UID} -G firefox -h /home/firefox -D firefox
+                    ttf-dejavu \
+                    su-exec
 
-USER firefox
+COPY entrypoint.sh /usr/bin/entrypoint.sh
+
+ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 
 CMD ["/usr/bin/firefox", "-new-instance"]
