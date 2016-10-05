@@ -17,6 +17,7 @@
         -e GID=1000 \
         -v /tmp/.X11-unix:/tmp/.X11-unix
         -v /dev/snd:/dev/snd
+        -v /usr/share/fonts:/usr/share/fonts:ro
         gists/firefox
 
 #### Note:
