@@ -15,7 +15,7 @@
   "download-limit": 1000,
   "download-limit-enabled": 0,
   "encryption": 2,
-  "incomplete-dir": "/data/.incompletes",
+  "incomplete-dir": "/data/downloads/.incompletes",
   "incomplete-dir-enabled": true,
   "lazy-bitfield-enabled": true,
   "max-peers-global": 200,
