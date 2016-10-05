@@ -35,6 +35,6 @@
       volumes:
         - /your/data:/data/downloads
       environment:
-        - USERNAME=admin
+        - USERNAME=username
         - PASSWORD=password
       restart: always

@@ -11,8 +11,7 @@ RUN set -xe && \
     apk add --no-cache transmission-daemon && \
 
     mkdir -p /data/.config && \
-    mkdir -p /data/.incompletes && \
-    mkdir -p /data/downloads && \
+    mkdir -p /data/downloads/.incompletes && \
     mkdir -p /data/watch && \
     chown -R transmission:transmission /data
 
