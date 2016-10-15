@@ -1,7 +1,7 @@
 FROM alpine:3.4
 MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
 
-ARG SS_VER=2.5.4
+ARG SS_VER=2.5.5
 ARG SS_URL=https://github.com/shadowsocks/shadowsocks-libev/archive/v$SS_VER.tar.gz
 
 ENV SERVER_ADDR 0.0.0.0
