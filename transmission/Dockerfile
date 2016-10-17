@@ -8,20 +8,26 @@ ENV PASSWORD=
 
 # Let's roll
 RUN set -xe && \
-    apk add --no-cache transmission-daemon && \
+    apk add --no-cache transmission-daemon tar curl && \
 
-    mkdir -p /data/.config && \
-    mkdir -p /data/downloads/.incompletes && \
-    mkdir -p /data/watch && \
-    chown -R transmission:transmission /data
+    cd /tmp && \
+    curl -sSL https://raw.githubusercontent.com/ronggang/transmission-web-control/master/release/transmission-control-full.tar.gz | tar xz && \
 
-COPY settings.json /data/.config/settings.json
+    cp /usr/share/transmission/web/index.html /usr/share/transmission/web/index.original.html && \
+    cp -r /tmp/web /usr/share/transmission/ && \
 
-VOLUME /data/downloads
+    apk del tar curl && \
+    rm -rf /tmp/*
 
-WORKDIR /data
+COPY settings.json /etc/transmission/settings.json
+
+COPY entrypoint.sh /usr/bin/entrypoint.sh
+
+VOLUME /data
 
 EXPOSE $RPC_PORT $PEERPORT $PEERPORT/UDP
+
+ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 
 CMD /usr/bin/transmission-daemon \
                         --foreground \

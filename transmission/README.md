@@ -2,7 +2,7 @@
 
 #### Volume
 
-- /data/downloads
+- /data
 
 #### Environment:
 
@@ -19,7 +19,7 @@
         -d \
         --name transmission \
         -p 8080:9091 \
-        -v /your/data:/data/downloads \
+        -v /your/data:/data \
         -e USERNAME=username
         -e PASSWORD=password
         gists/transmission
@@ -33,7 +33,7 @@
         - "51413:51413"
         - "51413:51413/udp"
       volumes:
-        - /your/data:/data/downloads
+        - /your/data:/data
       environment:
         - USERNAME=username
         - PASSWORD=password
