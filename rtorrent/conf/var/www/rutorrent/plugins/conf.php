@@ -1,3 +1,0 @@
-<?php
-
-$defaultTheme = "Oblivion";

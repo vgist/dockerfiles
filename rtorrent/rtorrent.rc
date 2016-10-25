@@ -1,0 +1,39 @@
+scgi_port = 127.0.0.1:5000
+encoding_list = UTF-8
+port_range = 55000-55000
+port_random = no
+check_hash = no
+directory = /download/torrents
+session = /download/.session
+encryption = allow_incoming, try_outgoing, enable_retry
+use_udp_trackers = no
+dht = off
+peer_exchange = no
+
+throttle.global_down.max_rate.set_kb = 0
+throttle.global_up.max_rate.set_kb = 0
+throttle.max_downloads.global.set = 1024
+throttle.max_uploads.global.set = 1024
+throttle.min_peers.normal.set = 32
+throttle.max_peers.normal.set = 128
+throttle.min_peers.seed.set = -1
+throttle.max_peers.seed.set = -1
+throttle.max_downloads.set = 128
+throttle.max_uploads.set = 128
+trackers.numwant.set = 64
+pieces.memory.max.set = 1536M
+
+network.max_open_sockets.set = 2048
+network.max_open_files.set = 10240
+network.http.max_open.set = 32
+network.receive_buffer.size.set = 8M
+network.send_buffer.size.set = 24M
+pieces.preload.type.set = 2
+network.xmlrpc.size_limit.set = 2M
+
+schedule2 = session_save, 1200, 43200, ((session.save))
+
+execute = {sh,-c,/usr/bin/php /var/www/rutorrent/php/initplugins.php torrent &}
+schedule = watch_directory,1,1,"load_start=/download/.watch/*.torrent"
+schedule = untied_directory,5,5,"stop_untied=/download/.watch/*.torrent"
+schedule = espace_disque_insuffisant,1,30,close_low_diskspace=500M

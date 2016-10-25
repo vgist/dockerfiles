@@ -3,6 +3,7 @@
 #### Volume
 
 - /download
+- /var/www/rutorrent/share/users
 
 #### Environment:
 

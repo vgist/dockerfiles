@@ -1,10 +1,12 @@
-#!/bin/sh
+#! /bin/sh
+#
+# entrypoint.sh
 
 addgroup -g ${GID} torrent && adduser -h /home/torrent -s /bin/sh -G torrent -D -u ${UID} torrent
 
-mkdir -p /download/torrents
-mkdir -p /download/.watch
-mkdir -p /download/.session
+cp /etc/rtorrent.rc /home/torrent/.rtorrent.rc
+
+mkdir -p /download/torrents /download/.watch /download/.session
 
 htpasswd -b -c /var/www/rutorrent/.htpasswd $USERNAME ${PASSWORD:-$(hostname)}
 

@@ -2,7 +2,7 @@ FROM alpine:3.4
 MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
 
 ARG MKTORRENT_VER=1.0
-ARG MEDIAINFO_VER=0.7.88
+ARG MKTORRENT_URL=https://github.com/Rudde/mktorrent/archive/v${MKTORRENT_VER}.tar.gz
 
 ENV USERNAME        admin
 ENV PASSWORD=
@@ -13,8 +13,6 @@ ENV GID             1000
 RUN set -xe && \
     apk add --no-cache --virtual .run-deps \
                                 apache2-utils \
-                                imagemagick \
-                                ffmpeg \
                                 ca-certificates \
                                 nginx \
                                 php5-fpm \
@@ -26,54 +24,31 @@ RUN set -xe && \
                                 gzip \
                                 zip \
                                 unrar \
-                                supervisor \
-                                geoip && \
+                                supervisor && \
     apk add --no-cache --virtual .build-deps \
                                 build-base \
-                                git \
-                                libtool \
-                                automake \
-                                autoconf \
-                                cppunit-dev \
-                                openssl-dev \
-                                ncurses-dev \
-                                curl-dev && \
+                                tar \
+                                git && \
 
     cd /tmp && \
-    curl -sSL https://github.com/Rudde/mktorrent/archive/v${MKTORRENT_VER}.tar.gz | tar xz && \
-    wget http://mediaarea.net/download/binary/libmediainfo0/${MEDIAINFO_VER}/MediaInfo_DLL_${MEDIAINFO_VER}_GNU_FromSource.tar.gz && \
-    tar xzf MediaInfo_DLL_${MEDIAINFO_VER}_GNU_FromSource.tar.gz && \
-    wget http://mediaarea.net/download/binary/mediainfo/${MEDIAINFO_VER}/MediaInfo_CLI_${MEDIAINFO_VER}_GNU_FromSource.tar.gz && \
-    tar xzf MediaInfo_CLI_${MEDIAINFO_VER}_GNU_FromSource.tar.gz && \
-
-    cd /tmp/mktorrent-${MKTORRENT_VER} && \
+    curl -sSL $MKTORRENT_URL | tar xz --strip 1 && \
     make && make install && \
 
-    cd /tmp/MediaInfo_DLL_GNU_FromSource && \
-    ./SO_Compile.sh && \
-    cd /tmp/MediaInfo_DLL_GNU_FromSource/ZenLib/Project/GNU/Library && \
-    make install && \
-    cd /tmp/MediaInfo_DLL_GNU_FromSource/MediaInfoLib/Project/GNU/Library && \
-    make install && \
-
-    cd /tmp/MediaInfo_CLI_GNU_FromSource && \
-    ./CLI_Compile.sh && \
-    cd /tmp/MediaInfo_CLI_GNU_FromSource/MediaInfo/Project/GNU/CLI && \
-    make install && \
-
     git clone https://github.com/Novik/ruTorrent.git /var/www/rutorrent && \
-    git clone https://github.com/xombiemp/rutorrentMobile.git /var/www/rutorrent/plugins/mobile && \
-    git clone https://github.com/Phlooo/ruTorrent-MaterialDesign.git /var/www/rutorrent/plugins/theme/themes/materialdesign && \
 
     apk del .build-deps && \
-    cd / && \
+    rm -rf /var/www/rutorrent/.git && \
     rm -rf /tmp/*
 
-COPY conf /
+COPY entrypoint.sh /usr/bin/entrypoint.sh
+COPY supervisord.ini /etc/supervisor.d/supervisord.ini
+COPY rtorrent.rc /etc/rtorrent.rc
+COPY rutorrent /var/www/rutorrent
+COPY etc /etc
 
 VOLUME /download
 VOLUME /var/www/rutorrent/share/users
 
 EXPOSE 8080 55000
 
-CMD ["/usr/bin/startup"]
+CMD ["/usr/bin/entrypoint.sh"]
