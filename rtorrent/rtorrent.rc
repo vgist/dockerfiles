@@ -9,18 +9,19 @@ encryption = allow_incoming, try_outgoing, enable_retry
 use_udp_trackers = no
 dht = off
 peer_exchange = no
+set_max_file_size = 2048G
 
 throttle.global_down.max_rate.set_kb = 0
 throttle.global_up.max_rate.set_kb = 0
 throttle.max_downloads.global.set = 1024
 throttle.max_uploads.global.set = 1024
-throttle.min_peers.normal.set = 32
-throttle.max_peers.normal.set = 128
+throttle.min_peers.normal.set = 16
+throttle.max_peers.normal.set = 64
 throttle.min_peers.seed.set = -1
 throttle.max_peers.seed.set = -1
-throttle.max_downloads.set = 128
-throttle.max_uploads.set = 128
-trackers.numwant.set = 64
+throttle.max_downloads.set = 64
+throttle.max_uploads.set = 32
+trackers.numwant.set = 32
 pieces.memory.max.set = 1536M
 
 network.max_open_sockets.set = 2048
