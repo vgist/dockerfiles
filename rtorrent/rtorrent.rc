@@ -9,6 +9,7 @@ encryption = allow_incoming, try_outgoing, enable_retry
 use_udp_trackers = no
 dht = off
 peer_exchange = no
+set_max_file_size = 2048G
 
 throttle.global_down.max_rate.set_kb = 0
 throttle.global_up.max_rate.set_kb = 0
