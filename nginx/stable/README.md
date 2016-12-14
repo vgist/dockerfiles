@@ -1,13 +1,13 @@
 ![](https://img.shields.io/docker/stars/gists/nginx.svg) ![](https://img.shields.io/docker/pulls/gists/nginx.svg) ![](https://img.shields.io/badge/Alpine-3.4-brightgreen.svg)
 
-- ![](https://img.shields.io/badge/NGINX-1.11.3-brightgreen.svg) latest, 1.11.3, mainline ([nginx/basic/Dockerfile](https://github.com/iHavee/dockerfiles/blob/master/nginx/basic/Dockerfile))
-- ![](https://img.shields.io/badge/NGINX-1.10.1-brightgreen.svg) stable, 1.10.1 ([nginx/stable/Dockerfile](https://github.com/iHavee/dockerfiles/blob/master/nginx/stable/Dockerfile))
+- ![](https://img.shields.io/badge/NGINX-1.11.7-brightgreen.svg) latest, 1.11.7, mainline ([nginx/basic/Dockerfile](https://github.com/iHavee/dockerfiles/blob/master/nginx/basic/Dockerfile))
+- ![](https://img.shields.io/badge/NGINX-1.10.1-brightgreen.svg) stable, 1.10.2 ([nginx/stable/Dockerfile](https://github.com/iHavee/dockerfiles/blob/master/nginx/stable/Dockerfile))
 
 
 ##### the difference
 
-- stable: version 1.10.1, without dynamic module, lightweight
-- mainline: version 1.11.3, with useful dynamic module
+- stable: version 1.10.2, without dynamic module, lightweight
+- mainline: version 1.11.7, with useful dynamic module
 
 #### Contain dynamic modules
 
