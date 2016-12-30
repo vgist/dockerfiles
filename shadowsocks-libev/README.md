@@ -7,10 +7,11 @@
 | SERVER_ADDR | 0.0.0.0       |
 | SERVER_PORT | 8443          |
 | PASSWORD    | $(hostname)   |
-| METHOD      | chacha20-ietf |
+| METHOD      | chacha20      |
 | TIMEOUT     | 300           |
 | DNS_ADDR    | 8.8.8.8       |
 | DNS_ADDR_2  | 8.8.4.4       |
+| OBFS        | http          |
 
 #### Creating an instance:
 
