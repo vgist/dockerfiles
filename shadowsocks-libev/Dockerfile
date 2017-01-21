@@ -37,6 +37,8 @@ RUN set -ex && \
 
     cd /tmp/obfs && \
     curl -sSL $OBFS_URL | tar xz --strip 1 && \
+    ./configure --prefix=/usr --disable-documentation && \
+    make install && \
 
     runDeps="$( \
         scanelf --needed --nobanner /usr/bin/ss-* /usr/bin/obfs-* \
