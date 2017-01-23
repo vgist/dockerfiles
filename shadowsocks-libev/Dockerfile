@@ -19,7 +19,6 @@ ENV PLUGIN_OPTS obfs=http
 
 RUN set -ex && \
     apk add --no-cache --virtual .build-deps \
-                                asciidoc \
                                 autoconf \
                                 build-base \
                                 curl \
@@ -27,8 +26,7 @@ RUN set -ex && \
                                 linux-headers \
                                 openssl-dev \
                                 pcre-dev \
-                                tar \
-                                xmlto && \
+                                tar && \
     mkdir -p /tmp/ss /tmp/obfs && \
     cd /tmp/ss && \
     curl -sSL $SS_URL | tar xz --strip 1 && \
