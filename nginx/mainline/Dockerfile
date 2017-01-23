@@ -1,8 +1,8 @@
-FROM alpine:3.4
+FROM alpine:3.5
 MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
 
-ARG NGINX_VERSION=1.11.7
-ARG NJS_SHAID=508689c1fb94
+ARG NGINX_VERSION=1.11.8
+ARG NJS_SHAID=15dc54100400
 ARG DEV_KIT_VERSION=0.3.0
 ARG LUA_MODULE_VERSION=0.10.7
 ARG RTMP_VERSION=1.1.10
@@ -67,6 +67,7 @@ RUN set -xe && \
     --user=nginx \
     --group=nginx \
     --with-file-aio \
+    --with-compat \
     --with-threads \
     --with-ipv6 \
     \
@@ -93,6 +94,9 @@ RUN set -xe && \
     --with-mail_ssl_module \
     --with-stream=dynamic \
     --with-stream_ssl_module \
+    --with-stream_ssl_preread_module \
+    --with-stream_realip_module \
+    --with-stream_geoip_module=dynamic \
     \
     --add-dynamic-module=njs-${NJS_SHAID}/nginx \
     --add-dynamic-module=ngx_devel_kit-${DEV_KIT_VERSION} \
