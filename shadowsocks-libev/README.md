@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/shadowsocks--libev-2.6.2-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-3.5-brightgreen.svg) ![](https://img.shields.io/docker/stars/gists/shadowsocks-libev.svg) ![](https://img.shields.io/docker/pulls/gists/shadowsocks-libev.svg)
+![](https://img.shields.io/badge/shadowsocks--libev-3.0.0-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-3.5-brightgreen.svg) ![](https://img.shields.io/docker/stars/gists/shadowsocks-libev.svg) ![](https://img.shields.io/docker/pulls/gists/shadowsocks-libev.svg)
 
 #### Environment:
 
@@ -36,5 +36,4 @@
         - PASSWORD=EQdFUYal
         - METHOD=chacha20
       restart: always
-
 

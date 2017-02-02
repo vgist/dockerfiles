@@ -1,8 +1,8 @@
 FROM alpine:3.5
 MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
 
-ARG SS_VER=2.6.2
-ARG SS_URL=https://github.com/shadowsocks/shadowsocks-libev/archive/v$SS_VER.tar.gz
+ARG SS_VER=3.0.0
+ARG SS_URL=https://github.com/shadowsocks/shadowsocks-libev/releases/download/v$SS_VER/shadowsocks-libev-$SS_VER.tar.gz
 ARG OBFS_VER=0.0.2
 ARG OBFS_URL=https://github.com/shadowsocks/simple-obfs/archive/v$OBFS_VER.tar.gz
 
@@ -22,11 +22,15 @@ RUN set -ex && \
                                 autoconf \
                                 build-base \
                                 curl \
+                                libev-dev \
                                 libtool \
                                 linux-headers \
+                                libsodium-dev \
+                                mbedtls-dev \
                                 openssl-dev \
                                 pcre-dev \
-                                tar && \
+                                tar \
+                                udns-dev && \
     mkdir -p /tmp/ss /tmp/obfs && \
     cd /tmp/ss && \
     curl -sSL $SS_URL | tar xz --strip 1 && \
@@ -62,6 +66,5 @@ CMD ss-server -s $SERVER_ADDR \
               -d $DNS_ADDR \
               -d $DNS_ADDR_2 \
               -u \
-              -A \
               --plugin $PLUGIN \
               --plugin-opts $PLUGIN_OPTS
