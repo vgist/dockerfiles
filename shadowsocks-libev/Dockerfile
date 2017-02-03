@@ -27,7 +27,6 @@ RUN set -ex && \
                                 linux-headers \
                                 libsodium-dev \
                                 mbedtls-dev \
-                                openssl-dev \
                                 pcre-dev \
                                 tar \
                                 udns-dev && \
