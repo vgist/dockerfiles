@@ -7,7 +7,7 @@
 | SERVER_ADDR | 0.0.0.0       |
 | SERVER_PORT | 8443          |
 | PASSWORD    | $(hostname)   |
-| METHOD      | chacha20      |
+| METHOD      | aes-128-gcm   |
 | TIMEOUT     | 300           |
 | DNS_ADDR    | 8.8.8.8       |
 | DNS_ADDR_2  | 8.8.4.4       |
@@ -22,7 +22,7 @@
         -p 8443:8443 \
         -p 8443:8443/udp \
         -e PASSWORD=EQdFUYal \
-        -e METHOD=chacha20
+        -e METHOD=aes-128-gcm
         gists/shadowsocks-libev
 
 #### Compose example:
@@ -34,6 +34,6 @@
         - "8443:8443/udp"
       environment:
         - PASSWORD=EQdFUYal
-        - METHOD=chacha20
+        - METHOD=aes-128-gcm
       restart: always
 
