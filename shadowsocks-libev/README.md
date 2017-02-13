@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/shadowsocks--libev-3.0.1-brightgreen.svg) ![](https://img.shields.io/badge/simple--obfs-0.0.2-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-3.5-brightgreen.svg) ![](https://img.shields.io/docker/stars/gists/shadowsocks-libev.svg) ![](https://img.shields.io/docker/pulls/gists/shadowsocks-libev.svg)
+![](https://img.shields.io/badge/shadowsocks--libev-3.0.2-brightgreen.svg) ![](https://img.shields.io/badge/simple--obfs-0.0.2-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-3.5-brightgreen.svg) ![](https://img.shields.io/docker/stars/gists/shadowsocks-libev.svg) ![](https://img.shields.io/docker/pulls/gists/shadowsocks-libev.svg)
 
 #### Environment:
 
