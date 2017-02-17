@@ -9,7 +9,7 @@ ARG OBFS_URL=https://github.com/shadowsocks/simple-obfs/archive/v$OBFS_VER.tar.g
 ENV SERVER_ADDR 0.0.0.0
 ENV SERVER_PORT 8443
 ENV PASSWORD=
-ENV METHOD      aes-128-gcm
+ENV METHOD      chacha20-ietf-poly1305
 ENV TIMEOUT     300
 ENV DNS_ADDR    8.8.8.8
 ENV DNS_ADDR_2  8.8.4.4
