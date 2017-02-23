@@ -2,12 +2,12 @@
 
 #### Environment:
 
-| Environment | Default value  |
-|-------------|----------------|
-| SERVER_ADDR | 0.0.0.0        |
-| SERVER_PORT | 8443           |
-| obfs        | http           |
-| FORWARD_TO  | 127.0.0.1:8388 |
+| Environment   | Default value  |
+|---------------|----------------|
+| SERVER_ADDR   | 0.0.0.0        |
+| SERVER_PORT   | 8443           |
+| obfs          | http           |
+| REMOTE_SERVER | 127.0.0.1:8388 |
 
 #### Creating an instance:
 
@@ -15,7 +15,7 @@
         -d \
         --name obfs \
         -p 8443:8443 \
-        -e FORWARD_TO=127.0.0.1:8388    # Forward traffic to this remote server address
+        -e REMOTE_SERVER=127.0.0.1:8388    # Forward traffic to this remote server address
         gists/simple-obfs
 
 #### Compose example:
@@ -25,5 +25,5 @@
       ports:
         - "8443:8443"
       environment:
-        - FORWARD_TO=127.0.0.1:8388
+        - REMOTE_SERVER=127.0.0.1:8388
       restart: always
