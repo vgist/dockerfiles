@@ -32,3 +32,27 @@
         - PASSWORD=password
         - METHOD=chacha20-ietf-poly1305
       restart: always
+
+#### Over simple-obfs:
+
+    version: '2'
+
+    services:
+        ss:
+            container_name: ss
+            image: gists/shadowsocks-libev
+            environment:
+              - PASSWORD=password
+              - METHOD=chacha20-ietf-poly1305
+            restart: always
+        obfs:
+            container_name: obfs
+            image: gists/simple-obfs
+            ports:
+              - "8443:8443/tcp"
+            environment:
+              - SERVER_PORT=8443
+              - REMOTE_SERVER=ss:8388
+            links:
+              - ss
+            restart: always
