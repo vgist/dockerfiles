@@ -52,3 +52,4 @@ CMD ss-server --fast-open \
               -t $TIMEOUT \
               -d $DNS_ADDR \
               -d $DNS_ADDR_2 \
+              -u
