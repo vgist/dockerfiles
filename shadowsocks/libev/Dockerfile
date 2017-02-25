@@ -25,7 +25,8 @@ RUN set -ex && \
                                 pcre-dev \
                                 tar \
                                 udns-dev && \
-    mkdir -p /tmp/ss && cd $_ && \
+    mkdir -p /tmp/ss && \
+    cd /tmp/ss && \
     curl -sSL $SS_URL | tar xz --strip 1 && \
     ./configure --prefix=/usr --disable-documentation && \
     make install && \
