@@ -31,8 +31,7 @@ RUN set -ex && \
     make install-strip && \
     cd .. && \
     rm -rf /tmp/* && \
-    apk del .build-deps && \
-    mkdir /etc/pureftpd
+    apk del .build-deps
 
 COPY entrypoint.sh /usr/bin/entrypoint.sh
 
