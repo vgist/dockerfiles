@@ -1,7 +1,7 @@
-FROM alpine:3.4
+FROM alpine:3.5
 MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
 
-ARG MKTORRENT_VER=1.0
+ARG MKTORRENT_VER=1.1
 ARG MKTORRENT_URL=https://github.com/Rudde/mktorrent/archive/v${MKTORRENT_VER}.tar.gz
 
 ENV USERNAME        admin
