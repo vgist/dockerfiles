@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:3.5
 MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
 
 # Environments
