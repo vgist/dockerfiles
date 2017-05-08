@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/MariaDB-10.1.14-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-3.4-brightgreen.svg) ![](https://img.shields.io/docker/stars/gists/mariadb.svg) ![](https://img.shields.io/docker/pulls/gists/mariadb.svg)
+![](https://img.shields.io/badge/MariaDB-10.1.22-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-3.5-brightgreen.svg) ![](https://img.shields.io/docker/stars/gists/mariadb.svg) ![](https://img.shields.io/docker/pulls/gists/mariadb.svg)
 
 #### Volume:
 
