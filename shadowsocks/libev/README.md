@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/shadowsocks--libev-3.1.1-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-3.6-brightgreen.svg) ![](https://img.shields.io/docker/stars/gists/shadowsocks-libev.svg) ![](https://img.shields.io/docker/pulls/gists/shadowsocks-libev.svg)
+![](https://img.shields.io/badge/shadowsocks--libev-3.1.2-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-3.6-brightgreen.svg) ![](https://img.shields.io/docker/stars/gists/shadowsocks-libev.svg) ![](https://img.shields.io/docker/pulls/gists/shadowsocks-libev.svg)
 
 - tag: [latest](https://github.com/iHavee/dockerfiles/blob/master/shadowsocks/libev/Dockerfile)
 - tag: [over-obfs](https://github.com/iHavee/dockerfiles/blob/ss-obfs/shadowsocks/libev/Dockerfile)
