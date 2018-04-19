@@ -27,7 +27,6 @@ RUN set -xe && \
     php7-json \
     php7-dom \
     php7-zip \
-    php7-zlib \
     php7-mysqli \
     php7-mysqlnd \
     php7-sqlite3 \
