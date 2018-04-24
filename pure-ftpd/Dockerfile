@@ -1,7 +1,7 @@
-FROM alpine:3.5
+FROM alpine:3.7
 MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
 
-ARG PUREFTPD_VERSION=1.0.45
+ARG PUREFTPD_VERSION=1.0.47
 ARG URL=http://download.pureftpd.org/pub/pure-ftpd/releases/pure-ftpd-$PUREFTPD_VERSION.tar.gz
 
 ENV PUBLIC_HOST         localhost
