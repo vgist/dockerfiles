@@ -1,5 +1,5 @@
 FROM alpine:3.7
-MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
+MAINTAINER nil
 
 RUN set -xe && \
     apk add --no-cache dnsmasq && \
