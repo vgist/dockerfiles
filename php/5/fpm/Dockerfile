@@ -35,7 +35,6 @@ RUN set -xe && \
     php5-pdo_pgsql \
     php5-bcmath \
     php5-gd \
-    php5-xcache \
     php5-odbc \
     php5-pdo_mysql \
     php5-pdo_sqlite \
