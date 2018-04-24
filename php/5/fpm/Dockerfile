@@ -43,7 +43,6 @@ RUN set -xe && \
     php5-xmlreader \
     php5-xmlrpc \
     php5-bz2 \
-    php5-memcache \
     php5-xcache \
     php5-mssql \
     php5-iconv \
