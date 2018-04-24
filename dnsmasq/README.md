@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/Dnsmasq-2.76-brightgreen.svg) ![](https://img.shields.io/badge/Dnsmasq-3.4-brightgreen.svg) ![](https://img.shields.io/docker/stars/gists/dnsmasq.svg) ![](https://img.shields.io/docker/pulls/gists/dnsmasq.svg)
+![](https://img.shields.io/badge/Dnsmasq-2.78-brightgreen.svg) ![](https://img.shields.io/badge/Dnsmasq-3.7-brightgreen.svg) ![](https://img.shields.io/docker/stars/gists/dnsmasq.svg) ![](https://img.shields.io/docker/pulls/gists/dnsmasq.svg)
 
 #### Volume:
 
