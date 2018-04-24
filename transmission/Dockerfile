@@ -14,7 +14,7 @@ RUN set -xe && \
     curl -sSL https://github.com/ronggang/transmission-web-control/archive/v1.6.0-alpha.tar.gz | tar xz --strip 1 && \
 
     cp /usr/share/transmission/web/index.html /usr/share/transmission/web/index.original.html && \
-    cp -r /tmp/src/* /usr/share/transmission/ && \
+    cp -rf /tmp/src/* /usr/share/transmission/web/ && \
 
     apk del tar curl && \
     rm -rf /tmp/*
