@@ -1,5 +1,5 @@
 FROM alpine:3.7
-MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
+MAINTAINER nil
 
 ENV RPC_PORT    9091
 ENV PEERPORT    51413
@@ -11,10 +11,10 @@ RUN set -xe && \
     apk add --no-cache transmission-daemon tar curl && \
 
     cd /tmp && \
-    curl -sSL https://raw.githubusercontent.com/ronggang/transmission-web-control/master/release/transmission-control-full.tar.gz | tar xz && \
+    curl -sSL https://github.com/ronggang/transmission-web-control/archive/v1.6.0-alpha.tar.gz | tar xz --strip 1 && \
 
     cp /usr/share/transmission/web/index.html /usr/share/transmission/web/index.original.html && \
-    cp -r /tmp/web /usr/share/transmission/ && \
+    cp -r /tmp/src/* /usr/share/transmission/ && \
 
     apk del tar curl && \
     rm -rf /tmp/*
