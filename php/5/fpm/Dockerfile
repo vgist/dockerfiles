@@ -43,10 +43,10 @@ RUN set -xe && \
     php5-xmlreader \
     php5-xmlrpc \
     php5-bz2 \
-    php5-xcache \
     php5-mssql \
     php5-iconv \
     php5-pdo_dblib \
+    php5-opcache \
     php5-curl \
     php5-ctype \
     php5-fpm
