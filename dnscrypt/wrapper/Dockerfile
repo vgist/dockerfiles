@@ -1,10 +1,9 @@
-FROM alpine:edge
-MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
+FROM alpine:3.7
+MAINTAINER nil
 
-ARG DNSCRYPT_VERSION=0.2.2
+ARG DNSCRYPT_VERSION=0.4.1
 ARG DNSCRYPT_URL=https://github.com/Cofyc/dnscrypt-wrapper/archive/v$DNSCRYPT_VERSION.tar.gz
 ARG DNSCRYPT_BUILDDIR=dnscrypt-wrapper-$DNSCRYPT_VERSION
-ARG DNSCRYPT_PATH=https://github.com/cofyc/dnscrypt-wrapper/commit/fa4fb293589c94d6b59903c8cddb170a0439c52a.diff
 
 ENV RESOLVER_IP     8.8.8.8
 ENV RESOLVER_PORT   53
@@ -27,7 +26,6 @@ RUN set -xe && \
 
     curl -sSL $DNSCRYPT_URL | tar xz && \
     cd $DNSCRYPT_BUILDDIR && \
-    curl -sSL $DNSCRYPT_PATH | patch -p1 && \
     make configure && \
     ./configure --prefix=/usr && \
     make install && \
