@@ -58,4 +58,4 @@ VOLUME ["/var/www"]
 
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 
-CMD ["/usr/bin/php-fpm"]
+CMD ["/usr/bin/php-fpm5"]
