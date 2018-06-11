@@ -9,6 +9,7 @@
 | Environment          | Variable             | Default value |
 |----------------------|----------------------|---------------|
 | MEMORY_LIMIT         | memory_limit         | 256M          |
+| MAX_EXECUTION_TIME   | max_execution_time   | 60            |
 | UPLOAD_MAX_FILESIZE  | upload_max_filesize  | 64M           |
 | MAX_FILE_UPLOADS     | max_file_uploads     | 20            |
 | POST_MAX_SIZE        | post_max_size        | 64M           |

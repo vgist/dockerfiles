@@ -21,6 +21,7 @@ sed -i "s|user =.*|user = phpuser|i" /etc/php5/php-fpm.conf
 sed -i "s|group =.*|group = phpgroup|i" /etc/php5/php-fpm.conf
 sed -i "s|;*date.timezone =.*|date.timezone = ${DATE_TIMEZONE}|i" /etc/php5/php.ini
 sed -i "s|;*memory_limit =.*|memory_limit = ${MEMORY_LIMIT}|i" /etc/php5/php.ini
+sed -i "s|;*max_execution_time =.*|max_execution_time = ${MAX_EXECUTION_TIME}|i" /etc/php5/php.ini
 sed -i "s|;*upload_max_filesize =.*|upload_max_filesize = ${UPLOAD_MAX_FILESIZE}|i" /etc/php5/php.ini
 sed -i "s|;*max_file_uploads =.*|max_file_uploads = ${MAX_FILE_UPLOADS}|i" /etc/php5/php.ini
 sed -i "s|;*post_max_size =.*|post_max_size = ${POST_MAX_SIZE}|i" /etc/php5/php.ini
