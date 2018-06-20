@@ -1,5 +1,5 @@
 FROM alpine:3.7
-MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
+LABEL maintainer="zgist"
 
 # Environments
 ENV MEMORY_LIMIT            256M
