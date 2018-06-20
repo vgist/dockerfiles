@@ -1,8 +1,8 @@
 ![](https://img.shields.io/docker/stars/gists/php.svg) ![](https://img.shields.io/docker/pulls/gists/php.svg)
 
-- ![](https://img.shields.io/badge/PHP7-7.1.16-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-3.7-brightgreen.svg) latest ([7/fpm/Dockerfile](https://github.com/iHavee/dockerfiles/blob/master/php/7/fpm/Dockerfile))
-- ![](https://img.shields.io/badge/PHP7-7.1.16-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-3.7-brightgreen.svg) 7, 7-fpm ([7/fpm/Dockerfile](https://github.com/iHavee/dockerfiles/blob/master/php/7/fpm/Dockerfile))
-- ![](https://img.shields.io/badge/PHP-5.6.35-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-3.7-brightgreen.svg) 5, 5-fpm ([5/fpm/Dockerfile](https://github.com/iHavee/dockerfiles/blob/master/php/5/fpm/Dockerfile))
+- ![](https://img.shields.io/badge/PHP7-7.2.6-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-3.7-brightgreen.svg) latest ([7/fpm/Dockerfile](https://github.com/iHavee/dockerfiles/blob/master/php/7/fpm/Dockerfile))
+- ![](https://img.shields.io/badge/PHP7-7.2.6-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-3.7-brightgreen.svg) 7, 7-fpm ([7/fpm/Dockerfile](https://github.com/iHavee/dockerfiles/blob/master/php/7/fpm/Dockerfile))
+- ![](https://img.shields.io/badge/PHP-5.6.36-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-3.7-brightgreen.svg) 5, 5-fpm ([5/fpm/Dockerfile](https://github.com/iHavee/dockerfiles/blob/master/php/5/fpm/Dockerfile))
 
 #### Environment:
 
@@ -37,10 +37,35 @@
 
 #### Compose example:
 
-    php-fpm:
-        image: gists/php:7
+```
+version: '3'
+
+services:
+    php:
+        container_name: php
+        image: gists/php
         volumes:
-            - ./path/www:/var/www
+            - /path/www:/var/www
+            - phpsocket:/run/php
         environment:
-            - UPLOAD_MAX_FILESIZE=128M
+            UPLOAD_MAX_FILESIZE=128M
         restart: always
+    nginx:
+        container_name: nginx
+        image: nginx:stable-alpine
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - /path/www:/var/www
+            - phpsocket:/run/php
+        depends_on:
+            - php
+        restart: always
+volumes:
+    phpsocket:
+```
+
+#### nginx configuration with php-fpm
+
+    fastcgi_pass    unix:/run//php/php-fpm.sock;
