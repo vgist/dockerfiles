@@ -1,5 +1,5 @@
 FROM alpine:3.7
-MAINTAINER zgist
+LABEL maintainer="zgist"
 
 ENV PORT        8080
 
