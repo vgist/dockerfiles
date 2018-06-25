@@ -1,5 +1,5 @@
 FROM alpine:3.7
-MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
+LABEL maintainer="zgist"
 
 ARG SS_VER=3.2.0
 ARG SS_URL=https://github.com/shadowsocks/shadowsocks-libev/releases/download/v$SS_VER/shadowsocks-libev-$SS_VER.tar.gz
