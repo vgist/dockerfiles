@@ -1,8 +1,4 @@
-![](https://img.shields.io/badge/shadowsocks--libev-3.2.0-brightgreen.svg) ![](https://images.microbadger.com/badges/image/gists/shadowsocks-libev.svg) ![](https://img.shields.io/badge/Alpine-3.7-brightgreen.svg) ![](https://img.shields.io/docker/stars/gists/shadowsocks-libev.svg) ![](https://img.shields.io/docker/pulls/gists/shadowsocks-libev.svg)
-
-- tag: [latest](https://github.com/iHavee/dockerfiles/blob/master/shadowsocks/libev/Dockerfile) (without simple-obfs)
-- tag: [over-obfs](https://github.com/iHavee/dockerfiles/blob/ss-obfs/shadowsocks/libev/Dockerfile) (with simple-obfs)
-- tag: [2.5.6](https://github.com/iHavee/dockerfiles/blob/ss-2.5.6/shadowsocks/libev/Dockerfile)
+![](https://images.microbadger.com/badges/version/gists/shadowsocks-libev.svg) ![](https://images.microbadger.com/badges/image/gists/shadowsocks-libev.svg) ![](https://img.shields.io/docker/stars/gists/shadowsocks-libev.svg) ![](https://img.shields.io/docker/pulls/gists/shadowsocks-libev.svg)
 
 #### Environment:
 
@@ -15,8 +11,6 @@
 | TIMEOUT     | 300           |
 | DNS_ADDR    | 8.8.8.8       |
 | DNS_ADDR_2  | 8.8.4.4       |
-| PLUGIN      | obfs-server   |
-| PLUGIN_OPTS | obfs=http     |
 
 #### Creating an instance:
 
@@ -29,10 +23,10 @@
         -e METHOD=chacha20-ietf-poly1305
         gists/shadowsocks-libev
 
-#### Compose example with simple-obfs:
+#### Compose example:
 
     shadowsocks:
-      image: gists/shadowsocks-libev:over-obfs
+      image: gists/shadowsocks-libev
       ports:
         - "8388:8388/tcp"
         - "8388:8388/udp"
@@ -40,3 +34,52 @@
         - PASSWORD=password
         - METHOD=chacha20-ietf-poly1305
       restart: always
+
+#### Compose file whith own command
+
+    shadowsocks:
+      image: gists/shadowsocks-libev
+      ports:
+        - "8388:8388/tcp"
+        - "8388:8388/udp"
+      command: ss-server --fast-open -s 0.0.0.0 -p 8388 -k password -m chacha20-ietf-poly1305 -t 300 -d 8.8.8.8 --no-delay -u
+      restart: always
+
+#### Compose example with simple-obfs
+
+```
+version: '3'
+
+services:
+    shadowsocks:
+        container_name: ss
+        image: gists/shadowsocks-libev
+        ports:
+            - "8443:8388/udp"
+        networks:
+            overlay:
+                ipv4_address: 10.10.10.2
+        environment:
+          - PASSWORD=passowrd
+          - METHOD=chacha20-ietf-poly1305
+        restart: always
+
+      simple-obfs:
+        container_name: obfs
+        image: gists/simple-obfs
+        ports:
+            - "8443:8388/tcp"
+        environment:
+            - FORWARD=10.10.10.2:8388
+        networks:
+            overlay:
+                ipv4_address: 10.10.10.3
+        restart: always
+
+networks:
+    overlay:
+        driver: bridge
+        ipam:
+            config:
+                - subnet: 10.10.10.0/24
+```
