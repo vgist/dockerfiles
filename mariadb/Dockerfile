@@ -1,5 +1,10 @@
 FROM alpine:3.7
-MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
+
+ARG VERSION
+
+LABEL maintainer="zgist" \
+        org.label-schema.name="MariaDB" \
+        org.label-schema.version=$VERSION
 
 RUN set -ex && \
     apk add --no-cache bash mariadb mariadb-client tzdata && \

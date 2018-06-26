@@ -1,5 +1,10 @@
 FROM alpine:3.7
-MAINTAINER nil
+
+ARG VERSION
+
+LABEL maintainer="zgist" \
+        org.label-schema.name="Dnsmasq" \
+        org.label-schema.version=$VERSION
 
 ENV LOCAL_IP       0.0.0.0
 ENV LOCAL_PORT     5353

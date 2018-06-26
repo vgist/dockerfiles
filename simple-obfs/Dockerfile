@@ -1,11 +1,11 @@
 FROM alpine:3.7
 
-ARG OBFS_VER=0.0.5
-ARG OBFS_URL=https://github.com/shadowsocks/simple-obfs/archive/v$OBFS_VER.tar.gz
+ARG VERSION=0.0.5
+ARG OBFS_URL=https://github.com/shadowsocks/simple-obfs/archive/v$VERSION.tar.gz
 
 LABEL maintainer="zgist" \
-        com.github.name="Simple-obfs" \
-        com.github.version=$OBFS_VER
+        org.label-schema.name="Simple-obfs" \
+        org.label-schema.version=$VERSION
 
 ENV SERVER_ADDR 0.0.0.0
 ENV SERVER_PORT 8388

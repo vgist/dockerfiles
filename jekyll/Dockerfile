@@ -1,7 +1,10 @@
-FROM alpine:3.4
-MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
+FROM alpine:3.7
 
-ARG JEKYLL_VERSION=3.2.1
+ARG VERSION=3.7.3
+
+LABEL maintainer="zgist" \
+        org.label-schema.name="Jekyll" \
+        org.label-schema.version=$VERSION
 
 ENV UID     1000
 ENV GID     1000
@@ -23,7 +26,7 @@ RUN set -xe && \
                                 ruby-rake \
                                 su-exec && \
 
-    gem install --no-document jekyll:${JEKYLL_VERSION} && \
+    gem install --no-document jekyll:${VERSION} && \
     gem install --no-document jekyll-coffeescript \
                                 jekyll-feed \
                                 jekyll-gist \

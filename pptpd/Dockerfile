@@ -1,5 +1,10 @@
-FROM alpine:3.4
-MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
+FROM alpine:3.7
+
+ARG VERSION
+
+LABEL maintainer="zgist" \
+        org.label-schema.name="PPTP Daemon" \
+        org.label-schema.version=$VERSION
 
 RUN set -xe && apk add --no-cache iptables ppp pptpd
 

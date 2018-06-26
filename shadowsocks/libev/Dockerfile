@@ -1,11 +1,11 @@
 FROM alpine:3.7
 
-ARG SS_VER=3.2.0
-ARG SS_URL=https://github.com/shadowsocks/shadowsocks-libev/releases/download/v$SS_VER/shadowsocks-libev-$SS_VER.tar.gz
+ARG VERSION=3.2.0
+ARG SS_URL=https://github.com/shadowsocks/shadowsocks-libev/releases/download/v$VERSION/shadowsocks-libev-$VERSION.tar.gz
 
 LABEL maintainer="zgist" \
-        com.github.name="Shadowsocks-libev" \
-        com.github.version=$SS_VER
+        org.label-schema.name="Shadowsocks-libev" \
+        org.label-schema.version=$VERSION
 
 ENV SERVER_ADDR 0.0.0.0
 ENV SERVER_PORT 8388

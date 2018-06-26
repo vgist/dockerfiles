@@ -1,8 +1,12 @@
-FROM alpine:3.5
-MAINTAINER UmVnaXN0ZXIgcmVnaXN0ZXJkZWRpY2F0ZWQrZG9ja2VyKGF0KWdtYWlsLmNvbQo=
+FROM alpine:3.7
 
+ARG VERSION
 ARG MKTORRENT_VER=1.1
 ARG MKTORRENT_URL=https://github.com/Rudde/mktorrent/archive/v${MKTORRENT_VER}.tar.gz
+
+LABEL maintainer="zgist" \
+        org.label-schema.name="RTorrent" \
+        org.label-schema.version=$VERSION
 
 ENV USERNAME        admin
 ENV PASSWORD=

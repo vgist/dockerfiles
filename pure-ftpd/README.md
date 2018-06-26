@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/Pure--FTPd-1.0.47-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-3.7-brightgreen.svg) ![](https://img.shields.io/docker/stars/gists/pure-ftpd.svg) ![](https://img.shields.io/docker/pulls/gists/pure-ftpd.svg)
+![](https://images.microbadger.com/badges/version/gists/pure-ftpd.svg) ![](https://images.microbadger.com/badges/image/gists/pure-ftpd.svg) ![](https://img.shields.io/docker/stars/gists/pure-ftpd.svg) ![](https://img.shields.io/docker/pulls/gists/pure-ftpd.svg)
 
 #### Volume
 

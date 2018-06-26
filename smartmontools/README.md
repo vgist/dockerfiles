@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/smartmontools-1.1-brightgreen.svg) ![](https://images.microbadger.com/badges/image/gists/smartmontools.svg) ![](https://img.shields.io/badge/Alpine-3.7-brightgreen.svg) ![](https://img.shields.io/docker/stars/gists/smartmontools.svg) ![](https://img.shields.io/docker/pulls/gists/smartmontools.svg)
+![](https://images.microbadger.com/badges/version/gists/smartmontools.svg) ![](https://images.microbadger.com/badges/image/gists/smartmontools.svg) ![](https://img.shields.io/docker/stars/gists/smartmontools.svg) ![](https://img.shields.io/docker/pulls/gists/smartmontools.svg)
 
 
 #### Custom usage:

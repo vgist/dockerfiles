@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/dnscrypt--proxy-1.9.5-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-3.7-brightgreen.svg) ![](https://img.shields.io/docker/stars/gists/dnscrypt-proxy.svg) ![](https://img.shields.io/docker/pulls/gists/dnscrypt-proxy.svg)
+![](https://images.microbadger.com/badges/version/gists/dnscrypt-proxy.svg) ![](https://images.microbadger.com/badges/image/gists/dnscrypt-proxy.svg) ![](https://img.shields.io/docker/stars/gists/dnscrypt-proxy.svg) ![](https://img.shields.io/docker/pulls/gists/dnscrypt-proxy.svg)
 
 #### Environment:
 
