@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/transfer.sh-latest-brightgreen.svg) ![](https://images.microbadger.com/badges/image/gists/transfer.sh.svg) ![](https://img.shields.io/badge/Alpine-3.7-brightgreen.svg) ![](https://img.shields.io/docker/stars/gists/transfer.sh.svg) ![](https://img.shields.io/docker/pulls/gists/transfer.sh.svg)
+![](https://images.microbadger.com/badges/version/gists/transfer.sh.svg) ![](https://images.microbadger.com/badges/image/gists/transfer.sh.svg) ![](https://img.shields.io/docker/stars/gists/transfer.sh.svg) ![](https://img.shields.io/docker/pulls/gists/transfer.sh.svg)
 
 
 #### Environment:

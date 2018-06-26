@@ -1,14 +1,21 @@
 FROM alpine:3.7
-MAINTAINER nil
 
+ARG VERSION
+
+LABEL maintainer="zgist" \
+        org.label-schema.name="Transmission" \
+        org.label-schema.version=$VERSION
+
+ENV UID         1000
+ENV GID         1000
 ENV RPC_PORT    9091
-ENV PEERPORT    51413
+ENV PEER_PORT   51413
 ENV USERNAME    username
 ENV PASSWORD=
 
 # Let's roll
 RUN set -xe && \
-    apk add --no-cache transmission-daemon tar curl && \
+    apk add --no-cache curl su-exec tar transmission-daemon && \
 
     cd /tmp && \
     curl -sSL https://github.com/ronggang/transmission-web-control/archive/v1.6.0-alpha.tar.gz | tar xz --strip 1 && \
@@ -25,7 +32,7 @@ COPY entrypoint.sh /usr/bin/entrypoint.sh
 
 VOLUME /data
 
-EXPOSE $RPC_PORT $PEERPORT $PEERPORT/UDP
+EXPOSE $RPC_PORT $PEER_PORT $PEER_PORT/UDP
 
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 
@@ -33,6 +40,6 @@ CMD /usr/bin/transmission-daemon \
                         --foreground \
                         --config-dir /data/.config \
                         --port $RPC_PORT \
-                        --peerport $PEERPORT \
+                        --peerport $PEER_PORT \
                         --username $USERNAME \
                         --password ${PASSWORD:-$(hostname)}

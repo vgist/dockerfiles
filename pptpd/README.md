@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/PPTPServer-1.4.0-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-3.4-brightgreen.svg) ![](https://img.shields.io/docker/stars/gists/pptpd.svg) ![](https://img.shields.io/docker/pulls/gists/pptpd.svg)
+![](https://images.microbadger.com/badges/version/gists/pptpd.svg) ![](https://images.microbadger.com/badges/image/gists/pptpd.svg) ![](https://img.shields.io/docker/stars/gists/pptpd.svg) ![](https://img.shields.io/docker/pulls/gists/pptpd.svg)
 
 #### Volume
 

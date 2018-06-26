@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/Lighttpd-1.4.48-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-3.7-brightgreen.svg) ![](https://img.shields.io/docker/stars/gists/lighttpd.svg) ![](https://img.shields.io/docker/pulls/gists/lighttpd.svg)
+![](https://images.microbadger.com/badges/version/gists/lighttpd.svg) ![](https://images.microbadger.com/badges/image/gists/lighttpd.svg) ![](https://img.shields.io/docker/stars/gists/lighttpd.svg) ![](https://img.shields.io/docker/pulls/gists/lighttpd.svg)
 
 #### Environment:
 

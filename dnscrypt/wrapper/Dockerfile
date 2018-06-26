@@ -1,9 +1,12 @@
 FROM alpine:3.7
-MAINTAINER nil
 
-ARG DNSCRYPT_VERSION=0.4.1
-ARG DNSCRYPT_URL=https://github.com/Cofyc/dnscrypt-wrapper/archive/v$DNSCRYPT_VERSION.tar.gz
-ARG DNSCRYPT_BUILDDIR=dnscrypt-wrapper-$DNSCRYPT_VERSION
+ARG VERSION=0.4.1
+ARG DNSCRYPT_URL=https://github.com/Cofyc/dnscrypt-wrapper/archive/v$VERSION.tar.gz
+ARG DNSCRYPT_BUILDDIR=dnscrypt-wrapper-$VERSION
+
+LABEL maintainer="zgist" \
+        org.label-schema.name="dnscrypt-wrapper" \
+        org.label-schema.version=$VERSION
 
 ENV RESOLVER_IP     8.8.8.8
 ENV RESOLVER_PORT   53

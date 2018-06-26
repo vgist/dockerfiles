@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/Transmission-2.92-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-3.7-brightgreen.svg) ![](https://img.shields.io/docker/stars/gists/transmission.svg) ![](https://img.shields.io/docker/pulls/gists/transmission.svg)
+![](https://images.microbadger.com/badges/version/gists/transmission.svg) ![](https://images.microbadger.com/badges/image/gists/transmission.svg) ![](https://img.shields.io/docker/stars/gists/transmission.svg) ![](https://img.shields.io/docker/pulls/gists/transmission.svg)
 
 #### Volume
 
@@ -8,8 +8,10 @@
 
 | Environment | Default value |
 |-------------|---------------|
+| UID         | 1000          |
+| GID         | 1000          |
 | RPC_PORT    | 9091          |
-| PEERPORT    | 51413         |
+| PEER_PORT   | 51413         |
 | USERNAME    | username      |
 | PASSWORD    | $(hostname)   |
 
@@ -19,9 +21,10 @@
         -d \
         --name transmission \
         -p 8080:9091 \
+        -p 51413:51413 \
         -v /your/data:/data \
-        -e USERNAME=username
-        -e PASSWORD=password
+        -e USERNAME=username \
+        -e PASSWORD=password \
         gists/transmission
 
 #### Compose example:
@@ -31,7 +34,6 @@
       ports:
         - "8080:9091"
         - "51413:51413"
-        - "51413:51413/udp"
       volumes:
         - /your/data:/data
       environment:

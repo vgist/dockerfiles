@@ -1,5 +1,10 @@
 FROM alpine:3.7
-MAINTAINER nil
+
+ARG VERSION
+
+LABEL maintainer="zgist" \
+        org.label-schema.name="DnsCrypt-proxy" \
+        org.label-schema.version=$VERSION
 
 RUN set -xe && \
     apk add --no-cache dnsmasq && \

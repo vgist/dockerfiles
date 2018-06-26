@@ -1,5 +1,10 @@
 FROM alpine:3.7
-LABEL maintainer="zgist"
+
+ARG VERSION
+
+LABEL maintainer="zgist" \
+        org.label-schema.name="ipd" \
+        org.label-schema.version=$VERSION
 
 ENV PORT        8080
 
