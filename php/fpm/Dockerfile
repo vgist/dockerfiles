@@ -1,5 +1,10 @@
 FROM alpine:3.7
-LABEL maintainer="zgist"
+
+ARG VERSION
+
+LABEL maintainer="zgist" \
+        org.label-schema.name="PHP" \
+        org.label-schema.version=$VERSION
 
 # Environments
 ENV MEMORY_LIMIT            256M
