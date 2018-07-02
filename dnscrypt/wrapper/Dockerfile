@@ -26,7 +26,6 @@ RUN set -xe && \
                                 libevent-dev \
                                 libexecinfo-dev \
                                 libsodium-dev && \
-
     curl -sSL $DNSCRYPT_URL | tar xz && \
     cd $DNSCRYPT_BUILDDIR && \
     make configure && \

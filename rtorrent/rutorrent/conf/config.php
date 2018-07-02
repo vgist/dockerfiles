@@ -15,11 +15,11 @@
 	$overwriteUploadedTorrents = false;
 	$topDirectory = '/download/torrents';
 	$forbidUserSettings = false;
-	$scgi_port = 5000;
-	$scgi_host = "127.0.0.1";
+	$scgi_port = 0;
+	$scgi_host = "unix:///home/torrent/scgi.socket";
 	$XMLRPCMountPoint = "/RPC2";
 	$pathToExternals = array(
-		"php" 	=> '',
+		"php" 	=> '/usr/bin/php',
 		"curl"	=> '/usr/bin/curl',
 		"gzip"	=> '/usr/bin/gzip',
 		"id"	=> '/usr/bin/id',

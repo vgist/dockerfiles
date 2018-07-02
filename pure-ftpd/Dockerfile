@@ -20,7 +20,6 @@ RUN set -ex && \
                                 tar && \
     cd /tmp && \
     curl -sSL $URL | tar xz --strip 1 && \
-
     ./configure --prefix=/usr \
                 --sysconfdir=/etc/pureftpd \
                 --without-humor \

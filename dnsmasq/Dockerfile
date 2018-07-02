@@ -8,7 +8,6 @@ LABEL maintainer="zgist" \
 
 RUN set -xe && \
     apk add --no-cache dnsmasq && \
-
     # Set
     echo "conf-dir=/etc/dnsmasq.d/,*.conf" >> /etc/dnsmasq.conf && \
     echo "no-negcache" >> /etc/dnsmasq.conf && \

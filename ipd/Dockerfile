@@ -12,15 +12,12 @@ ENV PORT        8080
 RUN set -xe && \
     apk add --no-cache \
     ca-certificates curl git go musl-dev tar && \
-
     go get -u github.com/mpolden/ipd/... && \
     mv /root/go/bin/ipd /usr/local/bin/ && \
-
     cd /mnt && \
     curl http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.tar.gz | tar xz --strip 1 && \
     curl http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.tar.gz | tar xz --strip 1 && \
     mv /root/go/src/github.com/mpolden/ipd/index.html /mnt/ && \
-
     rm -rf /root/go && \
     apk del ca-certificates curl git go musl-dev tar
 
