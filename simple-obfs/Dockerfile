@@ -26,7 +26,6 @@ RUN set -ex && \
                                 openssl-dev \
                                 pcre-dev \
                                 tar && \
-
     mkdir -p /tmp/obfs && \
     cd /tmp/obfs && \
     curl -sSL $OBFS_URL | tar xz --strip 1 && \
@@ -34,7 +33,6 @@ RUN set -ex && \
     ./autogen.sh && \
     ./configure --prefix=/usr --disable-documentation && \
     make install && \
-
     runDeps="$( \
         scanelf --needed --nobanner /usr/bin/obfs-* \
             | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \

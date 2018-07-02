@@ -1,9 +1,8 @@
-![](https://img.shields.io/badge/rtorrent-0.9.6-brightgreen.svg) ![](https://img.shields.io/badge/Alpine-3.4-brightgreen.svg) ![](https://img.shields.io/docker/stars/gists/rtorrent.svg) ![](https://img.shields.io/docker/pulls/gists/rtorrent.svg)
+![](https://images.microbadger.com/badges/version/gists/rtorrent.svg) ![](https://images.microbadger.com/badges/image/gists/rtorrent.svg) ![](https://img.shields.io/docker/stars/gists/rtorrent.svg) ![](https://img.shields.io/docker/pulls/gists/rtorrent.svg)
 
 #### Volume
 
 - /download
-- /var/www/rutorrent/share/users
 
 #### Environment:
 

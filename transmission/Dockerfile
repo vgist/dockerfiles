@@ -16,13 +16,10 @@ ENV PASSWORD=
 # Let's roll
 RUN set -xe && \
     apk add --no-cache curl su-exec tar transmission-daemon && \
-
     cd /tmp && \
     curl -sSL https://github.com/ronggang/transmission-web-control/archive/v1.6.0-alpha.tar.gz | tar xz --strip 1 && \
-
     cp /usr/share/transmission/web/index.html /usr/share/transmission/web/index.original.html && \
     cp -rf /tmp/src/* /usr/share/transmission/web/ && \
-
     apk del tar curl && \
     rm -rf /tmp/*
 

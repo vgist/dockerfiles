@@ -18,14 +18,12 @@ RUN set -xe && \
                                 ruby-dev \
                                 yaml-dev \
                                 zlib-dev && \
-
     apk add --no-cache --virtual .run-deps \
                                 ruby \
                                 ruby-bundler \
                                 ruby-json \
                                 ruby-rake \
                                 su-exec && \
-
     gem install --no-document jekyll:${VERSION} && \
     gem install --no-document jekyll-coffeescript \
                                 jekyll-feed \
@@ -34,7 +32,6 @@ RUN set -xe && \
                                 jekyll-redirect-from \
                                 jekyll-sitemap \
                                 minima && \
-
     apk del .build-deps && \
     mkdir -p /var/www
 

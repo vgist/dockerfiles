@@ -1,4 +1,4 @@
-scgi_port = 127.0.0.1:5000
+scgi_local = /home/torrent/scgi.socket
 encoding_list = UTF-8
 port_range = 55000-55000
 port_random = no
@@ -34,6 +34,7 @@ network.xmlrpc.size_limit.set = 2M
 
 schedule2 = session_save, 1200, 43200, ((session.save))
 
+schedule = scgi_permission,0,0,"execute.nothrow=chmod,\"g+w,o=\",/home/torrent/scgi.socket"
 execute = {sh,-c,/usr/bin/php /var/www/rutorrent/php/initplugins.php torrent &}
 schedule = watch_directory,1,1,"load_start=/download/.watch/*.torrent"
 schedule = untied_directory,5,5,"stop_untied=/download/.watch/*.torrent"
