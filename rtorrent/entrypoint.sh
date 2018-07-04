@@ -8,8 +8,8 @@ set -e
 
 mkdir -p /download/torrents /download/.watch /download/.session /home/torrent /var/tmp/nginx
 
-[[ ! -f /home/torrent/.rtorrent.rc ]] && cp /etc/rtorrent.rc /home/torrent/.rtorrent.rc
-[[ ! -f /home/torrent/scgi.socket ]] && touch /home/torrent/scgi.socket
+[[ -f /home/torrent/.rtorrent.rc ]] || cp /etc/rtorrent.rc /home/torrent/.rtorrent.rc
+[[ -f /home/torrent/scgi.socket ]] || touch /home/torrent/scgi.socket
 [[ -f /download/.session/rtorrent.lock ]] && rm -f /download/.session/rtorrent.lock
 
 htpasswd -b -c /var/www/rutorrent/.htpasswd $USERNAME ${PASSWORD:-$(hostname)}
