@@ -1,7 +1,7 @@
 ![](https://images.microbadger.com/badges/version/gists/php.svg) ![](https://images.microbadger.com/badges/image/gists/php.svg) ![](https://img.shields.io/docker/stars/gists/php.svg) ![](https://img.shields.io/docker/pulls/gists/php.svg)
 
-- latest, 7, 7.17 ([fpm/Dockerfile](https://github.com/vgist/dockerfiles/blob/master/php/fpm/Dockerfile))
-- 5, 5.6.36 ([fpm/Dockerfile](https://github.com/vgist/dockerfiles/blob/php5/php/fpm/Dockerfile))
+- latest, 7 ([fpm/Dockerfile](https://github.com/vgist/dockerfiles/blob/master/php/fpm/Dockerfile))
+- 5 ([fpm/Dockerfile](https://github.com/vgist/dockerfiles/blob/php5/php/fpm/Dockerfile))
 
 #### Environment:
 
