@@ -11,7 +11,7 @@ sed -i "s|include = /etc/php5/fpm.d/\*.conf||g" /etc/php5/php-fpm.conf
 sed -i "s|;*daemonize\s*=\s*yes|daemonize = no|g" /etc/php5/php-fpm.conf
 sed -i "s|error_log\s*=\s*/var/log/php-fpm.log|error_log = /proc/self/fd/2|g" /etc/php5/php-fpm.conf
 sed -i "s|;*access.log\s*=\s*log/\$pool.access.log|access.log = /proc/self/fd/1|g" /etc/php5/php-fpm.conf
-sed -i "s|;*listen\s*=\s*127.0.0.1:9000|listen = /run/php/php-fpm.sock|g" /etc/php5/php-fpm.conf
+sed -i "s|;*listen\s*=\s*127.0.0.1:9000|listen = /run/php/php5-fpm.sock|g" /etc/php5/php-fpm.conf
 sed -i "s|;*listen.mode\s*=\s*0660|listen.mode = 0666|g" /etc/php5/php-fpm.conf
 sed -i "s|;*chdir\s*=\s*/var/www|chdir = /var/www|g" /etc/php5/php-fpm.conf
 sed -i "s|pm.max_children =.*|pm.max_children = ${PM_MAX_CHILDREN}|i" /etc/php5/php-fpm.conf
