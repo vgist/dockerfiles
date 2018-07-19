@@ -67,4 +67,11 @@ volumes:
 
 #### nginx configuration with php-fpm
 
-    fastcgi_pass    unix:/run/php/php-fpm.sock;
+with php7-fpm:
+
+    fastcgi_pass    unix:/run/php/php7-fpm.sock;
+
+with php5-fpm:
+
+    fastcgi_pass    unix:/run/php/php5-fpm.sock;
+
