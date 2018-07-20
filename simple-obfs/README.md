@@ -16,26 +16,49 @@
     docker run \
         -d \
         --name simple-obfs \
-        -p 8388:8388 \
+        -p 12345:12345 \
         -e FORWARD=127.0.0.1:8388
         gists/shadowsocks-libev
-
-#### Compose example:
-
-    simple-obfs:
-      image: gists/simple-obfs
-      ports:
-        - "8388:8388"
-      environment:
-        - FORWARD=127.0.0.1:8388
-      restart: always
-
 
 #### Compose file with own command:
 
     simple-obfs:
-      image: gists/simple-obfs
-      ports:
-        - "8388:8388"
-      command: obfs-server -s 0.0.0.0 -p 8139 --obfs http -r 127.0.0.1:8388
-      restart: always
+        image: gists/simple-obfs
+        ports:
+            - "12345:12345"
+        command: obfs-server -s 0.0.0.0 -p 12345 --obfs http -r 127.0.0.1:8388
+        restart: always
+
+#### Compose example with shadowsocks-libev
+
+    version: '3'
+
+    services:
+        shadowsocks:
+            container_name: shadowsocks
+            image: gists/shadowsocks-libev
+            ports:
+                - "12345:8388/udp"
+            networks:
+                overlay:
+            environment:
+              - PASSWORD=passowrd
+              - METHOD=chacha20-ietf-poly1305
+            restart: always
+
+          simple-obfs:
+            container_name: obfs
+            image: gists/simple-obfs
+            ports:
+                - "12345:8388/tcp"
+            environment:
+                - FORWARD=shadowsocks:8388
+            depends_on:
+                - shadowsocks
+            networks:
+                overlay:
+            restart: always
+
+    networks:
+        overlay:
+            driver: bridge
