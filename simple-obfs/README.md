@@ -18,7 +18,7 @@
         --name simple-obfs \
         -p 12345:12345 \
         -e FORWARD=127.0.0.1:8388
-        gists/shadowsocks-libev
+        gists/simple-obfs
 
 #### Compose file with own command:
 
