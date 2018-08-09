@@ -1,6 +1,6 @@
 FROM alpine:3.8
 
-ARG VERSION=2.3.1
+ARG VERSION
 
 LABEL maintainer="zgist" \
         org.label-schema.name="NFS" \
