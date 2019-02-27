@@ -7,10 +7,9 @@
 | SERVER_ADDR | 0.0.0.0       |
 | SERVER_PORT | 8388          |
 | PASSWORD    | $(hostname)   |
-| METHOD      | rc4-md5       |
+| METHOD      | aes-128-gcm   |
 | TIMEOUT     | 300           |
 | DNS_ADDR    | 8.8.8.8       |
-| DNS_ADDR_2  | 8.8.4.4       |
 | PLUGIN      | obfs-server   |
 | PLUGIN_OPTS | obfs=http     |
 
@@ -22,7 +21,7 @@
         -p 12345:8388 \
         -p 12345:8388/udp \
         -e PASSWORD=password \
-        -e METHOD=chacha20-ietf-poly1305
+        -e METHOD=aes-128-gcm
         gists/shadowsocks-libev.simple-obfs
 
 #### Compose example with simple-obfs:
@@ -34,5 +33,5 @@
         - "12345:8388/udp"
       environment:
         - PASSWORD=password
-        - METHOD=chacha20-ietf-poly1305
+        - METHOD=aes-128-gcm
       restart: always

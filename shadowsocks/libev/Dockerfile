@@ -1,6 +1,6 @@
 FROM alpine:3.8
 
-ARG VERSION=3.2.3
+ARG VERSION=3.2.4
 ARG SS_URL=https://github.com/shadowsocks/shadowsocks-libev/releases/download/v$VERSION/shadowsocks-libev-$VERSION.tar.gz
 
 LABEL maintainer="zgist" \
@@ -10,10 +10,9 @@ LABEL maintainer="zgist" \
 ENV SERVER_ADDR 0.0.0.0
 ENV SERVER_PORT 8388
 ENV PASSWORD=
-ENV METHOD      rc4-md5
+ENV METHOD      aes-128-gcm
 ENV TIMEOUT     300
 ENV DNS_ADDR    8.8.8.8
-ENV DNS_ADDR_2  8.8.4.4
 
 RUN set -ex && \
     apk add --no-cache --virtual .build-deps \
@@ -45,14 +44,13 @@ RUN set -ex && \
 
 EXPOSE $SERVER_PORT
 
-CMD ss-server --fast-open \
-              -a nobody \
-              -s $SERVER_ADDR \
-              -p $SERVER_PORT \
-              -k ${PASSWORD:-$(hostname)} \
-              -m $METHOD \
-              -t $TIMEOUT \
-              -d $DNS_ADDR \
-              -d $DNS_ADDR_2 \
-              --no-delay \
-              -u
+CMD ss-server \
+    -a nobody \
+    -s $SERVER_ADDR \
+    -p $SERVER_PORT \
+    -k ${PASSWORD:-$(hostname)} \
+    -m $METHOD \
+    -t $TIMEOUT \
+    -d $DNS_ADDR \
+    --no-delay \
+    -u

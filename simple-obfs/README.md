@@ -43,7 +43,7 @@
                 overlay:
             environment:
               - PASSWORD=passowrd
-              - METHOD=chacha20-ietf-poly1305
+              - METHOD=aes-128-gcm
             restart: always
 
           simple-obfs:
