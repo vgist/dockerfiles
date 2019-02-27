@@ -34,7 +34,7 @@
             - METHOD=aes-128-gcm
       restart: always
 
-#### Compose file whith own command
+#### Compose file with own command
 
     shadowsocks:
         image: gists/shadowsocks-libev
