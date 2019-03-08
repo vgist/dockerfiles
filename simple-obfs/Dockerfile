@@ -1,4 +1,4 @@
-FROM alpine:3.8
+FROM alpine:3.9
 
 ARG VERSION=0.0.5
 ARG OBFS_URL=https://github.com/shadowsocks/simple-obfs/archive/v$VERSION.tar.gz
