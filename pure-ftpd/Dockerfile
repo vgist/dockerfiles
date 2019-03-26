@@ -1,6 +1,6 @@
 FROM alpine:3.9
 
-ARG VERSION=1.0.47
+ARG VERSION=1.0.48
 ARG URL=https://download.pureftpd.org/pub/pure-ftpd/releases/pure-ftpd-$VERSION.tar.gz
 
 LABEL maintainer="zgist" \
@@ -17,6 +17,7 @@ RUN set -ex && \
     apk add --no-cache --virtual .build-deps \
                                 build-base \
                                 curl \
+                                openssl-dev \
                                 tar && \
     cd /tmp && \
     curl -sSL $URL | tar xz --strip 1 && \
@@ -26,10 +27,9 @@ RUN set -ex && \
                 --with-minimal \
                 --with-throttling \
                 --with-puredb \
-                --with-rfc2640 \
                 --with-peruserlimits \
                 --with-ratios \
-                --with-welcomemsg && \
+                --with-tls && \
     make install-strip && \
     cd .. && \
     rm -rf /tmp/* && \
