@@ -7,11 +7,9 @@ LABEL maintainer="zgist" \
         org.label-schema.version=$VERSION
 
 RUN set -ex && \
-    apk add --no-cache bash mariadb mariadb-client tzdata && \
+    apk add --no-cache bash mariadb mariadb-client mariadb-server-utils && \
     mkdir -p /run/mysqld && \
-    chown mysql:mysql /run/mysqld && \
-    sed -Ei -e 's/^(bind-address|log)/#&/' \
-        -e 's/^\[mysqld\]$/&\nskip-host-cache\nskip-name-resolve\nuser=mysql/' /etc/mysql/my.cnf
+    chown mysql:mysql /run/mysqld
 
 COPY docker-entrypoint.sh /
 
@@ -21,4 +19,8 @@ VOLUME ["/var/lib/mysql"]
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
-CMD ["mysqld"]
+CMD /usr/bin/mysqld \
+    --user=mysql \
+    --console \
+    --skip-name-resolve \
+    --skip-networking=0
