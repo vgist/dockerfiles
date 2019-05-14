@@ -67,11 +67,11 @@ volumes:
 
 #### nginx configuration with php-fpm
 
-with php7-fpm:
+with php7-fpm on gists/php:7
 
     fastcgi_pass    unix:/run/php/php7-fpm.sock;
 
-with php5-fpm:
+with php5-fpm on gists/php:5:
 
     fastcgi_pass    unix:/run/php/php5-fpm.sock;
 
