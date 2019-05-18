@@ -2,6 +2,7 @@ FROM alpine:3.9
 
 ARG VERSION=1.1.0
 ARG REPO=github.com/shadowsocks/v2ray-plugin
+ARG URL=https://$REPO/archive/v$VERSION.tar.gz
 ARG SS_VER=3.2.5
 ARG SS_URL=https://github.com/shadowsocks/shadowsocks-libev/releases/download/v$SS_VER/shadowsocks-libev-$SS_VER.tar.gz
 
@@ -37,7 +38,7 @@ RUN set -xe && \
                                 pcre-dev \
                                 tar \
                                 upx && \
-    mkdir -p /tmp/ss && \
+    mkdir -p /tmp/ss /tmp/plugin && \
     cd /tmp/ss && \
     curl -sSL $SS_URL | tar xz --strip 1 && \
     ./configure --prefix=/usr --disable-documentation && \
@@ -49,16 +50,15 @@ RUN set -xe && \
             | sort -u \
     )" && \
     apk add --no-cache --virtual .run-deps $runDeps && \
-    mkdir /root/.cache && cd /root/.cache && go mod init . && \
-    go get -d -v $REPO && \
-    cd /root/go/pkg/mod/${REPO}@v${VERSION} && \
+    cd /tmp/plugin && curl -sSL $URL | tar xz --strip 1 && \
+    go mod download && \
     CGO_ENABLED=0 GOOS=linux GOARCH=amd64 \
         go build -v -ldflags "-X main.VERSION=$VERSION -s -w" -gcflags "" -o /usr/bin/v2ray-plugin && \
     cd / && \
     upx --best /usr/bin/v2ray-plugin && \
     upx --best /usr/bin/ss-* && \
     apk del .build-deps && \
-    rm -rf /root/go /root/.cache /root/.ash_history /tmp/ss
+    rm -rf /root/go /root/.cache /root/.ash_history /tmp/ss /tmp/plugin
 
 CMD $SS \
     -s $SERVER_ADDR \
