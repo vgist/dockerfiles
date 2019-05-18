@@ -58,7 +58,7 @@ RUN set -xe && \
     upx --best /usr/bin/v2ray-plugin && \
     upx --best /usr/bin/ss-* && \
     apk del .build-deps && \
-    rm -rf /root/go /root/.cache /root/.ash_history
+    rm -rf /root/go /root/.cache /root/.ash_history /tmp/ss
 
 CMD $SS \
     -s $SERVER_ADDR \
