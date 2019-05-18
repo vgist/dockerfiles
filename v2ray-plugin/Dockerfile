@@ -16,9 +16,9 @@ RUN set -xe && \
                                 build-base \
                                 go \
                                 upx && \
+    mkdir -p /root/.cache && cd /root/.cache && go mod init . && \
     go get -d -v $REPO && \
-    cd /root/go/src/$REPO && \
-    git checkout v$VERSION && \
+    cd /root/go/pkg/mod/${REPO}@v${VERSION} && \
     CGO_ENABLED=0 GOOS=linux GOARCH=amd64 \
         go build -v -ldflags "-X main.VERSION=$VERSION -s -w" -gcflags "" -o /usr/bin/v2ray-plugin && \
     cd / && upx --best /usr/bin/v2ray-plugin && \
