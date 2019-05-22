@@ -1,6 +1,6 @@
 FROM alpine:3.9
 
-ARG VERSION=4.18.0
+ARG VERSION=4.18.2
 
 LABEL maintainer="zgist" \
         org.label-schema.name="V2Ray" \
