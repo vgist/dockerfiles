@@ -46,6 +46,8 @@ RUN set -xe && \
     php7-pdo_odbc \
     php7-pdo_pgsql \
     php7-pdo_sqlite \
+    php7-session \
+    php7-simplexml \
     php7-soap \
     php7-sodium \
     php7-sqlite3 \
