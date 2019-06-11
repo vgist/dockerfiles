@@ -3,7 +3,7 @@ FROM alpine:3.9
 ARG VERSION=1.1.0
 ARG REPO=github.com/shadowsocks/v2ray-plugin
 ARG URL=https://$REPO/archive/v$VERSION.tar.gz
-ARG SS_VER=3.2.5
+ARG SS_VER=3.3.0
 ARG SS_URL=https://github.com/shadowsocks/shadowsocks-libev/releases/download/v$SS_VER/shadowsocks-libev-$SS_VER.tar.gz
 
 LABEL maintainer="zgist" \

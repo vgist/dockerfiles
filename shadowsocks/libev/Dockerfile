@@ -1,6 +1,6 @@
 FROM alpine:3.9
 
-ARG VERSION=3.2.5
+ARG VERSION=3.3.0
 ARG SS_URL=https://github.com/shadowsocks/shadowsocks-libev/releases/download/v$VERSION/shadowsocks-libev-$VERSION.tar.gz
 
 LABEL maintainer="zgist" \
