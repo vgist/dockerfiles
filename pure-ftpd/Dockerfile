@@ -1,6 +1,6 @@
-FROM alpine:3.9
+FROM alpine:3.10
 
-ARG VERSION=1.0.48
+ARG VERSION=1.0.47
 ARG URL=https://download.pureftpd.org/pub/pure-ftpd/releases/pure-ftpd-$VERSION.tar.gz
 
 LABEL maintainer="zgist" \

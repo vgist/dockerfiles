@@ -1,4 +1,4 @@
-FROM alpine:3.9
+FROM alpine:3.10
 
 ARG VERSION=1.1.0
 ARG REPO=github.com/shadowsocks/v2ray-plugin
