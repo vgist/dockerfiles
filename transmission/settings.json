@@ -10,7 +10,7 @@
     "bind-address-ipv6": "::",
     "blocklist-enabled": false,
     "blocklist-url": "http://iblocklist.charlieprice.org/f/tagqfxtteucbuldhezkz/bt_level1.gz",
-    "cache-size-mb": 256,
+    "cache-size-mb": 128,
     "dht-enabled": false,
     "download-dir": "/data/downloads",
     "download-limit": 1000,
