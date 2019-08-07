@@ -1,4 +1,4 @@
-FROM alpine:3.9
+FROM alpine:3.10
 
 ARG VERSION
 
@@ -34,7 +34,7 @@ RUN set -xe && \
         unzip \
         zip && \
     apk add --no-cache git && \
-    git clone https://github.com/Novik/ruTorrent.git /var/www/rutorrent && \
+    git clone --depth=1 https://github.com/Novik/ruTorrent.git /var/www/rutorrent && \
     apk del git && \
     rm -rf /var/www/rutorrent/.git*
 
