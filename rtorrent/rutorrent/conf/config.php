@@ -3,6 +3,13 @@
 	@define('HTTP_TIME_OUT', 30, true);
 	@define('HTTP_USE_GZIP', true, true);
 	$httpIP = null;
+	$httpProxy = array
+	(
+		'use' 	=> false,
+		'proto'	=> 'http',
+		'host'	=> 'PROXY_HOST_HERE',
+		'port'	=> 3128
+	);
 	@define('RPC_TIME_OUT', 5, true);
 	@define('LOG_RPC_CALLS', false, true);
 	@define('LOG_RPC_FAULTS', true, true);
