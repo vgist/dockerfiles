@@ -18,7 +18,7 @@
 | PM_START_SERVERS     | pm.start_servers     | 4             |
 | PM_MIN_SPARE_SERVERS | pm.min_spare_servers | 2             |
 | PM_MAX_SPARE_SERVERS | pm.max_spare_servers | 6             |
-| UID                  | user id              | 100           |
+| UID                  | user id              | 101           |
 | GID                  | group id             | 101           |
 
 #### Volume:

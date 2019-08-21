@@ -18,7 +18,7 @@ ENV PM_MAX_CHILDREN         6
 ENV PM_START_SERVERS        4
 ENV PM_MIN_SPARE_SERVERS    2
 ENV PM_MAX_SPARE_SERVERS    6
-ENV UID                     100
+ENV UID                     101
 ENV GID                     101
 
 # Let's roll
