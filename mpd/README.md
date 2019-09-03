@@ -27,3 +27,9 @@
       devices:
         - /dev/snd
       restart: always
+
+#### Client
+
+mpc: <http://www.musicpd.org/clients/mpc/>
+ncmpc: <http://www.musicpd.org/clients/ncmpc/>
+nncmpp: <https://git.janouch.name/p/nncmpp/>
