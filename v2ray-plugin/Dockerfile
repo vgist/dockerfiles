@@ -17,6 +17,7 @@ RUN set -xe && \
                                 git \
                                 build-base \
                                 go \
+                                ca-certificates \
                                 upx && \
     mkdir -p /tmp/plugin && cd /tmp/plugin && \
     curl -sSL $URL | tar xz --strip 1 && \
