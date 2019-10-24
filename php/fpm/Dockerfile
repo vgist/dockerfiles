@@ -54,7 +54,8 @@ RUN set -xe && \
     php7-xmlreader \
     php7-xmlrpc \
     php7-zip \
-    php7-fpm
+    php7-fpm \
+    php7
 
 COPY entrypoint.sh /usr/bin/entrypoint.sh
 
