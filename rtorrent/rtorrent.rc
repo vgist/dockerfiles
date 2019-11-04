@@ -13,22 +13,22 @@ system.file.max_size.set = 2048G
 
 throttle.global_down.max_rate.set_kb = 0
 throttle.global_up.max_rate.set_kb = 0
-throttle.max_downloads.global.set = 512
-throttle.max_uploads.global.set = 512
-throttle.min_peers.normal.set = 16
+throttle.max_downloads.global.set = 256
+throttle.max_uploads.global.set = 256
+throttle.min_peers.normal.set = 8
 throttle.max_peers.normal.set = 32
 throttle.min_peers.seed.set = -1
 throttle.max_peers.seed.set = -1
 throttle.max_downloads.set = 32
 throttle.max_uploads.set = 16
 trackers.numwant.set = 8
-pieces.memory.max.set = 1536M
+pieces.memory.max.set = 256M
 
-network.max_open_sockets.set = 2048
+network.max_open_sockets.set = 1024
 network.max_open_files.set = 5120
 network.http.max_open.set = 8
-network.receive_buffer.size.set = 8M
-network.send_buffer.size.set = 24M
+network.receive_buffer.size.set = 4M
+network.send_buffer.size.set = 12M
 pieces.preload.type.set = 2
 network.xmlrpc.size_limit.set = 2M
 
