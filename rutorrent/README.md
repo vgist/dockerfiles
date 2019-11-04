@@ -1,4 +1,4 @@
-![](https://images.microbadger.com/badges/version/gists/rtorrent.svg) ![](https://images.microbadger.com/badges/image/gists/rtorrent.svg) ![](https://img.shields.io/docker/stars/gists/rtorrent.svg) ![](https://img.shields.io/docker/pulls/gists/rtorrent.svg)
+![](https://images.microbadger.com/badges/version/gists/rutorrent.svg) ![](https://images.microbadger.com/badges/image/gists/rutorrent.svg) ![](https://img.shields.io/docker/stars/gists/rutorrent.svg) ![](https://img.shields.io/docker/pulls/gists/rutorrent.svg)
 
 #### Volume
 
@@ -17,17 +17,17 @@
 
     docker run \
         -d \
-        --name rtorrent \
+        --name rutorrent \
         -p 80:8080 \
         -p 12345:55000 \
         -v /your/data:/data \
         -e USERNAME=yourname \
         -e PASSWORD=yourpassword \
-        gists/rtorrent
+        gists/rutorrent
 
 #### Compose example:
 
-    rtorrent:
+    rutorrent:
       image: gists/rtorrent
       ports:
         - "80:8080"
