@@ -3,13 +3,14 @@ FROM alpine:3.10
 ARG VERSION
 
 LABEL maintainer="zgist" \
-        org.label-schema.name="RTorrent" \
+        org.label-schema.name="ruTorrent" \
         org.label-schema.version=$VERSION
 
 ENV USERNAME        admin
 ENV PASSWORD=
 ENV UID             1000
 ENV GID             1000
+ENV RUTORRENT_VER   3.9
 
 # Let's roll
 RUN set -xe && \
@@ -33,9 +34,11 @@ RUN set -xe && \
         unrar \
         unzip \
         zip && \
-    apk add --no-cache git && \
-    git clone --depth=1 https://github.com/Novik/ruTorrent.git /var/www/rutorrent && \
-    apk del git && \
+    apk add --no-cache tar && \
+    mkdir /tmp/rutorrent && cd /tmp/rutorrent && \
+    curl -sSL https://github.com/Novik/ruTorrent/archive/v$RUTORRENT_VER.tar.gz | tar xz --strip 1 && \
+    cd / && mv /tmp/rutorrent /var/www/rutorrent && \
+    apk del tar && \
     rm -rf /var/www/rutorrent/.git*
 
 COPY entrypoint.sh /usr/bin/entrypoint.sh

@@ -27,6 +27,7 @@
 	$XMLRPCMountPoint = "/RPC2";
 	$pathToExternals = array(
 		"php" 	=> '/usr/bin/php',
+		"pgrep" => '/usr/bin/pgrep',
 		"curl"	=> '/usr/bin/curl',
 		"gzip"	=> '/usr/bin/gzip',
 		"id"	=> '/usr/bin/id',
@@ -39,5 +40,5 @@
 	$profilePath = '../share';
 	$profileMask = 0777;
 	$tempDirectory = null;
-	$canUseXSendFile = true;
+	$canUseXSendFile = false;
 	$locale = "UTF8";
