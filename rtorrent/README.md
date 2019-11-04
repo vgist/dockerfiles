@@ -2,7 +2,7 @@
 
 #### Volume
 
-- /download
+- /data
 
 #### Environment:
 
@@ -20,7 +20,7 @@
         --name rtorrent \
         -p 80:8080 \
         -p 12345:55000 \
-        -v /your/data:/download \
+        -v /your/data:/data \
         -e USERNAME=yourname \
         -e PASSWORD=yourpassword \
         gists/rtorrent
@@ -33,7 +33,7 @@
         - "80:8080"
         - "12345:55000/tcp"
       volumes:
-        - /your/data:/download
+        - /your/data:/data
       environment:
         - USERNAME=yourname
         - PASSWORD=yourpassword

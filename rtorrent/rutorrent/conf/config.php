@@ -20,7 +20,7 @@
 	$log_file = '/tmp/errors.log';
 	$saveUploadedTorrents = true;
 	$overwriteUploadedTorrents = false;
-	$topDirectory = '/download/torrents';
+	$topDirectory = '/data/torrents';
 	$forbidUserSettings = false;
 	$scgi_port = 0;
 	$scgi_host = "unix:///home/torrent/scgi.socket";
