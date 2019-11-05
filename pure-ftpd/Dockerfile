@@ -1,6 +1,6 @@
 FROM alpine:3.10
 
-ARG VERSION=1.0.47
+ARG VERSION=1.0.49
 ARG URL=https://download.pureftpd.org/pub/pure-ftpd/releases/pure-ftpd-$VERSION.tar.gz
 
 LABEL maintainer="zgist" \
@@ -13,6 +13,7 @@ ENV MAX_PASV_PORT       30009
 ENV UID                 1000
 ENV GID                 1000
 
+COPY minimal.patch /tmp
 RUN set -ex && \
     apk add --no-cache --virtual .build-deps \
                                 build-base \
@@ -21,6 +22,7 @@ RUN set -ex && \
                                 tar && \
     cd /tmp && \
     curl -sSL $URL | tar xz --strip 1 && \
+    patch -p1 src/ftpd.c minimal.patch && \
     ./configure --prefix=/usr \
                 --sysconfdir=/etc/pureftpd \
                 --without-humor \
@@ -31,8 +33,14 @@ RUN set -ex && \
                 --with-ratios \
                 --with-tls && \
     make install-strip && \
-    cd .. && \
-    rm -rf /tmp/* && \
+    runDeps="$( \
+        scanelf --needed --nobanner /usr/sbin/pure-* /usr/bin/pure-* \
+            | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
+            | xargs -r apk info --installed \
+            | sort -u \
+    )" && \
+    apk add --no-cache --virtual .run-deps $runDeps && \
+    cd / && rm -rf /tmp/* && \
     apk del .build-deps
 
 COPY entrypoint.sh /usr/bin/entrypoint.sh
