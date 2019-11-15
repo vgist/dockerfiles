@@ -17,7 +17,7 @@
 
 #### Compose example:
 
-    transmission:
+    mpd:
       image: gists/mpd
       ports:
         - "6600:6600"
