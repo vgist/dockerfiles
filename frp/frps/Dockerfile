@@ -1,6 +1,6 @@
-FROM alpine:3.9
+FROM alpine:3.10
 
-ARG VERSION=0.27.0
+ARG VERSION=0.29.1
 ARG REPO=github.com/fatedier/frp
 ARG URL=https://$REPO/archive/v$VERSION.tar.gz
 
