@@ -1,6 +1,6 @@
 FROM alpine:3.10
 
-ARG QBITTORRENT_VER=4.2.0
+ARG QBITTORRENT_VER=4.2.1
 ARG LIBTORRENT_VER=1.2.2
 
 LABEL maintainer="zgist" \
@@ -25,7 +25,7 @@ RUN set -ex && \
         make \
         qt5-qtbase \
         qt5-qttools-dev \
-        tar &&\
+        tar && \
     mkdir -p /tmp/libtorrent-rasterbar /tmp/qbittorrent && \
     cd /tmp/libtorrent-rasterbar/ && \
     curl -sSL https://github.com/arvidn/libtorrent/releases/download/libtorrent-${LIBTORRENT_VER//./_}/libtorrent-rasterbar-$LIBTORRENT_VER.tar.gz | tar xz --strip 1 && \
