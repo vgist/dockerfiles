@@ -41,13 +41,9 @@ RUN set -xe && \
     apk del tar && \
     rm -rf /var/www/rutorrent/.git*
 
-COPY entrypoint.sh /usr/bin/entrypoint.sh
-COPY supervisord.ini /etc/supervisor.d/supervisord.ini
-COPY rtorrent.rc /etc/rtorrent.rc
-COPY rutorrent /var/www/rutorrent
-COPY etc /etc
+COPY rootfs /
 
-VOLUME /download
+VOLUME /data
 
 EXPOSE 8080 55000
 

@@ -1,4 +1,4 @@
-network.scgi.open_local = /home/torrent/scgi.socket
+network.scgi.open_local = /data/scgi.socket
 encoding.add = UTF-8
 network.port_range.set = 55000-55000
 network.port_random.set = no
@@ -33,7 +33,7 @@ pieces.preload.type.set = 2
 network.xmlrpc.size_limit.set = 2M
 
 schedule2 = session_save, 1200, 43200, ((session.save))
-schedule2 = scgi_permission,0,0,"execute.nothrow=chmod,\"g+w,o=\",/home/torrent/scgi.socket"
+schedule2 = scgi_permission,0,0,"execute.nothrow=chmod,\"g+w,o=\",/data/scgi.socket"
 schedule2 = watch_directory,0,5,"load.start=/data/.watch/*.torrent,\"d.custom.set=incomplete,1\""
 schedule2 = untied_directory,5,5,"stop_untied=/data/.watch/*.torrent"
 schedule2 = espace_disque_insuffisant,1,30,close_low_diskspace=500M
