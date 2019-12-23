@@ -1,4 +1,4 @@
-FROM alpine:3.10
+FROM alpine:3.11
 
 ARG VERSION=1.2.0
 ARG REPO=github.com/shadowsocks/v2ray-plugin
@@ -21,7 +21,7 @@ RUN set -xe && \
     mkdir -p /tmp/plugin && cd /tmp/plugin && \
     curl -sSL $URL | tar xz --strip 1 && \
     go mod download && \
-    CGO_ENABLED=0 GOOS=linux GOARCH=amd64 \
+    CGO_ENABLED=0 GOOS=linux \
         go build -v -ldflags "-X main.VERSION=$VERSION -s -w" -gcflags "" -o /usr/bin/v2ray-plugin && \
     cd / && upx --best /usr/bin/v2ray-plugin && \
     apk del .build-deps && \

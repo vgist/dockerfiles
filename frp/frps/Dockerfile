@@ -1,4 +1,4 @@
-FROM alpine:3.10
+FROM alpine:3.11
 
 ARG VERSION=0.29.1
 ARG REPO=github.com/fatedier/frp
