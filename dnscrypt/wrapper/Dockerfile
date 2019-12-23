@@ -1,4 +1,4 @@
-FROM alpine:3.9
+FROM alpine:3.11
 
 ARG VERSION=0.4.2
 ARG DNSCRYPT_URL=https://github.com/Cofyc/dnscrypt-wrapper/archive/v$VERSION.tar.gz
