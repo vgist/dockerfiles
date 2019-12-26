@@ -8,10 +8,7 @@ LABEL maintainer="zgist" \
 
 RUN set -xe && apk add --no-cache iptables ppp pptpd
 
-COPY etc/pptpd.conf /etc/pptpd.conf
-COPY etc/chap-secrets /etc/ppp/chap-secrets
-COPY etc/pptpd-options /etc/ppp/pptpd-options
-COPY entrypoint.sh /entrypoint.sh
+COPY rootfs /
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 CMD ["pptpd", "--fg"]

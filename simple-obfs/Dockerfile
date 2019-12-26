@@ -1,34 +1,35 @@
 FROM alpine:3.11
 
 ARG VERSION=0.0.5
-ARG OBFS_URL=https://github.com/shadowsocks/simple-obfs/archive/v$VERSION.tar.gz
 
 LABEL maintainer="zgist" \
         org.label-schema.name="Simple-obfs" \
         org.label-schema.version=$VERSION
 
-ENV SERVER_ADDR 0.0.0.0
-ENV SERVER_PORT 8388
-ENV DNS_SERVER  8.8.8.8
-ENV OBFS_OPTS   http
-ENV FORWARD     127.0.0.1:8388
-ENV FAILOVER    www.163.com:80
+ENV SERVER_ADDR=0.0.0.0 \
+    SERVER_PORT=8388 \
+    DNS_SERVER=8.8.8.8 \
+    OBFS_OPTS=http \
+    FORWARD=127.0.0.1:8388 \
+    FAILOVER=www.163.com:80
 
 RUN set -ex && \
-    apk add --no-cache --virtual .build-deps \
-                                autoconf \
-                                automake \
-                                build-base \
-                                curl \
-                                libev-dev \
-                                libtool \
-                                linux-headers \
-                                openssl-dev \
-                                pcre-dev \
-                                tar && \
+    apk add --no-cache \
+        --virtual .build-deps \
+        autoconf \
+        automake \
+        build-base \
+        curl \
+        libev-dev \
+        libtool \
+        linux-headers \
+        openssl-dev \
+        pcre-dev \
+        tar && \
     mkdir -p /tmp/obfs && \
     cd /tmp/obfs && \
-    curl -sSL $OBFS_URL | tar xz --strip 1 && \
+    curl -sSL https://github.com/shadowsocks/simple-obfs/archive/v$VERSION.tar.gz | \
+    tar xz --strip 1 && \
     curl -sSL https://github.com/shadowsocks/libcork/archive/29d7cbafc4b983192baeb0c962ab1ff591418f56.tar.gz | tar xz --strip 1 -C libcork && \
     ./autogen.sh && \
     ./configure --prefix=/usr --disable-documentation && \
@@ -45,10 +46,11 @@ RUN set -ex && \
 
 EXPOSE $SERVER_PORT
 
-CMD obfs-server --fast-open \
-            -a nobody \
-            -s $SERVER_ADDR \
-            -p $SERVER_PORT \
-            -d $DNS_SERVER \
-            --obfs $OBFS_OPTS \
-            -r $FORWARD
+CMD obfs-server \
+        --fast-open \
+        -a nobody \
+        -s $SERVER_ADDR \
+        -p $SERVER_PORT \
+        -d $DNS_SERVER \
+        --obfs $OBFS_OPTS \
+        -r $FORWARD

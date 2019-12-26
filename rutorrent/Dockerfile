@@ -6,15 +6,16 @@ LABEL maintainer="zgist" \
         org.label-schema.name="ruTorrent" \
         org.label-schema.version=$VERSION
 
-ENV USERNAME        admin
-ENV PASSWORD=
-ENV UID             1000
-ENV GID             1000
-ENV RUTORRENT_VER   3.9
+ENV RUTORRENT_VER=3.9 \
+    UID=1000 \
+    GID=1000 \
+    USERNAME=admin \
+    PASSWORD=
 
 # Let's roll
 RUN set -xe && \
-    apk add --no-cache --virtual .run-deps \
+    apk add --no-cache \
+        --virtual .run-deps \
         apache2-utils \
         ca-certificates \
         libtorrent \
@@ -25,7 +26,8 @@ RUN set -xe && \
         rtorrent \
         xmlrpc-c \
         supervisor && \
-    apk add --no-cache --virtual .plug-deps \
+    apk add --no-cache \
+        --virtual .plug-deps \
         curl \
         ffmpeg \
         mediainfo \

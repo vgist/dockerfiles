@@ -6,15 +6,13 @@ LABEL maintainer="zgist" \
         org.label-schema.name="Lighttpd" \
         org.label-schema.version=$VERSION
 
-ENV UID     100
-ENV GID     101
+ENV UID=100 \
+    GID=101
 
 RUN set -ex && \
     apk add --no-cache lighttpd
 
-COPY entrypoint.sh /usr/bin/entrypoint.sh
-COPY lighttpd.conf /etc/lighttpd/lighttpd.conf
-COPY index.html /var/www/index.html
+COPY rootfs /
 
 WORKDIR /var/www
 

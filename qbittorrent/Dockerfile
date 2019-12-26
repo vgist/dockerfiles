@@ -7,10 +7,10 @@ LABEL maintainer="zgist" \
         org.label-schema.name="qBittorrent" \
         org.label-schema.version=$QBITTORRENT_VER
 
-ENV PEER_PORT   6881
-ENV WEB_PORT    8080
-ENV UID         1000
-ENV GID         1000
+ENV PEER_PORT=6881 \
+    WEB_PORT=8080 \
+    UID=1000 \
+    GID=1000
 
 RUN set -ex && \
     apk add --no-cache su-exec && \
@@ -46,8 +46,7 @@ RUN set -ex && \
     apk del .build-deps && \
     rm -rf /tmp/*
 
-COPY qBittorrent.conf /etc/qBittorrent.conf
-COPY entrypoint.sh /usr/bin/entrypoint.sh
+COPY rootfs /
 
 EXPOSE $PEER_PORT $PEER_PORT/udp $WEB_PORT
 

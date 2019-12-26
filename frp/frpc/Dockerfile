@@ -1,8 +1,6 @@
 FROM alpine:3.11
 
 ARG VERSION=0.29.1
-ARG REPO=github.com/fatedier/frp
-ARG URL=https://$REPO/archive/v$VERSION.tar.gz
 
 LABEL maintainer="zgist" \
         org.label-schema.name="frpc" \
@@ -10,16 +8,19 @@ LABEL maintainer="zgist" \
 
 # Let's roll
 RUN set -xe && \
-    apk add --no-cache --virtual .build-deps \
-                                curl \
-                                git \
-                                build-base \
-                                go \
-                                upx && \
+    apk add \
+        --no-cache \
+        --virtual .build-deps \
+        curl \
+        git \
+        build-base \
+        go \
+        upx && \
     mkdir -p /tmp/frp && cd /tmp/frp && \
-    curl -sSL $URL | tar xz --strip 1 && \
+    curl -sSL https://github.com/fatedier/frp/archive/v$VERSION.tar.gz | \
+    tar xz --strip 1 && \
     go mod download && \
-    go build -v -o /usr/bin/frpc ./cmd/frpc && \
+    go build -v -ldflags "-s -w" ./cmd/frpc -o /usr/bin/frpc && \
     cp ./conf/frpc.ini /etc/ && \
     cd / && upx --best /usr/bin/frpc && \
     rm -rf /root/go /root/.cache /root/.ash_history /tmp/frp && \
