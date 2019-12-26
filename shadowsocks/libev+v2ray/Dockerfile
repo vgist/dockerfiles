@@ -1,46 +1,44 @@
 FROM alpine:3.11
 
 ARG VERSION=1.2.0
-ARG REPO=github.com/shadowsocks/v2ray-plugin
-ARG URL=https://$REPO/archive/v$VERSION.tar.gz
 ARG SS_VER=3.3.3
-ARG SS_URL=https://github.com/shadowsocks/shadowsocks-libev/releases/download/v$SS_VER/shadowsocks-libev-$SS_VER.tar.gz
 
 LABEL maintainer="zgist" \
         org.label-schema.name="shadowsocks-libev.v2ray-plugin" \
         org.label-schema.version=$VERSION
 
-ENV SERVER_ADDR 0.0.0.0
-ENV SERVER_PORT 80
-ENV PASSWORD=
-ENV METHOD      aes-128-gcm
-ENV TIMEOUT     300
-ENV DNS_ADDR    8.8.8.8
-
-ENV SS          ss-server
-ENV PLUGIN      v2ray-plugin
-ENV PLUGIN_OPTS server
+ENV SERVER_ADDR=0.0.0.0 \
+    SERVER_PORT=80 \
+    METHOD=aes-128-gcm \
+    TIMEOUT=300 \
+    DNS_ADDR=8.8.8.8 \
+    SS=ss-server \
+    PLUGIN=v2ray-plugin \
+    PLUGIN_OPTS=server \
+    PASSWORD=
 
 # Let's roll
 RUN set -xe && \
-    apk add --no-cache --virtual .build-deps \
-                                autoconf \
-                                build-base \
-                                c-ares-dev \
-                                curl \
-                                git \
-                                go \
-                                libev-dev \
-                                libtool \
-                                linux-headers \
-                                libsodium-dev \
-                                mbedtls-dev \
-                                pcre-dev \
-                                tar \
-                                upx && \
+    apk add --no-cache \
+        --virtual .build-deps \
+        autoconf \
+        build-base \
+        c-ares-dev \
+        curl \
+        git \
+        go \
+        libev-dev \
+        libtool \
+        linux-headers \
+        libsodium-dev \
+        mbedtls-dev \
+        pcre-dev \
+        tar \
+        upx && \
     mkdir -p /tmp/ss /tmp/plugin && \
     cd /tmp/ss && \
-    curl -sSL $SS_URL | tar xz --strip 1 && \
+    curl -sSL https://github.com/shadowsocks/shadowsocks-libev/releases/download/v$SS_VER/shadowsocks-libev-$SS_VER.tar.gz | \
+    tar xz --strip 1 && \
     ./configure --prefix=/usr --disable-documentation && \
     make install && \
     runDeps="$( \
@@ -50,9 +48,10 @@ RUN set -xe && \
             | sort -u \
     )" && \
     apk add --no-cache --virtual .run-deps $runDeps && \
-    cd /tmp/plugin && curl -sSL $URL | tar xz --strip 1 && \
+    cd /tmp/plugin && curl -sSL https://github.com/shadowsocks/v2ray-plugin/archive/v$VERSION.tar.gz | \
+    tar xz --strip 1 && \
     go mod download && \
-    CGO_ENABLED=0 GOOS=linux GOARCH=amd64 \
+    CGO_ENABLED=0 \
         go build -v -ldflags "-X main.VERSION=$VERSION -s -w" -gcflags "" -o /usr/bin/v2ray-plugin && \
     cd / && \
     upx --best /usr/bin/v2ray-plugin && \

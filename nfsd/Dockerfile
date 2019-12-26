@@ -6,9 +6,9 @@ LABEL maintainer="zgist" \
         org.label-schema.name="NFS" \
         org.label-schema.version=$VERSION
 
-ENV NFS_DIR /nfs-share
-ENV NFS_DOMAIN *
-ENV NFS_OPTION rw,fsid=0,sync,no_subtree_check,no_auth_nlm,insecure,no_root_squash,crossmnt,no_acl
+ENV NFS_DIR="/nfs-share" \
+    NFS_DOMAIN="*" \
+    NFS_OPTION="rw,fsid=0,sync,no_subtree_check,no_auth_nlm,insecure,no_root_squash,crossmnt,no_acl"
 
 RUN set -xe && \
     apk add --no-cache nfs-utils && \
