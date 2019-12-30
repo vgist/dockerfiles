@@ -1,7 +1,7 @@
 FROM alpine:3.11
 
 ARG QBITTORRENT_VER=4.2.1
-ARG LIBTORRENT_VER=1.2.2
+ARG LIBTORRENT_VER=1.2.3
 
 LABEL maintainer="zgist" \
         org.label-schema.name="qBittorrent" \
