@@ -28,9 +28,8 @@ RUN set -ex && \
         tar && \
     mkdir -p /tmp/obfs && \
     cd /tmp/obfs && \
-    curl -sSL https://github.com/shadowsocks/simple-obfs/archive/v$VERSION.tar.gz | \
-    tar xz --strip 1 && \
-    curl -sSL https://github.com/shadowsocks/libcork/archive/29d7cbafc4b983192baeb0c962ab1ff591418f56.tar.gz | tar xz --strip 1 -C libcork && \
+    curl -sSL https://github.com/shadowsocks/simple-obfs/archive/486bebd.tar.gz | tar xz --strip 1 && \
+    curl -sSL https://github.com/shadowsocks/libcork/archive/29d7cba.tar.gz | tar xz --strip 1 -C libcork && \
     ./autogen.sh && \
     ./configure --prefix=/usr --disable-documentation && \
     make install && \
