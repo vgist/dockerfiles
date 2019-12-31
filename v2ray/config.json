@@ -5,7 +5,8 @@
     "loglevel": "warning"
   },
   "inbound": {
-    "port": 8001,
+    "port": 1080,
+    "listen": "0.0.0.0",
     "protocol": "vmess",
     "settings": {
       "clients": [

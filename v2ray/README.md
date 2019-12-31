@@ -5,7 +5,7 @@
     docker run \
         -d \
         --name v2ray \
-        -p 12345:8001 \
+        -p 12345:1080 \
         -v $(pwd)/config.json:/etc/v2ray/config.json \
         gists/v2ray
 
@@ -14,7 +14,7 @@
     v2ray:
         image: gists/v2ray
         ports:
-            - "12345:8001"
+            - "12345:1080"
         volumes:
             - ./config.json:/etc/v2ray/config.json
       restart: always
