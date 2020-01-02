@@ -31,7 +31,7 @@
 		"curl"	=> '/usr/bin/curl',
 		"gzip"	=> '/usr/bin/gzip',
 		"id"	=> '/usr/bin/id',
-		"stat"	=> '/usr/bin/stat',
+		"stat"	=> '/bin/stat',
 	);
 	$localhosts = array(
 		"127.0.0.1",

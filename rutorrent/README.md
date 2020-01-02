@@ -19,7 +19,7 @@
         -d \
         --name rutorrent \
         -p 80:8080 \
-        -p 12345:55000 \
+        -p 55000:55000 \
         -v /your/data:/data \
         -e USERNAME=yourname \
         -e PASSWORD=yourpassword \
@@ -31,7 +31,7 @@
       image: gists/rtorrent
       ports:
         - "80:8080"
-        - "12345:55000/tcp"
+        - "55000:55000/tcp"
       volumes:
         - /your/data:/data
       environment:

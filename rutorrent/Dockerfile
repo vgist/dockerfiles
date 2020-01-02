@@ -1,13 +1,12 @@
 FROM alpine:3.11
 
-ARG VERSION
+ARG VERSION=3.10-beta
 
 LABEL maintainer="zgist" \
         org.label-schema.name="ruTorrent" \
         org.label-schema.version=$VERSION
 
-ENV RUTORRENT_VER=3.9 \
-    UID=1000 \
+ENV UID=1000 \
     GID=1000 \
     USERNAME=admin \
     PASSWORD=
@@ -38,7 +37,7 @@ RUN set -xe && \
         zip && \
     apk add --no-cache tar && \
     mkdir /tmp/rutorrent && cd /tmp/rutorrent && \
-    curl -sSL https://github.com/Novik/ruTorrent/archive/v$RUTORRENT_VER.tar.gz | tar xz --strip 1 && \
+    curl -sSL https://github.com/Novik/ruTorrent/archive/692887b.tar.gz | tar xz --strip 1 && \
     cd / && mv /tmp/rutorrent /var/www/rutorrent && \
     apk del tar && \
     rm -rf /var/www/rutorrent/.git*
