@@ -5,7 +5,7 @@
 | Environment | Default value |
 |-------------|---------------|
 | SERVER_ADDR | 0.0.0.0       |
-| SERVER_PORT | 80            |
+| SERVER_PORT | 8388          |
 | PASSWORD    | $(hostname)   |
 | METHOD      | aes-128-gcm   |
 | TIMEOUT     | 300           |
@@ -20,21 +20,21 @@ On server:
 
     docker run \
         -d \
-        --name shadowsocks-libev.v2ray-plugin \
-        -p 80:80 \
+        --name ss-v2ray \
+        -p 80:8388 \
         -e PASSWORD=password \
-        -e METHOD=aes-128-gcm
+        -e METHOD=aes-128-gcm \
         gists/shadowsocks-libev.v2ray-plugin
 
 On client:
 
     docker run \
         -d \
-        --name shadowsocks-libev.v2ray-plugin \
-        -p 80:80 \
+        --name ss-v2ray \
+        -p 80:8388 \
         -e PASSWORD=password \
         -e METHOD=aes-128-gcm \
-        -e SS=ss-local
+        -e SS=ss-local \
         -e PLUGIN_OPTS="mode=websocket;host=domain.com"
         gists/shadowsocks-libev.v2ray-plugin
 
@@ -43,13 +43,13 @@ On client:
     shadowsocks:
       image: gists/shadowsocks-libev.v2ray-plugin
       ports:
-        - "80:80/tcp"
+        - "80:8388/tcp"
       environment:
         - PASSWORD=password
         - METHOD=aes-128-gcm
       restart: always
 
-#### Advanced custom
+#### custom:
 
     shadowsocks:
       image: gists/shadowsocks-libev.v2ray-plugin

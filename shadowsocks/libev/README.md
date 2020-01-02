@@ -44,7 +44,9 @@
         command: ss-server -s 0.0.0.0 -p 12345 -k password -m chacha20-ietf-poly1305 -t 300 -d 8.8.8.8 --no-delay -u
         restart: always
 
-#### Compose example with simple-obfs
+#### Compose example with v2ray-plugin
+
+##### on server
 
     version: '3'
 
@@ -52,8 +54,6 @@
         shadowsocks:
             container_name: shadowsocks
             image: gists/shadowsocks-libev
-            ports:
-                - "12345:8388/udp"
             networks:
                 overlay:
             environment:
@@ -61,13 +61,48 @@
               - METHOD=aes-128-gcm
             restart: always
 
-          simple-obfs:
-            container_name: obfs
-            image: gists/simple-obfs
+        v2ray-plugin:
+            container_name: v2ray-plugin
+            image: gists/v2ray-plugin
             ports:
                 - "12345:8388/tcp"
             environment:
-                - FORWARD=shadowsocks:8388
+                - REMOTE_ADDR=shadowsocks
+                - REMOTE_PORT=1080
+                - ARGS=-server
+            depends_on:
+                - shadowsocks
+            networks:
+                overlay:
+            restart: always
+
+    networks:
+        overlay:
+            driver: bridge
+
+##### on client
+
+    version: '3'
+
+    services:
+        shadowsocks:
+            container_name: shadowsocks
+            image: gists/shadowsocks-libev
+            networks:
+                overlay:
+            command: ss-local -s server_ip -p server_port -l 1080 -k password -m aes-128-gcm --no-delay -u
+            restart: always
+
+          v2ray-plugin:
+            container_name: v2ray-plugin
+            image: gists/v2ray-plugin
+            ports:
+                - "12345:8388/tcp"
+            environment:
+                - REMOTE_ADDR=shadowsocks
+                - REMOTE_PORT=1080
+                - LOCAL_ADDR=0.0.0.0
+                - LOCAL_PORT=8388
             depends_on:
                 - shadowsocks
             networks:

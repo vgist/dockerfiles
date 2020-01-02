@@ -1,63 +1,35 @@
-FROM alpine:3.11
+FROM gists/shadowsocks-libev:3.3.3
 
 ARG VERSION=1.2.0
-ARG SS_VER=3.3.3
 
 LABEL maintainer="zgist" \
         org.label-schema.name="shadowsocks-libev.v2ray-plugin" \
         org.label-schema.version=$VERSION
 
-ENV SERVER_ADDR=0.0.0.0 \
-    SERVER_PORT=80 \
-    METHOD=aes-128-gcm \
-    TIMEOUT=300 \
-    DNS_ADDR=8.8.8.8 \
-    SS=ss-server \
+ENV SS=ss-server \
     PLUGIN=v2ray-plugin \
-    PLUGIN_OPTS=server \
-    PASSWORD=
+    PLUGIN_OPTS=server
 
 # Let's roll
 RUN set -xe && \
     apk add --no-cache \
         --virtual .build-deps \
-        autoconf \
-        build-base \
-        c-ares-dev \
         curl \
         git \
         go \
-        libev-dev \
-        libtool \
-        linux-headers \
-        libsodium-dev \
-        mbedtls-dev \
-        pcre-dev \
-        tar \
+        build-base \
+        go \
         upx && \
-    mkdir -p /tmp/ss /tmp/plugin && \
-    cd /tmp/ss && \
-    curl -sSL https://github.com/shadowsocks/shadowsocks-libev/releases/download/v$SS_VER/shadowsocks-libev-$SS_VER.tar.gz | \
-    tar xz --strip 1 && \
-    ./configure --prefix=/usr --disable-documentation && \
-    make install && \
-    runDeps="$( \
-        scanelf --needed --nobanner /usr/bin/ss-* \
-            | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
-            | xargs -r apk info --installed \
-            | sort -u \
-    )" && \
-    apk add --no-cache --virtual .run-deps $runDeps && \
-    cd /tmp/plugin && curl -sSL https://github.com/shadowsocks/v2ray-plugin/archive/v$VERSION.tar.gz | \
+    mkdir -p /tmp/plugin && \
+    cd /tmp/plugin && \
+    curl -sSL https://github.com/shadowsocks/v2ray-plugin/archive/v$VERSION.tar.gz | \
     tar xz --strip 1 && \
     go mod download && \
     CGO_ENABLED=0 \
         go build -v -ldflags "-X main.VERSION=$VERSION -s -w" -gcflags "" -o /usr/bin/v2ray-plugin && \
-    cd / && \
-    upx --best /usr/bin/v2ray-plugin && \
-    upx --best /usr/bin/ss-* && \
+    cd / && upx --best /usr/bin/v2ray-plugin && \
     apk del .build-deps && \
-    rm -rf /root/go /root/.cache /root/.ash_history /tmp/ss /tmp/plugin
+    rm -rf /root/go /root/.cache /root/.ash_history /tmp/plugin
 
 CMD $SS \
     -s $SERVER_ADDR \
