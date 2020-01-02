@@ -17,7 +17,7 @@
         -d \
         --name simple-obfs \
         -p 12345:12345 \
-        -e FORWARD=127.0.0.1:8388
+        -e REMOTE=127.0.0.1:8388
         gists/simple-obfs
 
 #### Compose file with custom command:
