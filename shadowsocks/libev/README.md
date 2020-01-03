@@ -1,6 +1,6 @@
 ![](https://images.microbadger.com/badges/version/gists/shadowsocks-libev.svg) ![](https://images.microbadger.com/badges/image/gists/shadowsocks-libev.svg) ![](https://img.shields.io/docker/stars/gists/shadowsocks-libev.svg) ![](https://img.shields.io/docker/pulls/gists/shadowsocks-libev.svg)
 
-#### Environment:
+### Environment:
 
 | Environment | Default value |
 |-------------|---------------|
@@ -11,7 +11,7 @@
 | TIMEOUT     | 300           |
 | DNS_ADDR    | 8.8.8.8       |
 
-#### Creating an instance:
+### Creating an instance:
 
     docker run \
         -d \
@@ -22,7 +22,7 @@
         -e METHOD=aes-128-gcm
         gists/shadowsocks-libev
 
-#### Compose example:
+### Compose example:
 
     shadowsocks:
         image: gists/shadowsocks-libev
@@ -34,7 +34,7 @@
             - METHOD=aes-128-gcm
       restart: always
 
-#### Compose file with custom command
+### Compose file with custom command
 
     shadowsocks:
         image: gists/shadowsocks-libev
@@ -44,9 +44,7 @@
         command: ss-server -s 0.0.0.0 -p 12345 -k password -m chacha20-ietf-poly1305 -t 300 -d 8.8.8.8 --no-delay -u
         restart: always
 
-#### Compose example with v2ray-plugin
-
-##### on server
+### Compose example with v2ray-plugin
 
     version: '3'
 
@@ -54,22 +52,25 @@
         shadowsocks:
             container_name: shadowsocks
             image: gists/shadowsocks-libev
-            networks:
-                overlay:
             environment:
               - PASSWORD=passowrd
               - METHOD=aes-128-gcm
+              - SERVER_PORT=8388
+            volumes:
+                - /etc/localtime:/etc/localtime:ro
+            networks:
+                overlay:
             restart: always
 
         v2ray-plugin:
             container_name: v2ray-plugin
             image: gists/v2ray-plugin
             ports:
-                - "12345:8388/tcp"
-            environment:
-                - REMOTE_ADDR=shadowsocks
-                - REMOTE_PORT=1080
-                - ARGS=-server
+                - "443:443/tcp"
+            volumes:
+                - ./certs:/certs
+                - /etc/localtime:/etc/localtime:ro
+            command: v2ray-plugin -server -localAddr 0.0.0.0 -localPort 443 -remoteAddr shadowsocks -remotePort 8388 -mode websocket -mux=1 -tls -host=domain.com -cert=/certs/domain.cert -key=/certs/domain.key
             depends_on:
                 - shadowsocks
             networks:
@@ -80,35 +81,66 @@
         overlay:
             driver: bridge
 
-##### on client
+### v2ray-plugin-latest:
 
-    version: '3'
+##### v2ray-plugin-latest Environment:
 
-    services:
-        shadowsocks:
-            container_name: shadowsocks
-            image: gists/shadowsocks-libev
-            networks:
-                overlay:
-            command: ss-local -s server_ip -p server_port -l 1080 -k password -m aes-128-gcm --no-delay -u
-            restart: always
+| Environment | Default value |
+|-------------|---------------|
+| SERVER_ADDR | 0.0.0.0       |
+| SERVER_PORT | 8388          |
+| PASSWORD    | $(hostname)   |
+| METHOD      | aes-128-gcm   |
+| TIMEOUT     | 300           |
+| DNS_ADDR    | 8.8.8.8       |
+| SS          | ss-server     |
+| PLUGIN      | v2ray-plugin  |
+| PLUGIN_OPTS | server        |
 
-          v2ray-plugin:
-            container_name: v2ray-plugin
-            image: gists/v2ray-plugin
-            ports:
-                - "12345:8388/tcp"
-            environment:
-                - REMOTE_ADDR=shadowsocks
-                - REMOTE_PORT=1080
-                - LOCAL_ADDR=0.0.0.0
-                - LOCAL_PORT=8388
-            depends_on:
-                - shadowsocks
-            networks:
-                overlay:
-            restart: always
+##### Creating an instance:
 
-    networks:
-        overlay:
-            driver: bridge
+    docker run \
+        -d \
+        --name ss-v2ray \
+        -p 80:8388 \
+        -e PASSWORD=password \
+        -e METHOD=aes-128-gcm \
+        gists/shadowsocks-libev:v2ray-plugin-latest
+
+##### Compose example:
+
+    shadowsocks:
+      image: gists/shadowsocks-libev:v2ray-plugin-latest
+      ports:
+        - "80:8388/tcp"
+      environment:
+        - PASSWORD=password
+        - METHOD=aes-128-gcm
+      restart: always
+
+##### Custom:
+
+    shadowsocks:
+      image: gists/shadowsocks-libev:v2ray-plugin-latest
+      ports:
+        - "443:443/tcp"
+      volumes:
+        - ./config.json:/config.json
+        - ./certs:/certs
+      command: ss-server -c /config.json
+      restart: always
+
+config.json:
+
+    {
+        "server":"domain.com",
+        "server_port":443,
+        "password":"password",
+        "timeout":"60",
+        "method":"aes-128-gcm",
+        "mode":"tcp_only",
+        "no_delay": true,
+        "nameserver":"8.8.8.8",
+        "plugin":"v2ray-plugin",
+        "plugin_opts":"server;tls;host=domain.com;cert=/certs/domain.cert;key=/certs/domain.key"
+    }

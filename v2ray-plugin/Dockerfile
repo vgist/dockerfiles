@@ -6,15 +6,6 @@ LABEL maintainer="zgist" \
         org.label-schema.name="v2ray-plugin" \
         org.label-schema.version=$VERSION
 
-ENV LOCAL_ADDR=0.0.0.0 \
-    LOCAL_PORT=8388 \
-    REMOTE_ADDR=0.0.0.0 \
-    REMOTE_PORT=1080 \
-    MODE=websocket \
-    HOST=cloudfront.com \
-    LOGLEVEL=warning \
-    ARGS=
-
 # Let's roll
 RUN set -xe && \
     apk add --no-cache \
@@ -34,13 +25,4 @@ RUN set -xe && \
     apk del .build-deps && \
     rm -rf /root/go /root/.cache /tmp/plugin /root/.ash_history
 
-CMD v2ray-plugin \
-        -mode $MODE \
-        -loglevel $LOGLEVEL \
-        -localAddr $LOCAL_ADDR \
-        -localPort $LOCAL_PORT \
-        -remoteAddr $REMOTE_ADDR \
-        -remotePort $REMOTE_PORT \
-        -host $HOST \
-        -fast-open \
-        $ARGS
+CMD v2ray-plugin -version
