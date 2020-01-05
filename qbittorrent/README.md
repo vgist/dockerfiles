@@ -9,6 +9,15 @@
 | UID       | 1000            |
 | GID       | 1000            |
 
+##### username & password
+
+- username: admin
+- password: adminadmin
+
+#### Volume
+
+- /data
+
 #### Creating an instance:
 
     docker run \
@@ -17,13 +26,8 @@
         -p 6881:6881 \
         -p 6881:6881/udp \
         -p 8080:8080 \
-        -v /path/data:/config
+        -v /path/data:/data
         gists/qbittorrent
-
-Note: 
-
-- username: admin,
-- password: adminadmin
 
 #### Compose example:
 
