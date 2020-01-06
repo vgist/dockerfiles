@@ -26,8 +26,7 @@ RUN set -xe && \
     env CGO_ENABLED=0 go build -ldflags "$LDFLAGS" -v -o /usr/bin/v2ray/v2ctl -tags confonly ./infra/control/main && \
     curl -sSL https://github.com/v2ray/geoip/releases/latest/download/geoip.dat -o /usr/bin/v2ray/geoip.dat && \
     curl -sSL https://github.com/v2ray/domain-list-community/releases/latest/download/dlc.dat -o /usr/bin/v2ray/geosite.dat && \
-    upx --best /usr/bin/v2ray/v2ray && \
-    upx --best /usr/bin/v2ray/v2ctl && \
+    upx --lzma /usr/bin/v2ray/v2ray /usr/bin/v2ray/v2ctl && \
     apk del .build-deps && cd / && \
     rm -rf /root/go /root/.cache /tmp/v2ray-src /root/.ash_history
 
