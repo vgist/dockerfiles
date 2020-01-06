@@ -21,7 +21,7 @@ RUN set -xe && \
     go mod download && \
     CGO_ENABLED=0 \
         go build -v -ldflags "-X main.VERSION=$VERSION -s -w" -gcflags "" -o /usr/bin/v2ray-plugin && \
-    cd / && upx --best /usr/bin/v2ray-plugin && \
+    cd / && upx --lzma /usr/bin/v2ray-plugin && \
     apk del .build-deps && \
     rm -rf /root/go /root/.cache /tmp/plugin /root/.ash_history
 
