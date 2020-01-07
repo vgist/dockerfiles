@@ -1,4 +1,4 @@
-![](https://images.microbadger.com/badges/version/gists/shadowsocks-libev.v2ray-plugin.svg) ![](https://images.microbadger.com/badges/image/gists/shadowsocks-libev.v2ray-plugin.svg) ![](https://img.shields.io/docker/stars/gists/shadowsocks-libev.v2ray-plugin.svg) ![](https://img.shields.io/docker/pulls/gists/shadowsocks-libev.v2ray-plugin.svg)
+![](https://images.microbadger.com/badges/version/gists/shadowsocks-libev:v2ray-plugin-latest.svg) ![](https://images.microbadger.com/badges/image/gists/shadowsocks-libev:v2ray-plugin-latest.svg) ![](https://img.shields.io/docker/stars/gists/shadowsocks-libev.svg) ![](https://img.shields.io/docker/pulls/gists/shadowsocks-libev.svg)
 
 #### Environment:
 
