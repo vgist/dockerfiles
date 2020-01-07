@@ -1,6 +1,6 @@
 FROM alpine:3.11
 
-ARG VERSION=0.30.0
+ARG VERSION=0.31.1
 
 LABEL maintainer="zgist" \
         org.label-schema.name="frps" \
@@ -22,7 +22,7 @@ RUN set -xe && \
     go mod download && \
     go build -v -ldflags "-s -w" -o /usr/bin/frps ./cmd/frps && \
     cp ./conf/frps.ini /etc/ && \
-    cd / && upx --best /usr/bin/frps && \
+    cd / && upx --lzma /usr/bin/frps && \
     rm -rf /root/go /root/.cache /root/.ash_history /tmp/frp && \
     apk del .build-deps
 
