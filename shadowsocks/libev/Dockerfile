@@ -1,6 +1,6 @@
 FROM alpine:3.11
 
-ARG VERSION=3.3.3
+ARG VERSION=3.3.4
 
 LABEL maintainer="zgist" \
         org.label-schema.name="Shadowsocks-libev" \

@@ -1,4 +1,4 @@
-FROM gists/shadowsocks-libev:3.3.3
+FROM gists/shadowsocks-libev:3.3.4
 
 ARG VERSION=1.2.0
 
