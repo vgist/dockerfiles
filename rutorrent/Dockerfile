@@ -37,7 +37,7 @@ RUN set -xe && \
         zip && \
     apk add --no-cache tar && \
     mkdir /tmp/rutorrent && cd /tmp/rutorrent && \
-    curl -sSL https://github.com/Novik/ruTorrent/archive/692887b.tar.gz | tar xz --strip 1 && \
+    curl -sSL https://github.com/Novik/ruTorrent/archive/6e41fc5.tar.gz | tar xz --strip 1 && \
     cd / && mv /tmp/rutorrent /var/www/rutorrent && \
     apk del tar && \
     rm -rf /var/www/rutorrent/.git*
