@@ -1,6 +1,6 @@
 FROM gists/shadowsocks-libev:3.3.4
 
-ARG VERSION=1.2.0
+ARG VERSION=1.3.0
 
 LABEL maintainer="zgist" \
         org.label-schema.name="shadowsocks-libev.v2ray-plugin" \
@@ -24,7 +24,6 @@ RUN set -xe && \
     cd /tmp/plugin && \
     curl -sSL https://github.com/shadowsocks/v2ray-plugin/archive/v$VERSION.tar.gz | \
     tar xz --strip 1 && \
-    go mod download && \
     CGO_ENABLED=0 \
         go build -v -ldflags "-X main.VERSION=$VERSION -s -w" -gcflags "" -o /usr/bin/v2ray-plugin && \
     cd / && upx --lzma /usr/bin/v2ray-plugin && \
