@@ -6,8 +6,8 @@ set -e
 
 [[ "$DEBUG" == "true" ]] && set -x
 
-addgroup -g ${GID} qbittorrent
-adduser -h /data -s /bin/sh -G qbittorrent -D -u ${UID} qbittorrent
+getent group qbittorrent >/dev/null || addgroup -g ${GID} qbittorrent
+getent passwd qbittorrent >/dev/null || adduser -h /data -s /bin/sh -G qbittorrent -D -u ${UID} qbittorrent
 
 mkdir -p /data/.config/qBittorrent
 
