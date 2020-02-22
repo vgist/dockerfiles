@@ -16,6 +16,6 @@ RUN set -xe && \
 
 COPY nfsd.sh /bin/nfsd.sh
 
-EXPOSE 111/tcp 111/udp 2049/tcp 2049/udp
+EXPOSE 2049/tcp 2049/udp
 
 CMD ["/bin/nfsd.sh"]
