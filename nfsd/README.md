@@ -14,8 +14,6 @@
         -d \
         --name nfsd \
         --cap-add=SYS_ADMIN,SETPCAP \
-        -p 111:111/tcp \
-        -p 111:111/udp \
         -p 2049:2049/tcp \
         -p 2049:2049/udp \
         -v /your/path:/nfs-share \
@@ -27,8 +25,6 @@
       image: gists/nfsd
       container_name: nfsd
       ports:
-        - "111:111/tcp"
-        - "111:111/udp"
         - "2049:2049/tcp"
         - "2049:2049/udp"
       cap_add:
@@ -40,4 +36,5 @@
 
 #### Client:
 
+    # nfs v4
     sudo mount -v -t nfs -o vers=4,port=2049 ip:/ /path
