@@ -8,7 +8,7 @@ LABEL maintainer="zgist" \
 
 ENV NFS_DIR="/nfs-share" \
     NFS_DOMAIN="*" \
-    NFS_OPTION="rw,fsid=0,sync,no_subtree_check,no_auth_nlm,insecure,no_root_squash,crossmnt,no_acl"
+    NFS_OPTION="fsid=0,ro,sync,insecure,all_squash,anonuid=65534,anongid=65534,no_subtree_check,nohide"
 
 RUN set -xe && \
     apk add --no-cache nfs-utils && \
@@ -16,6 +16,6 @@ RUN set -xe && \
 
 COPY nfsd.sh /bin/nfsd.sh
 
-EXPOSE 2049/tcp 2049/udp
+EXPOSE 2049/tcp
 
 CMD ["/bin/nfsd.sh"]
