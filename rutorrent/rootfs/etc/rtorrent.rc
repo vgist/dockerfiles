@@ -38,4 +38,4 @@ schedule2 = watch_directory,0,5,"load.start=/data/.watch/*.torrent,\"d.custom.se
 schedule2 = untied_directory,5,5,"stop_untied=/data/.watch/*.torrent"
 schedule2 = espace_disque_insuffisant,1,30,close_low_diskspace=500M
 
-execute = {sh,-c,/usr/bin/php /var/www/rutorrent/php/initplugins.php torrent &}
+execute2 = {sh,-c,/usr/bin/php /var/www/rutorrent/php/initplugins.php torrent &}
