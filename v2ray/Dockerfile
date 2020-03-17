@@ -24,8 +24,8 @@ RUN set -xe && \
     LDFLAGS="-s -w -X v2ray.com/core.codename=user -X v2ray.com/core.build=$(date '+%Y%m%d-%H%M%S') -X v2ray.com/core.version=v$VERSION" && \
     env CGO_ENABLED=0 go build -ldflags "$LDFLAGS" -v -o /usr/bin/v2ray/v2ray ./main && \
     env CGO_ENABLED=0 go build -ldflags "$LDFLAGS" -v -o /usr/bin/v2ray/v2ctl -tags confonly ./infra/control/main && \
-    curl -sSL https://github.com/v2ray/geoip/releases/latest/download/geoip.dat -o /usr/bin/v2ray/geoip.dat && \
-    curl -sSL https://github.com/v2ray/domain-list-community/releases/latest/download/dlc.dat -o /usr/bin/v2ray/geosite.dat && \
+    curl -sSL https://github.com/v2ray/geoip/raw/release/geoip.dat -o /usr/bin/v2ray/geoip.dat && \
+    curl -sSL https://github.com/v2ray/domain-list-community/raw/release/dlc.dat -o /usr/bin/v2ray/geosite.dat && \
     upx --lzma /usr/bin/v2ray/v2ray /usr/bin/v2ray/v2ctl && \
     apk del .build-deps && cd / && \
     rm -rf /root/go /root/.cache /tmp/v2ray-src /root/.ash_history
