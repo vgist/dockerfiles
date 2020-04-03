@@ -1,6 +1,6 @@
 FROM alpine:3.11
 
-ARG VERSION=0.32.0
+ARG VERSION=0.32.1
 
 LABEL maintainer="zgist" \
         org.label-schema.name="frpc" \
