@@ -29,6 +29,8 @@ RUN set -xe && \
         php7-curl \
         php7-ctype \
         php7-dom \
+        php7-exif \
+        php7-fileinfo \
         php7-gd \
         php7-gettext \
         php7-gmp \
@@ -40,6 +42,7 @@ RUN set -xe && \
         php7-odbc \
         php7-opcache \
         php7-openssl \
+        php7-pecl-imagick \
         php7-pdo \
         php7-pdo_dblib \
         php7-pdo_mysql \
