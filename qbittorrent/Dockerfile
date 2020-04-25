@@ -1,7 +1,7 @@
 FROM alpine:3.11
 
-ARG QBITTORRENT_VER=4.2.3
-ARG LIBTORRENT_VER=1.2.5
+ARG QBITTORRENT_VER=4.2.5
+ARG LIBTORRENT_VER=1.2.6
 
 LABEL maintainer="zgist" \
         org.label-schema.name="qBittorrent" \
@@ -13,7 +13,7 @@ ENV PEER_PORT=6881 \
     GID=1000
 
 RUN set -ex && \
-    apk add --no-cache su-exec && \
+    apk add --no-cache su-exec libcap && \
     apk add --no-cache --virtual .build-deps \
         boost-dev \
         boost-system \
@@ -35,6 +35,8 @@ RUN set -ex && \
     curl -sSL https://github.com/qbittorrent/qBittorrent/archive/release-$QBITTORRENT_VER.tar.gz | tar xz --strip 1 && \
     ./configure --prefix=/usr --disable-gui --disable-stacktrace && \
     make install && \
+    # Set capability to bind privileged ports as non-root user for qbittorrent-nox
+    setcap 'cap_net_bind_service=+ep' /usr/bin/qbittorrent-nox && \
     cd / && \
     runDeps="$( \
         scanelf --needed --nobanner /usr/lib/libtorrent-* /usr/bin/qbittorrent* \
