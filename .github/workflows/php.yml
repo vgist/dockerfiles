@@ -8,6 +8,7 @@ on:
   push:
     branches: [ master ]
     paths:
+      - '.github/workflows/php.yml'
       - 'php/fpm/*'
       - '!php/fpm/*.md'
 
