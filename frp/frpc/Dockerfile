@@ -19,7 +19,7 @@ RUN set -xe && \
     mkdir -p /tmp/frp && cd /tmp/frp && \
     curl -sSL https://github.com/fatedier/frp/archive/v$VERSION.tar.gz | \
     tar xz --strip 1 && \
-    go build -v -ldflags "-s -w" -o /usr/bin/frpc ./cmd/frpc && \
+    env CGO_ENABLED=0 go build -v -ldflags "-s -w" -o /usr/bin/frpc ./cmd/frpc && \
     cp ./conf/frpc.ini /etc/ && \
     cd / && upx --lzma /usr/bin/frpc && \
     rm -rf /root/go /root/.cache /root/.ash_history /tmp/frp && \
