@@ -2,10 +2,6 @@ FROM alpine:3.11
 
 ARG VERSION
 
-LABEL maintainer="zgist" \
-        org.label-schema.name="NFS" \
-        org.label-schema.version=$VERSION
-
 ENV NFS_DIR="/nfs-share" \
     NFS_DOMAIN="*" \
     NFS_OPTION="fsid=0,ro,sync,insecure,all_squash,anonuid=65534,anongid=65534,no_subtree_check,nohide"

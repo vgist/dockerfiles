@@ -2,10 +2,6 @@ FROM alpine:3.11
 
 ARG VERSION=0.4.2
 
-LABEL maintainer="zgist" \
-        org.label-schema.name="dnscrypt-wrapper" \
-        org.label-schema.version=$VERSION
-
 ENV RESOLVER_IP=8.8.8.8 \
     RESOLVER_PORT=53 \
     LISTEN_IP=0.0.0.0 \

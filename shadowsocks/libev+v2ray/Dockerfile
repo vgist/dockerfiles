@@ -1,34 +1,18 @@
+FROM --platform=$BUILDPLATFORM gists/v2ray-plugin:1.3.0 AS builder
+
 FROM gists/shadowsocks-libev:3.3.4
 
-ARG VERSION=1.3.0
-
-LABEL maintainer="zgist" \
-        org.label-schema.name="shadowsocks-libev.v2ray-plugin" \
-        org.label-schema.version=$VERSION
-
-ENV SS=ss-server \
+ENV SERVER_ADDR=0.0.0.0 \
+    SERVER_PORT=8388 \
+    METHOD=aes-128-gcm \
+    TIMEOUT=300 \
+    DNS_ADDR=8.8.8.8 \
+    SS=ss-server \
     PLUGIN=v2ray-plugin \
-    PLUGIN_OPTS=server
+    PLUGIN_OPTS=server \
+    PASSWORD=
 
-# Let's roll
-RUN set -xe && \
-    apk add --no-cache \
-        --virtual .build-deps \
-        curl \
-        git \
-        go \
-        build-base \
-        go \
-        upx && \
-    mkdir -p /tmp/plugin && \
-    cd /tmp/plugin && \
-    curl -sSL https://github.com/shadowsocks/v2ray-plugin/archive/v$VERSION.tar.gz | \
-    tar xz --strip 1 && \
-    CGO_ENABLED=0 \
-        go build -v -ldflags "-X main.VERSION=$VERSION -s -w" -gcflags "" -o /usr/bin/v2ray-plugin && \
-    cd / && upx --lzma /usr/bin/v2ray-plugin && \
-    apk del .build-deps && \
-    rm -rf /root/go /root/.cache /root/.ash_history /tmp/plugin
+COPY --from=builder /usr/bin/v2ray-plugin /usr/bin/
 
 CMD $SS \
     -s $SERVER_ADDR \

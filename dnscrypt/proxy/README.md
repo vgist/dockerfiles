@@ -1,5 +1,7 @@
 ![](https://images.microbadger.com/badges/version/gists/dnscrypt-proxy.svg) ![](https://images.microbadger.com/badges/image/gists/dnscrypt-proxy.svg) ![](https://img.shields.io/docker/stars/gists/dnscrypt-proxy.svg) ![](https://img.shields.io/docker/pulls/gists/dnscrypt-proxy.svg)
 
+Dockerfile <https://github.com/vgist/dockerfiles/tree/master/dnscrypt/proxy>
+
 #### Environment:
 
 | Environment   | Default value                                                                   |

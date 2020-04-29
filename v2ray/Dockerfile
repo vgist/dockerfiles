@@ -1,35 +1,38 @@
-FROM alpine:3.11
+FROM --platform=$BUILDPLATFORM golang:alpine AS builder
 
-ARG VERSION=4.23.1
+ARG TARGETPLATFORM
+ARG TARGETOS
+ARG TARGETARCH
+ARG VERSION
+ARG CGO_ENABLED=on
 
-LABEL maintainer="zgist" \
-        org.label-schema.name="V2Ray" \
-        org.label-schema.version=$VERSION
+ENV GOOS=$TARGETOS \
+    GOARCH=$TARGETARCH
 
-ENV PATH /usr/bin/v2ray:$PATH
-
-# Let's roll
 RUN set -xe && \
-    apk add --no-cache ca-certificates && \
     apk add --no-cache --virtual .build-deps \
         build-base \
         curl \
         git \
-        go \
         upx && \
-    mkdir -p /etc/v2ray /tmp/v2ray-src /usr/bin/v2ray /var/log/v2ray && \
-    cd /tmp/v2ray-src && \
+    mkdir -p /etc/v2ray /root/v2ray-src /usr/bin/v2ray && \
+    cd /root/v2ray-src && \
     curl -sSL https://github.com/v2ray/v2ray-core/archive/v$VERSION.tar.gz | tar xz --strip 1 && \
-    go mod download && \
-    LDFLAGS="-s -w -X v2ray.com/core.codename=user -X v2ray.com/core.build=$(date '+%Y%m%d-%H%M%S') -X v2ray.com/core.version=v$VERSION" && \
-    env CGO_ENABLED=0 go build -ldflags "$LDFLAGS" -v -o /usr/bin/v2ray/v2ray ./main && \
-    env CGO_ENABLED=0 go build -ldflags "$LDFLAGS" -v -o /usr/bin/v2ray/v2ctl -tags confonly ./infra/control/main && \
+    LDFLAGS="-s -w -X v2ray.com/core.codename=user -X v2ray.com/core.build=$(date -u +'%Y-%m-%dT%H:%M:%SZ') -X v2ray.com/core.version=v$VERSION" && \
+    go build -ldflags "$LDFLAGS" -v -o /usr/bin/v2ray/v2ray ./main && \
+    go build -ldflags "$LDFLAGS" -v -o /usr/bin/v2ray/v2ctl -tags confonly ./infra/control/main && \
     curl -sSL https://github.com/v2ray/geoip/raw/release/geoip.dat -o /usr/bin/v2ray/geoip.dat && \
     curl -sSL https://github.com/v2ray/domain-list-community/raw/release/dlc.dat -o /usr/bin/v2ray/geosite.dat && \
-    upx --lzma /usr/bin/v2ray/v2ray /usr/bin/v2ray/v2ctl && \
-    apk del .build-deps && cd / && \
-    rm -rf /root/go /root/.cache /tmp/v2ray-src /root/.ash_history
+    upx --lzma /usr/bin/v2ray/v2ray /usr/bin/v2ray/v2ctl
 
-COPY config.json /etc/v2ray/config.json
+FROM alpine:3.11
+
+ENV PATH /usr/bin/v2ray:$PATH
+
+RUN apk add --no-cache ca-certificates && \
+    mkdir -p /var/log/v2ray
+
+COPY --from=builder /usr/bin/v2ray /usr/bin/
+COPY config.json /etc/v2ray/
 
 CMD ["/usr/bin/v2ray/v2ray", "-config=/etc/v2ray/config.json"]

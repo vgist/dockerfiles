@@ -1,5 +1,7 @@
 ![](https://images.microbadger.com/badges/version/gists/samba-server.svg) ![](https://images.microbadger.com/badges/image/gists/samba-server.svg) ![](https://img.shields.io/docker/stars/gists/samba-server.svg) ![](https://img.shields.io/docker/pulls/gists/samba-server.svg)
 
+Dockerfile <https://github.com/vgist/dockerfiles/tree/master/samba-server>
+
 #### Volume:
 
 - /mnt

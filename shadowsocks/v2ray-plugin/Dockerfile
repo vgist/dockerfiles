@@ -1,27 +1,29 @@
-FROM alpine:3.11
+FROM --platform=$BUILDPLATFORM golang:alpine AS builder
 
-ARG VERSION=1.3.0
+ARG TARGETPLATFORM
+ARG TARGETOS
+ARG TARGETARCH
+ARG VERSION
+ARG CGO_ENABLED=on
 
-LABEL maintainer="zgist" \
-        org.label-schema.name="v2ray-plugin" \
-        org.label-schema.version=$VERSION
+ENV GOOS=$TARGETOS \
+    GOARCH=$TARGETARCH
 
 # Let's roll
 RUN set -xe && \
     apk add --no-cache \
         --virtual .build-deps \
         curl \
-        git \
         build-base \
-        go \
-        upx && \
-    mkdir -p /tmp/plugin && cd /tmp/plugin && \
+        git && \
+    mkdir -p /root/plugin && cd /root/plugin && \
     curl -sSL https://github.com/shadowsocks/v2ray-plugin/archive/v$VERSION.tar.gz | \
     tar xz --strip 1 && \
-    CGO_ENABLED=0 \
-        go build -v -ldflags "-X main.VERSION=$VERSION -s -w" -gcflags "" -o /usr/bin/v2ray-plugin && \
-    cd / && upx --lzma /usr/bin/v2ray-plugin && \
-    apk del .build-deps && \
-    rm -rf /root/go /root/.cache /tmp/plugin /root/.ash_history
+    go build -v -ldflags "-X main.VERSION=$VERSION -s -w" -gcflags "" -o /v2ray-plugin
+
+
+FROM alpine:3.11
+
+COPY --from=builder /v2ray-plugin /usr/bin/
 
 CMD v2ray-plugin -version

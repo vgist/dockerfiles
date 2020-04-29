@@ -1,10 +1,6 @@
 FROM alpine:3.11
 
-ARG VERSION=3.8.5
-
-LABEL maintainer="zgist" \
-        org.label-schema.name="Jekyll" \
-        org.label-schema.version=$VERSION
+ARG VERSION
 
 ENV UID     1000
 ENV GID     1000

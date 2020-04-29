@@ -1,5 +1,6 @@
 ![](https://images.microbadger.com/badges/version/gists/smartmontools.svg) ![](https://images.microbadger.com/badges/image/gists/smartmontools.svg) ![](https://img.shields.io/docker/stars/gists/smartmontools.svg) ![](https://img.shields.io/docker/pulls/gists/smartmontools.svg)
 
+Dockerfile <https://github.com/vgist/dockerfiles/tree/master/smartmontools>
 
 #### Custom usage:
 

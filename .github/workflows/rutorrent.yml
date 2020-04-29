@@ -1,0 +1,36 @@
+name: rutorrent
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+     - '.github/workflows/rutorrent.yml'
+     - 'rutorrent/*'
+     - '!rutorrent/*.md'
+
+env:
+  DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+  DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+  VERSION: 3.10-beta
+  GIT_COMMIT: a68c935
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: crazy-max/ghaction-docker-buildx@v1
+      - name: Login to Docker Hub Registry
+        run: echo "${DOCKERHUB_PASSWORD}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
+      - name: Build Container Image
+        run: |
+          docker buildx build \
+            --platform linux/386,linux/amd64,linux/arm64,linux/arm/v6,linux/arm/v7,linux/ppc64le,linux/s390x \
+            --build-arg GIT_COMMIT=${GIT_COMMIT} \
+            --tag gists/rutorrent:latest \
+            --tag gists/rutorrent:${VERSION}-${GIT_COMMIT} \
+            -f ./rutorrent/Dockerfile \
+            ./rutorrent/ \
+            --push

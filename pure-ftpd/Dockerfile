@@ -1,10 +1,6 @@
 FROM alpine:3.11
 
-ARG VERSION=1.0.49
-
-LABEL maintainer="zgist" \
-        org.label-schema.name="Pure-FTPd" \
-        org.label-schema.version=$VERSION
+ARG VERSION
 
 ENV PUBLIC_HOST=localhost \
     MIN_PASV_PORT=30000 \

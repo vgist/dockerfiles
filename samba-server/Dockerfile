@@ -2,10 +2,6 @@ FROM alpine:3.11
 
 ARG VERSION
 
-LABEL maintainer="zgist" \
-        org.label-schema.name="Samba" \
-        org.label-schema.version=$VERSION
-
 ENV UID=1000 \
     GID=1000 \
     USERNAME=samba \

@@ -2,10 +2,6 @@ FROM alpine:3.11
 
 ARG VERSION
 
-LABEL maintainer="zgist" \
-        org.label-schema.name="Lighttpd" \
-        org.label-schema.version=$VERSION
-
 ENV UID=100 \
     GID=101
 

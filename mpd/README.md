@@ -1,5 +1,7 @@
 ![](https://images.microbadger.com/badges/version/gists/mpd.svg) ![](https://images.microbadger.com/badges/image/gists/mpd.svg) ![](https://img.shields.io/docker/stars/gists/mpd.svg) ![](https://img.shields.io/docker/pulls/gists/mpd.svg)
 
+Dockerfile <https://github.com/vgist/dockerfiles/tree/master/mpd>
+
 #### Volume
 
 - /var/lib/mpd

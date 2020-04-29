@@ -2,10 +2,6 @@ FROM alpine:3.11
 
 ARG VERSION
 
-LABEL maintainer="zgist" \
-        org.label-schema.name="DNSCrypt-Proxy" \
-        org.label-schema.version=$VERSION
-
 ENV LOCAL_PORT     5353
 
 RUN set -xe && \
