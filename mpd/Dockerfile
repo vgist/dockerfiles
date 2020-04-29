@@ -1,8 +1,6 @@
 FROM alpine:3.11
 
-LABEL maintainer="zgist" \
-        org.label-schema.name="MPD" \
-        org.label-schema.version=$VERSION
+ARG VERSION
 
 RUN set -ex && \
     apk add --no-cache mpd

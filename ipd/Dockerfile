@@ -2,11 +2,8 @@ FROM alpine:3.11
 
 ARG VERSION
 
-LABEL maintainer="zgist" \
-        org.label-schema.name="ipd" \
-        org.label-schema.version=$VERSION
 
-ENV PORT        8080
+ENV PORT    8080
 
 # Let's roll
 RUN set -xe && \

@@ -1,11 +1,7 @@
 FROM alpine:3.11
 
-ARG VERSION=3.10-beta
-ARG GIT_COMMIT=354fca4
-
-LABEL maintainer="zgist" \
-        org.label-schema.name="ruTorrent" \
-        org.label-schema.version=$VERSION
+ARG VERSION
+ARG GIT_COMMIT
 
 ENV UID=1000 \
     GID=1000 \
@@ -38,7 +34,7 @@ RUN set -xe && \
         zip && \
     apk add --no-cache tar && \
     mkdir /tmp/rutorrent && cd /tmp/rutorrent && \
-    curl -sSL https://github.com/Novik/ruTorrent/archive/$GIT_COMMIT.tar.gz | tar xz --strip 1 && \
+    curl -sSL https://github.com/Novik/ruTorrent/archive/${GIT_COMMIT}.tar.gz | tar xz --strip 1 && \
     cd / && mv /tmp/rutorrent /var/www/rutorrent && \
     apk del tar && \
     rm -rf /var/www/rutorrent/.git*

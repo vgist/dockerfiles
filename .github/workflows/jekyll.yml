@@ -1,0 +1,35 @@
+name: jekyll
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+     - '.github/workflows/jekyll.yml'
+     - 'jekyll/*'
+     - '!jekyll/*.md'
+
+env:
+  DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+  DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+  VERSION: 3.8.5
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: crazy-max/ghaction-docker-buildx@v1
+      - name: Login to Docker Hub Registry
+        run: echo "${DOCKERHUB_PASSWORD}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
+      - name: Build Container Image
+        run: |
+          docker buildx build \
+            --platform linux/386,linux/amd64,linux/arm64,linux/arm/v6,linux/arm/v7,linux/ppc64le,linux/s390x \
+            --build-arg VERSION=${VERSION} \
+            --tag gists/jekyll:latest \
+            --tag gists/jekyll:${VERSION} \
+            -f ./jekyll/Dockerfile \
+            ./jekyll/ \
+            --push

@@ -1,5 +1,7 @@
 ![](https://images.microbadger.com/badges/version/gists/dnscrypt-wrapper.svg) ![](https://images.microbadger.com/badges/image/gists/dnscrypt-wrapper.svg) ![](https://img.shields.io/docker/stars/gists/dnscrypt-wrapper.svg) ![](https://img.shields.io/docker/pulls/gists/dnscrypt-wrapper.svg)
 
+Dockerfile <https://github.com/vgist/dockerfiles/tree/master/dnscrypt/wrapper>
+
 #### Environment:
 
 | Environment   | Default value               |

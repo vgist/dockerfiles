@@ -2,10 +2,6 @@ FROM alpine:3.11
 
 ARG VERSION
 
-LABEL maintainer="zgist" \
-        org.label-schema.name="PHP" \
-        org.label-schema.version=$VERSION
-
 # Environments
 ENV MEMORY_LIMIT=256M \
     MAX_EXECUTION_TIME=60 \

@@ -1,5 +1,7 @@
 ![](https://images.microbadger.com/badges/version/gists/transmission.svg) ![](https://images.microbadger.com/badges/image/gists/transmission.svg) ![](https://img.shields.io/docker/stars/gists/transmission.svg) ![](https://img.shields.io/docker/pulls/gists/transmission.svg)
 
+Dockerfile <https://github.com/vgist/dockerfiles/tree/master/transmission>
+
 #### Volume
 
 - /data

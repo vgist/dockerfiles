@@ -2,10 +2,6 @@ FROM alpine:3.11
 
 ARG VERSION
 
-LABEL maintainer="zgist" \
-        org.label-schema.name="haproxy" \
-        org.label-schema.version=$VERSION
-
 RUN set -xe && \
     apk add --no-cache haproxy
 

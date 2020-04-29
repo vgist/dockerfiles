@@ -1,5 +1,7 @@
 ![](https://images.microbadger.com/badges/version/gists/haproxy.svg) ![](https://images.microbadger.com/badges/image/gists/haproxy.svg) ![](https://img.shields.io/docker/stars/gists/haproxy.svg) ![](https://img.shields.io/docker/pulls/gists/haproxy.svg)
 
+Dockerfile <https://github.com/vgist/dockerfiles/tree/master/haproxy>
+
 #### Custom usage:
 
     docker run \

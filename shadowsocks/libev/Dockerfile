@@ -1,10 +1,6 @@
 FROM alpine:3.11
 
-ARG VERSION=3.3.4
-
-LABEL maintainer="zgist" \
-        org.label-schema.name="Shadowsocks-libev" \
-        org.label-schema.version=$VERSION
+ARG VERSION
 
 ENV SERVER_ADDR=0.0.0.0 \
     SERVER_PORT=8388 \

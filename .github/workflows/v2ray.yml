@@ -1,0 +1,35 @@
+name: v2ray
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+     - '.github/workflows/v2ray.yml'
+     - 'v2ray/*'
+     - '!v2ray/*.md'
+
+env:
+  DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+  DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+  VERSION: 4.23.1
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: crazy-max/ghaction-docker-buildx@v1
+      - name: Login to Docker Hub Registry
+        run: echo "${DOCKERHUB_PASSWORD}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
+      - name: Build Container Image
+        run: |
+          docker buildx build \
+            --platform linux/386,linux/amd64,linux/arm64,linux/arm/v6,linux/arm/v7,linux/ppc64le \
+            --build-arg VERSION=${VERSION} \
+            --tag gists/v2ray:latest \
+            --tag gists/v2ray:${VERSION} \
+            -f ./v2ray/Dockerfile \
+            ./v2ray/ \
+            --push

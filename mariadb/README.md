@@ -1,5 +1,7 @@
 ![](https://images.microbadger.com/badges/version/gists/mariadb.svg) ![](https://images.microbadger.com/badges/image/gists/mariadb.svg) ![](https://img.shields.io/docker/stars/gists/mariadb.svg) ![](https://img.shields.io/docker/pulls/gists/mariadb.svg)
 
+Dockerfile <https://github.com/vgist/dockerfiles/tree/master/mariadb>
+
 #### Volume:
 
 - /var/lib/mysql

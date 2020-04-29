@@ -1,5 +1,7 @@
 ![](https://images.microbadger.com/badges/version/gists/dnsmasq.svg) ![](https://images.microbadger.com/badges/image/gists/dnsmasq.svg) ![](https://img.shields.io/docker/stars/gists/dnsmasq.svg) ![](https://img.shields.io/docker/pulls/gists/dnsmasq.svg)
 
+Dockerfile <https://github.com/vgist/dockerfiles/tree/master/dnsmasq>
+
 #### Volume:
 
 - /etc/dnsmasq.d

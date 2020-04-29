@@ -1,5 +1,7 @@
 ![](https://images.microbadger.com/badges/version/gists/rsync.svg) ![](https://images.microbadger.com/badges/image/gists/rsync.svg) ![](https://img.shields.io/docker/stars/gists/rsync.svg) ![](https://img.shields.io/docker/pulls/gists/rsync.svg)
 
+Dockerfile <https://github.com/vgist/dockerfiles/tree/master/rsync>
+
 #### Volume:
 
 - /mnt
