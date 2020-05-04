@@ -1,4 +1,4 @@
-![](https://images.microbadger.com/badges/version/gists/lighttpd.svg) ![](https://images.microbadger.com/badges/image/gists/lighttpd.svg) ![](https://img.shields.io/docker/stars/gists/lighttpd.svg) ![](https://img.shields.io/docker/pulls/gists/lighttpd.svg)
+![](https://images.microbadger.com/badges/version/gists/lighttpd.svg) ![](https://images.microbadger.com/badges/image/gists/lighttpd.svg)
 
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/lighttpd>
 

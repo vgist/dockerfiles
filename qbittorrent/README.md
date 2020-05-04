@@ -1,4 +1,4 @@
-![](https://images.microbadger.com/badges/version/gists/qbittorrent.svg) ![](https://images.microbadger.com/badges/image/gists/qbittorrent.svg) ![](https://img.shields.io/docker/stars/gists/qbittorrent.svg) ![](https://img.shields.io/docker/pulls/gists/qbittorrent.svg)
+![](https://images.microbadger.com/badges/version/gists/qbittorrent.svg) ![](https://images.microbadger.com/badges/image/gists/qbittorrent.svg)
 
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/qbittorrent>
 

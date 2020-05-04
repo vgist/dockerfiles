@@ -1,4 +1,4 @@
-![](https://images.microbadger.com/badges/version/gists/v2ray.svg) ![](https://images.microbadger.com/badges/image/gists/v2ray.svg) ![](https://img.shields.io/docker/stars/gists/v2ray.svg) ![](https://img.shields.io/docker/pulls/gists/v2ray.svg)
+![](https://images.microbadger.com/badges/version/gists/v2ray.svg) ![](https://images.microbadger.com/badges/image/gists/v2ray.svg)
 
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/v2ray>
 

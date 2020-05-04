@@ -1,4 +1,4 @@
-![](https://images.microbadger.com/badges/version/gists/pure-ftpd.svg) ![](https://images.microbadger.com/badges/image/gists/pure-ftpd.svg) ![](https://img.shields.io/docker/stars/gists/pure-ftpd.svg) ![](https://img.shields.io/docker/pulls/gists/pure-ftpd.svg)
+![](https://images.microbadger.com/badges/version/gists/pure-ftpd.svg) ![](https://images.microbadger.com/badges/image/gists/pure-ftpd.svg)
 
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/pure-ftpd>
 

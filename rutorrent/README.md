@@ -1,4 +1,4 @@
-![](https://images.microbadger.com/badges/version/gists/rutorrent.svg) ![](https://images.microbadger.com/badges/image/gists/rutorrent.svg) ![](https://img.shields.io/docker/stars/gists/rutorrent.svg) ![](https://img.shields.io/docker/pulls/gists/rutorrent.svg)
+![](https://images.microbadger.com/badges/version/gists/rutorrent.svg) ![](https://images.microbadger.com/badges/image/gists/rutorrent.svg)
 
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/rutorrent>
 
