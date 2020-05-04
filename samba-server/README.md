@@ -22,6 +22,7 @@ Dockerfile <https://github.com/vgist/dockerfiles/tree/master/samba-server>
         -p 138:138/udp \
         -p 139:139/tcp \
         -p 445:445/tcp \
+        -e PASSWORD=yourpassword \
         -v /your/path:/mnt \
         gists/samba-server
 
@@ -36,6 +37,7 @@ Dockerfile <https://github.com/vgist/dockerfiles/tree/master/samba-server>
         - "139:139/tcp"
         - "445:445/tcp"
       volumes:
+        - ./smb.conf:/etc/samba/smb.conf:ro
         - /your/path:/mnt
       environment:
         - PASSWORD=yourpassword
