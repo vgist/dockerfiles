@@ -1,4 +1,4 @@
-![](https://images.microbadger.com/badges/version/gists/frp.svg) ![](https://images.microbadger.com/badges/image/gists/frp.svg) ![](https://img.shields.io/docker/stars/gists/frp.svg) ![](https://img.shields.io/docker/pulls/gists/frp.svg)
+![](https://images.microbadger.com/badges/version/gists/frp.svg) ![](https://images.microbadger.com/badges/image/gists/frp.svg)
 
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/frp>
 
