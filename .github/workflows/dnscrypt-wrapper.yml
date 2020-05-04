@@ -1,17 +1,17 @@
-name: pure-ftpd
+name: dnscrypt-wrapper
 
 on:
   push:
     branches: [ master ]
     paths:
-     - '.github/workflows/pure-ftpd.yml'
-     - 'pure-ftpd/*'
-     - '!pure-ftpd/*.md'
+     - '.github/workflows/dnscrypt-wrapper.yml'
+     - 'dnscrypt/wrapper/*'
+     - '!dnscrypt/wrapper/*.md'
 
 env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
   DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
-  VERSION: 1.0.49
+  VERSION: 0.4.2
 
 jobs:
   build:
@@ -28,8 +28,8 @@ jobs:
           docker buildx build \
             --platform linux/386,linux/amd64,linux/arm64,linux/arm/v6,linux/arm/v7,linux/ppc64le,linux/s390x \
             --build-arg VERSION=${VERSION} \
-            --tag gists/pure-ftpd:latest \
-            --tag gists/pure-ftpd:${VERSION} \
-            -f ./pure-ftpd/Dockerfile \
-            ./pure-ftpd/ \
+            --tag gists/dnscrypt-wrapper:latest \
+            --tag gists/dnscrypt-wrapper:${VERSION} \
+            -f ./dnscrypt/wrapper/Dockerfile \
+            ./dnscrypt/wrapper/ \
             --push
