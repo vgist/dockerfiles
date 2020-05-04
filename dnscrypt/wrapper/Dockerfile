@@ -1,6 +1,6 @@
 FROM alpine:3.11
 
-ARG VERSION=0.4.2
+ARG VERSION
 
 ENV RESOLVER_IP=8.8.8.8 \
     RESOLVER_PORT=53 \
@@ -22,15 +22,22 @@ RUN set -xe && \
         libevent-dev \
         libexecinfo-dev \
         libsodium-dev && \
+    mkdir /tmp/build && cd /tmp/build && \
     curl -sSL https://github.com/Cofyc/dnscrypt-wrapper/archive/v$VERSION.tar.gz | \
-    tar xz && \
-    cd dnscrypt-wrapper-$VERSION && \
+    tar xz --strip 1 && \
     make configure && \
     ./configure --prefix=/usr && \
-    make install && \
-    cd .. && \
-    rm -rf dnscrypt-wrapper-$VERSION && \
+    make -j$(nproc) && make install && \
+    cd / && \
+    runDeps="$( \
+        scanelf --needed --nobanner /usr/sbin/dnscrypt-wrapper \
+            | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
+            | xargs -r apk info --installed \
+            | sort -u \
+    )" && \
+    apk add --no-cache --virtual .run-deps $runDeps && \
     apk del .build-deps && \
+    rm -rf /tmp/build && \
     mkdir -p /var/lib/dnscrypt-wrapper
 
 COPY entrypoint.sh /usr/bin/entrypoint.sh
@@ -42,7 +49,7 @@ EXPOSE $LISTEN_PORT/tcp $LISTEN_PORT/udp
 
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 
-CMD dnscrypt-wrapper \
+CMD /usr/sbin/dnscrypt-wrapper \
         --resolver-address=${RESOLVER_IP}:${RESOLVER_PORT} \
         --listen-address=${LISTEN_IP}:${LISTEN_PORT} \
         --provider-name=${PROVIDER_NAME} \
