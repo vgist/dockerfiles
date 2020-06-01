@@ -17,7 +17,7 @@ RUN set -ex && \
         tar && \
     mkdir -p /tmp/libtorrent-rasterbar && \
     cd /tmp/libtorrent-rasterbar/ && \
-    curl -sSL https://github.com/arvidn/libtorrent/releases/download/libtorrent-${VERSION//./_}/libtorrent-rasterbar-$VERSION.tar.gz | tar xz --strip 1 && \
+    curl -sSL https://github.com/arvidn/libtorrent/releases/download/libtorrent_${VERSION//./_}/libtorrent-rasterbar-$VERSION.tar.gz | tar xz --strip 1 && \
     ./configure --prefix=/usr && \
     make -j$(nproc) && make install-strip && \
     cd / && \
