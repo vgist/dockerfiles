@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM gists/v2ray-plugin:1.3.0 AS builder
+FROM gists/v2ray-plugin:1.3.0 AS builder
 
 FROM gists/shadowsocks-libev:3.3.4
 
