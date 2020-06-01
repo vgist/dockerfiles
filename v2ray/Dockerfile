@@ -25,7 +25,7 @@ RUN set -xe && \
     curl -sSL https://github.com/v2ray/domain-list-community/raw/release/dlc.dat -o /usr/bin/v2ray/geosite.dat && \
     upx --lzma /usr/bin/v2ray/v2ray /usr/bin/v2ray/v2ctl
 
-FROM alpine:3.11
+FROM alpine:3.12
 
 ENV PATH /usr/bin/v2ray:$PATH
 

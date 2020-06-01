@@ -17,7 +17,7 @@ RUN apk add --no-cache curl build-base git && \
     go build -v -ldflags "-s -w" -o /frpc ./cmd/frpc && \
     cp ./conf/frp* /etc/
 
-FROM alpine:3.11
+FROM alpine:3.12
 
 COPY --from=builder /frp* /usr/bin/
 COPY --from=builder /etc/frp* /etc/

@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM gists/libtorrent-rasterbar:1.2.6
+FROM --platform=$BUILDPLATFORM gists/libtorrent-rasterbar:1.2.7
 
 ARG VERSION
 
