@@ -14,7 +14,7 @@ env:
   VERSION: 4.2.5
 
 jobs:
-  build386:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -23,10 +23,8 @@ jobs:
           echo "${DOCKERHUB_PASSWORD}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
       - name: Set up Docker Buildx
         id: buildx
-        uses: crazy-max/ghaction-docker-buildx@v1
-        with:
-          version: latest
-      - name: Build linux/386 Image
+        uses: crazy-max/ghaction-docker-buildx@v2
+      - name: Build Container Image
         run: |
           docker buildx build \
             --platform linux/386,linux/amd64,linux/arm64,linux/arm/v6,linux/arm/v7,linux/ppc64le,linux/s390x \

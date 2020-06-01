@@ -11,7 +11,7 @@ on:
 env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
   DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
-  VERSION: 2.4.1
+  VERSION: 2.4.3
 
 jobs:
   build:

@@ -22,7 +22,7 @@ RUN set -xe && \
     go build -v -ldflags "-X main.VERSION=$VERSION -s -w" -gcflags "" -o /v2ray-plugin
 
 
-FROM alpine:3.11
+FROM alpine:3.12
 
 COPY --from=builder /v2ray-plugin /usr/bin/
 
