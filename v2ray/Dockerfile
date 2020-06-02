@@ -22,8 +22,7 @@ RUN set -xe && \
     go build -ldflags "$LDFLAGS" -v -o /usr/bin/v2ray/v2ray ./main && \
     go build -ldflags "$LDFLAGS" -v -o /usr/bin/v2ray/v2ctl -tags confonly ./infra/control/main && \
     curl -sSL https://github.com/v2ray/geoip/raw/release/geoip.dat -o /usr/bin/v2ray/geoip.dat && \
-    curl -sSL https://github.com/v2ray/domain-list-community/raw/release/dlc.dat -o /usr/bin/v2ray/geosite.dat && \
-    upx --lzma /usr/bin/v2ray/v2ray /usr/bin/v2ray/v2ctl
+    curl -sSL https://github.com/v2ray/domain-list-community/raw/release/dlc.dat -o /usr/bin/v2ray/geosite.dat
 
 FROM alpine:3.12
 

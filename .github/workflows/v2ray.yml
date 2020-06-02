@@ -11,7 +11,7 @@ on:
 env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
   DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
-  VERSION: 4.23.2
+  VERSION: 4.23.3
 
 jobs:
   build:
@@ -26,7 +26,7 @@ jobs:
       - name: Build Container Image
         run: |
           docker buildx build \
-            --platform linux/386,linux/amd64,linux/arm64,linux/arm/v6,linux/arm/v7,linux/ppc64le \
+            --platform linux/386,linux/amd64,linux/arm64,linux/arm/v6,linux/arm/v7,linux/ppc64le,linux/s390x \
             --build-arg VERSION=${VERSION} \
             --tag gists/v2ray:latest \
             --tag gists/v2ray:${VERSION} \
