@@ -33,3 +33,7 @@ jobs:
             -f ./shadowsocks/v2ray-plugin/Dockerfile \
             ./shadowsocks/v2ray-plugin/ \
             --push
+      - name: Clear
+        if: always()
+        run: |
+          rm -rf ${HOME}.docker/config.json

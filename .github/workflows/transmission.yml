@@ -32,3 +32,7 @@ jobs:
             -f ./transmission/Dockerfile \
             ./transmission/ \
             --push
+      - name: Clear
+        if: always()
+        run: |
+          rm -rf ${HOME}.docker/config.json

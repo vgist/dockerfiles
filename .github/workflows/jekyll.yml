@@ -33,3 +33,7 @@ jobs:
             -f ./jekyll/Dockerfile \
             ./jekyll/ \
             --push
+      - name: Clear
+        if: always()
+        run: |
+          rm -rf ${HOME}.docker/config.json

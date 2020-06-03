@@ -194,3 +194,7 @@ jobs:
           export DOCKER_CLI_EXPERIMENTAL=enabled
           docker manifest push gists/libtorrent-rasterbar:${VERSION}
           docker manifest push gists/libtorrent-rasterbar:latest
+      - name: Clear
+        if: always()
+        run: |
+          rm -rf ${HOME}.docker/config.json

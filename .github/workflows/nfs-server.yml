@@ -32,3 +32,7 @@ jobs:
             -f ./nfs-server/Dockerfile \
             ./nfs-server/ \
             --push
+      - name: Clear
+        if: always()
+        run: |
+          rm -rf ${HOME}.docker/config.json

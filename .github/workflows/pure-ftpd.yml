@@ -33,3 +33,7 @@ jobs:
             -f ./pure-ftpd/Dockerfile \
             ./pure-ftpd/ \
             --push
+      - name: Clear
+        if: always()
+        run: |
+          rm -rf ${HOME}.docker/config.json
