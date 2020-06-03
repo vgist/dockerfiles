@@ -33,3 +33,7 @@ jobs:
             -f ./v2ray/Dockerfile \
             ./v2ray/ \
             --push
+      - name: Clear
+        if: always()
+        run: |
+          rm -rf ${HOME}.docker/config.json

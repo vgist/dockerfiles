@@ -33,3 +33,7 @@ jobs:
             -f ./shadowsocks/libev/Dockerfile \
             ./shadowsocks/libev/ \
             --push
+      - name: Clear
+        if: always()
+        run: |
+          rm -rf ${HOME}.docker/config.json

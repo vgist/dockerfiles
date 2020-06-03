@@ -33,3 +33,7 @@ jobs:
             -f ./frp/Dockerfile \
             ./frp/ \
             --push
+      - name: Clear
+        if: always()
+        run: |
+          rm -rf ${HOME}.docker/config.json

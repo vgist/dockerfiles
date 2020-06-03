@@ -34,3 +34,7 @@ jobs:
             -f ./rutorrent/Dockerfile \
             ./rutorrent/ \
             --push
+      - name: Clear
+        if: always()
+        run: |
+          rm -rf ${HOME}.docker/config.json

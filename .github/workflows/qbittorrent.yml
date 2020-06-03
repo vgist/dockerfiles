@@ -34,3 +34,7 @@ jobs:
             -f ./qbittorrent/Dockerfile \
             ./qbittorrent/ \
             --push
+      - name: Clear
+        if: always()
+        run: |
+          rm -rf ${HOME}.docker/config.json

@@ -32,3 +32,7 @@ jobs:
             -f ./smartmontools/Dockerfile \
             ./smartmontools/ \
             --push
+      - name: Clear
+        if: always()
+        run: |
+          rm -rf ${HOME}.docker/config.json
