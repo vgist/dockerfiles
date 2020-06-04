@@ -13,11 +13,10 @@ RUN set -xe && \
     apk add --no-cache --virtual .build-deps \
         build-base \
         curl \
-        git \
-        upx && \
+        git && \
     mkdir -p /etc/v2ray /root/v2ray-src /usr/bin/v2ray && \
     cd /root/v2ray-src && \
-    curl -sSL https://github.com/v2ray/v2ray-core/archive/v$VERSION.tar.gz | tar xz --strip 1 && \
+    curl -sSL https://github.com/v2fly/v2ray-core/archive/v$VERSION.tar.gz | tar xz --strip 1 && \
     LDFLAGS="-s -w -X v2ray.com/core.codename=user -X v2ray.com/core.build=$(date -u +'%Y-%m-%dT%H:%M:%SZ') -X v2ray.com/core.version=v$VERSION" && \
     go build -ldflags "$LDFLAGS" -v -o /usr/bin/v2ray/v2ray ./main && \
     go build -ldflags "$LDFLAGS" -v -o /usr/bin/v2ray/v2ctl -tags confonly ./infra/control/main && \
@@ -31,7 +30,7 @@ ENV PATH /usr/bin/v2ray:$PATH
 RUN apk add --no-cache ca-certificates && \
     mkdir -p /var/log/v2ray
 
-COPY --from=builder /usr/bin/v2ray /usr/bin/
+COPY --from=builder /usr/bin/v2ray/* /usr/bin/v2ray/
 COPY config.json /etc/v2ray/
 
 CMD ["/usr/bin/v2ray/v2ray", "-config=/etc/v2ray/config.json"]
