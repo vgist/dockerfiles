@@ -5,8 +5,8 @@ on:
     branches: [ master ]
     paths:
      - '.github/workflows/pptpd.yml'
-     - 'pptpd/*'
-     - '!pptpd/*.md'
+  repository_dispatch:
+    types: pptpd-build
 
 jobs:
   build:
@@ -16,7 +16,8 @@ jobs:
       - name: Prepare
         id: prepare
         run: |
-          VERSION=1.4.0
+          VERSION=${{ github.event.client_payload.version }}
+          [[ ! -n $VERSION ]] && VERSION=1.4.0
           IMAGE_NAME=pptpd
           DOCKER_PLATFORMS=linux/386,linux/amd64,linux/arm64,linux/arm/v6,linux/arm/v7,linux/ppc64le,linux/s390x
           echo ::set-output name=buildx_args::--platform ${DOCKER_PLATFORMS} \

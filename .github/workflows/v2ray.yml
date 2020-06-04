@@ -5,8 +5,8 @@ on:
     branches: [ master ]
     paths:
      - '.github/workflows/v2ray.yml'
-     - 'v2ray/*'
-     - '!v2ray/*.md'
+  repository_dispatch:
+    types: v2ray-build
 
 jobs:
   build:
@@ -16,7 +16,8 @@ jobs:
       - name: Prepare
         id: prepare
         run: |
-          VERSION=4.23.4
+          VERSION=${{ github.event.client_payload.version }}
+          [[ ! -n $VERSION ]] && VERSION=4.23.4
           IMAGE_NAME=v2ray
           DOCKER_PLATFORMS=linux/386,linux/amd64,linux/arm64,linux/arm/v6,linux/arm/v7,linux/ppc64le,linux/s390x
           echo ::set-output name=buildx_args::--platform ${DOCKER_PLATFORMS} \
