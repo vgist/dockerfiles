@@ -17,13 +17,14 @@ jobs:
         id: prepare
         run: |
           VERSION=4.23.4
+          IMAGE_NAME=v2ray
           DOCKER_PLATFORMS=linux/386,linux/amd64,linux/arm64,linux/arm/v6,linux/arm/v7,linux/ppc64le,linux/s390x
           echo ::set-output name=buildx_args::--platform ${DOCKER_PLATFORMS} \
             --build-arg VERSION=${VERSION} \
-            --tag gists/v2ray:latest \
-            --tag gists/v2ray:${VERSION} \
-            --file ./v2ray/Dockerfile \
-            ./v2ray
+            --tag gists/${IMAGE_NAME}:latest \
+            --tag gists/${IMAGE_NAME}:${VERSION} \
+            --file ./${IMAGE_NAME}/Dockerfile \
+            ./${IMAGE_NAME}
       - name: Set up Docker Buildx
         id: buildx
         uses: crazy-max/ghaction-docker-buildx@v2

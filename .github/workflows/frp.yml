@@ -8,32 +8,43 @@ on:
      - 'frp/*'
      - '!frp/*.md'
 
-env:
-  DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-  DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
-  VERSION: 0.33.0
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Prepare
+        id: prepare
+        run: |
+          VERSION=0.33.0
+          IMAGE_NAME=frp
+          DOCKER_PLATFORMS=linux/386,linux/amd64,linux/arm64,linux/arm/v6,linux/arm/v7,linux/ppc64le,linux/s390x
+          echo ::set-output name=buildx_args::--platform ${DOCKER_PLATFORMS} \
+            --build-arg VERSION=${VERSION} \
+            --tag gists/${IMAGE_NAME}:latest \
+            --tag gists/${IMAGE_NAME}:${VERSION} \
+            --file ./${IMAGE_NAME}/Dockerfile \
+            ./${IMAGE_NAME}
       - name: Set up Docker Buildx
         id: buildx
         uses: crazy-max/ghaction-docker-buildx@v2
-      - name: Login to Docker Hub Registry
-        run: echo "${DOCKERHUB_PASSWORD}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
-      - name: Build Container Image
+      - name: Buildx (build)
         run: |
           docker buildx build \
-            --platform linux/386,linux/amd64,linux/arm64,linux/arm/v6,linux/arm/v7,linux/ppc64le,linux/s390x \
-            --build-arg VERSION=${VERSION} \
-            --tag gists/frp:latest \
-            --tag gists/frp:${VERSION} \
-            -f ./frp/Dockerfile \
-            ./frp/ \
-            --push
+            --output "type=image,push=false" ${{ steps.prepare.outputs.buildx_args }}
+      - name: Login to Docker Hub Registry
+        if: success()
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+        run: echo "${DOCKERHUB_PASSWORD}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
+      - name: Buildx (push)
+        if: success()
+        run: |
+          docker buildx build \
+            --output "type=image,push=true" ${{ steps.prepare.outputs.buildx_args }}
       - name: Clear
         if: always()
         run: |
           rm -rf ${HOME}.docker/config.json
+
