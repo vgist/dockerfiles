@@ -30,7 +30,7 @@ ENV PATH /usr/bin/v2ray:$PATH
 RUN apk add --no-cache ca-certificates && \
     mkdir -p /var/log/v2ray
 
-COPY --from=builder /usr/bin/v2ray/* /usr/bin/v2ray/
+COPY --from=builder /usr/bin/v2ray /usr/bin/v2ray/
 COPY config.json /etc/v2ray/
 
-CMD ["/usr/bin/v2ray/v2ray", "-config=/etc/v2ray/config.json"]
+CMD ["v2ray", "-config=/etc/v2ray/config.json"]
