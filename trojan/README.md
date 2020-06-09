@@ -19,6 +19,7 @@ Dockerfile <https://github.com/vgist/dockerfiles/tree/master/trojan>
       ports:
         - "443:443"
       volumes:
-        - /your/data:/home/ftpuser
         - ./config.json:/etc/trojan/config.json
       restart: always
+
+- Read more: <https://github.com/trojan-gfw/trojan>
