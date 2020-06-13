@@ -16,6 +16,7 @@ RUN set -ex && \
         build-base \
         curl \
         libev-dev \
+        libcap \
         libtool \
         linux-headers \
         libsodium-dev \
@@ -29,6 +30,7 @@ RUN set -ex && \
     tar xz --strip 1 && \
     ./configure --prefix=/usr --disable-documentation && \
     make install && \
+    ls /usr/bin/ss-* | xargs -n1 setcap 'cap_net_bind_service+ep' && \
     runDeps="$( \
         scanelf --needed --nobanner /usr/bin/ss-* \
             | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
@@ -42,7 +44,6 @@ RUN set -ex && \
 EXPOSE $SERVER_PORT
 
 CMD ss-server \
-    -a nobody \
     -s $SERVER_ADDR \
     -p $SERVER_PORT \
     -k ${PASSWORD:-$(hostname)} \

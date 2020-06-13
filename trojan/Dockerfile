@@ -7,6 +7,7 @@ RUN apk add --no-cache --virtual .build-deps \
         build-base \
         cmake \
         curl \
+        libcap \
         mariadb-connector-c-dev \
         openssl-dev \
         tar && \
@@ -15,6 +16,7 @@ RUN apk add --no-cache --virtual .build-deps \
     | tar xz --strip 1 && \
     cmake -DDEFAULT_CONFIG=/etc/trojan/config.json . && \
     make -j $(nproc) && strip -s trojan && \
+    setcap 'cap_net_bind_service=+ep' ./trojan && \
     mv trojan /usr/bin/ && \
     mv examples/server.json-example /etc/trojan/config.json && \
     runDeps="$( \

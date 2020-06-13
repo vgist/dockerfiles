@@ -8,7 +8,7 @@ ENV PEER_PORT=6881 \
     GID=1000
 
 RUN set -ex && \
-    apk add --no-cache su-exec libcap && \
+    apk add --no-cache su-exec && \
     apk add --no-cache --virtual .build-deps \
         boost-dev \
         boost-system \
@@ -16,6 +16,7 @@ RUN set -ex && \
         ca-certificates \
         curl \
         g++ \
+        libcap \
         libressl-dev \
         make \
         qt5-qtbase \

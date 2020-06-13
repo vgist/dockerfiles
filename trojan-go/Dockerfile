@@ -15,11 +15,13 @@ RUN set -xe && \
     apk add --no-cache \
         --virtual .build-deps \
         curl \
-        git && \
+        git \
+        libcap && \
     curl -sSL https://github.com/p4gefau1t/trojan-go/archive/v$VERSION.tar.gz | \
     tar xz --strip 1 && \
     mkdir release && \
     go build -v -tags "full" -ldflags "-s -w" -o release && \
+    setcap 'cap_net_bind_service=+ep' ./release/trojan-go && \
     curl -sSL https://github.com/v2ray/geoip/raw/release/geoip.dat -o release/geoip.dat && \
     curl -sSL https://github.com/v2ray/domain-list-community/raw/release/dlc.dat -o release/geosite.dat
 
