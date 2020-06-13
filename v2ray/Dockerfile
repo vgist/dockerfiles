@@ -13,13 +13,15 @@ RUN set -xe && \
     apk add --no-cache --virtual .build-deps \
         build-base \
         curl \
-        git && \
+        git \
+        libcap && \
     mkdir -p /etc/v2ray /root/v2ray-src /usr/bin/v2ray && \
     cd /root/v2ray-src && \
     curl -sSL https://github.com/v2fly/v2ray-core/archive/v$VERSION.tar.gz | tar xz --strip 1 && \
     LDFLAGS="-s -w -X v2ray.com/core.codename=user -X v2ray.com/core.build=$(date -u +'%Y-%m-%dT%H:%M:%SZ') -X v2ray.com/core.version=v$VERSION" && \
     go build -ldflags "$LDFLAGS" -v -o /usr/bin/v2ray/v2ray ./main && \
     go build -ldflags "$LDFLAGS" -v -o /usr/bin/v2ray/v2ctl -tags confonly ./infra/control/main && \
+    ls /usr/bin/v2ray/v2* | xargs -n1 setcap 'cap_net_bind_service=+ep' && \
     curl -sSL https://github.com/v2ray/geoip/raw/release/geoip.dat -o /usr/bin/v2ray/geoip.dat && \
     curl -sSL https://github.com/v2ray/domain-list-community/raw/release/dlc.dat -o /usr/bin/v2ray/geosite.dat
 

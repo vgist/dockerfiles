@@ -11,13 +11,14 @@ ENV UID=1000 \
 
 # Let's roll
 RUN set -xe && \
-    apk add --no-cache curl su-exec shadow tar transmission-daemon && \
+    apk add --no-cache curl libcap su-exec shadow tar transmission-daemon && \
+    setcap 'cap_net_bind_service=+ep' /usr/bin/transmission-daemon && \
     cd /tmp && \
     curl -sSL https://github.com/ronggang/transmission-web-control/archive/v1.6.0-beta2.tar.gz | \
     tar xz --strip 1 && \
     cp /usr/share/transmission/web/index.html /usr/share/transmission/web/index.original.html && \
     cp -rf /tmp/src/* /usr/share/transmission/web/ && \
-    apk del tar curl && \
+    apk del curl libcap tar && \
     rm -rf /tmp/*
 
 COPY rootfs /
