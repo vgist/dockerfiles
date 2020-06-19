@@ -9,7 +9,7 @@ Dockerfile <https://github.com/vgist/dockerfiles/tree/master/trojan-go>
         --name trojan-go \
         -p 443:443 \
         -v $(pwd)/config.json:/etc/trojan-go/config.json \
-        -v $(pwd)/your.crt:/any/path/your.crt \             # same as ssl path in config.json
+        -v $(pwd)/your.crt:/any/path/your.crt \             # same path as the config.json
         -v $(pwd)/your.key:/any/path/your.key \
         gists/trojan-go
 
@@ -22,7 +22,7 @@ Dockerfile <https://github.com/vgist/dockerfiles/tree/master/trojan-go>
         - "443:443"
       volumes:
         - ./config.json:/etc/trojan-go/config.json
-        - ./your.crt:/any/path/your.crt                     # same as ssl path in config.json
+        - ./your.crt:/any/path/your.crt                     # same path as the config.json
         - ./your.key:/any/path/your.key
       restart: always
 
