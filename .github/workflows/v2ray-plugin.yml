@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
     paths:
-     - '.github/workflows/v2ray-plugin.yml'
+      - '.github/workflows/v2ray-plugin.yml'
   repository_dispatch:
     types: v2ray-plugin-build
 

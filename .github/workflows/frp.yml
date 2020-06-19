@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
     paths:
-     - '.github/workflows/frp.yml'
+      - '.github/workflows/frp.yml'
   repository_dispatch:
     types: frp-build
 

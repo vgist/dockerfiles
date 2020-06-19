@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
     paths:
-     - '.github/workflows/shadowsocks-libev.v2ray-plugin.yml'
+      - '.github/workflows/shadowsocks-libev.v2ray-plugin.yml'
   repository_dispatch:
     types: shadowsocks-libev.v2ray-plugin-build
 

@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
     paths:
-     - '.github/workflows/mariadb.yml'
+      - '.github/workflows/mariadb.yml'
   repository_dispatch:
     types: mariadb-build
 

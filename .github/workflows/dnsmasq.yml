@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
     paths:
-     - '.github/workflows/dnsmasq.yml'
+      - '.github/workflows/dnsmasq.yml'
   repository_dispatch:
     types: dnsmasq-build
 

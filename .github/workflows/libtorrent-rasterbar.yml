@@ -4,9 +4,9 @@ on:
   push:
     branches: [ master ]
     paths:
-     - '.github/workflows/libtorrent-rasterbar.yml'
-     - 'libtorrent-rasterbar/*'
-     - '!libtorrent-rasterbar/*.md'
+      - '.github/workflows/libtorrent-rasterbar.yml'
+      - 'libtorrent-rasterbar/*'
+      - '!libtorrent-rasterbar/*.md'
 
 env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}

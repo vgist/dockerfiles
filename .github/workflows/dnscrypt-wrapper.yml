@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
     paths:
-     - '.github/workflows/dnscrypt-wrapper.yml'
+      - '.github/workflows/dnscrypt-wrapper.yml'
   repository_dispatch:
     types: dnscrypt-wrapper-build
 

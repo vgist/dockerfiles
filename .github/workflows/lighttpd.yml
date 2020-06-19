@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
     paths:
-     - '.github/workflows/lighttpd.yml'
+      - '.github/workflows/lighttpd.yml'
   repository_dispatch:
     types: lighttpd-build
 

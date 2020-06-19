@@ -4,9 +4,9 @@ on:
   push:
     branches: [ master ]
     paths:
-     - '.github/workflows/rutorrent.yml'
-     - 'rutorrent/*'
-     - '!rutorrent/*.md'
+      - '.github/workflows/rutorrent.yml'
+      - 'rutorrent/*'
+      - '!rutorrent/*.md'
 
 jobs:
   build:

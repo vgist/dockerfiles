@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
     paths:
-     - '.github/workflows/haproxy.yml'
+      - '.github/workflows/haproxy.yml'
   repository_dispatch:
     types: haproxy-build
 
