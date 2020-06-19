@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
     paths:
-     - '.github/workflows/qbittorrent.yml'
+      - '.github/workflows/qbittorrent.yml'
   repository_dispatch:
     types: qbittorrent-build
 

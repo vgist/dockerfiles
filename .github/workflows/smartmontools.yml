@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
     paths:
-     - '.github/workflows/smartmontools.yml'
+      - '.github/workflows/smartmontools.yml'
   repository_dispatch:
     types: smartmontools-build
 

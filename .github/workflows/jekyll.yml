@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
     paths:
-     - '.github/workflows/jekyll.yml'
+      - '.github/workflows/jekyll.yml'
   repository_dispatch:
     types: jekyll-build
 

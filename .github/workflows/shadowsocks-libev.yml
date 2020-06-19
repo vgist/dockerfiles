@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
     paths:
-     - '.github/workflows/shadowsocks-libev.yml'
+      - '.github/workflows/shadowsocks-libev.yml'
   repository_dispatch:
     types: shadowsocks-libev-build
 

@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
     paths:
-     - '.github/workflows/trojan-go.yml'
+      - '.github/workflows/trojan-go.yml'
   repository_dispatch:
     types: trojan-go-build
 

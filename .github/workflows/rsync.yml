@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
     paths:
-     - '.github/workflows/rsync.yml'
+      - '.github/workflows/rsync.yml'
   repository_dispatch:
     types: rsync-build
 

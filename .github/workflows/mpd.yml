@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
     paths:
-     - '.github/workflows/mpd.yml'
+      - '.github/workflows/mpd.yml'
   repository_dispatch:
     types: mpd-build
 
