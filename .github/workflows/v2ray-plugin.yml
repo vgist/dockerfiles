@@ -5,6 +5,7 @@ on:
     branches: [ master ]
     paths:
       - '.github/workflows/v2ray-plugin.yml'
+      - '!shadowsocks/v2ray-plugin/**'
   repository_dispatch:
     types: v2ray-plugin-build
 

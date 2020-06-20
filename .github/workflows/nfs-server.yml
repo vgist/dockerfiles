@@ -5,6 +5,7 @@ on:
     branches: [ master ]
     paths:
       - '.github/workflows/nfs-server.yml'
+      - '!nfs-server/**'
   repository_dispatch:
     types: nfs-server-build
 

@@ -5,6 +5,7 @@ on:
     branches: [ master ]
     paths:
       - '.github/workflows/docker-compose-bin.yml'
+      - '!docker-compose-bin/**'
   repository_dispatch:
     types: docker-compose-bin-build
 

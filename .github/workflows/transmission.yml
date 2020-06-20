@@ -5,6 +5,7 @@ on:
     branches: [ master ]
     paths:
       - '.github/workflows/transmission.yml'
+      - '!transmission/**'
   repository_dispatch:
     types: transmission-build
 

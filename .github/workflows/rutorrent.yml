@@ -5,8 +5,9 @@ on:
     branches: [ master ]
     paths:
       - '.github/workflows/rutorrent.yml'
-      - 'rutorrent/*'
-      - '!rutorrent/*.md'
+      - '!rutorrent/**'
+  repository_dispatch:
+    types: rutorrent-build
 
 jobs:
   build:

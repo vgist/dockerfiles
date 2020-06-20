@@ -5,6 +5,7 @@ on:
     branches: [ master ]
     paths:
       - '.github/workflows/shadowsocks-libev.yml'
+      - '!shadowsocks/libev/**'
   repository_dispatch:
     types: shadowsocks-libev-build
 

@@ -5,6 +5,7 @@ on:
     branches: [ master ]
     paths:
       - '.github/workflows/jekyll.yml'
+      - '!jekyll/**'
   repository_dispatch:
     types: jekyll-build
 

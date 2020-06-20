@@ -5,6 +5,7 @@ on:
     branches: [ master ]
     paths:
       - '.github/workflows/frp.yml'
+      - '!frp/**'
   repository_dispatch:
     types: frp-build
 

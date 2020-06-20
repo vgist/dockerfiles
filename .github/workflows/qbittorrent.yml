@@ -5,6 +5,7 @@ on:
     branches: [ master ]
     paths:
       - '.github/workflows/qbittorrent.yml'
+      - '!qbittorrent/**'
   repository_dispatch:
     types: qbittorrent-build
 

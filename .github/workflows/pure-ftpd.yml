@@ -5,6 +5,7 @@ on:
     branches: [ master ]
     paths:
       - '.github/workflows/pure-ftpd.yml'
+      - '!pure-ftpd/**'
   repository_dispatch:
     types: pure-ftpd-build
 
