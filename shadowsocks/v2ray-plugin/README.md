@@ -1,5 +1,9 @@
 ![](https://images.microbadger.com/badges/version/gists/v2ray-plugin.svg) ![](https://images.microbadger.com/badges/image/gists/v2ray-plugin.svg)
 
+Dockerfile <https://github.com/vgist/dockerfiles/blob/master/shadowsocks/v2ray-plugin/Dockerfile>
+
+Automatically built by Github Actions
+
 #### Compose example with shadowsocks-libev on server:
 
     version: '3'

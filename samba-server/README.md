@@ -2,6 +2,8 @@
 
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/samba-server>
 
+Automatically built by Github Actions
+
 #### Volume:
 
 - /mnt

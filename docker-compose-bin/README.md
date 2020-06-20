@@ -4,7 +4,7 @@ Fork from <https://github.com/ubiquiti/docker-compose-aarch64>
 
 This repository contains helpers to build a docker-compose binary file for other platform (e.g. arm). Because, docker-compose [releases](https://github.com/docker/compose/releases) don't include any arm binary files currently.
 
-Build images with GitHub actions.
+Automatically built by Github Actions
 
 - [Dockerfile](https://github.com/vgist/dockerfiles/blob/master/docker-compose-bin/Dockerfile)
 - [workflow](https://github.com/vgist/dockerfiles/blob/master/.github/workflows/docker-compose-bin.yml)

@@ -2,6 +2,8 @@
 
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/frp>
 
+Automatically built by Github Actions
+
 #### Creating an instance:
 
     docker run \

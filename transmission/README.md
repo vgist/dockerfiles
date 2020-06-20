@@ -2,6 +2,8 @@
 
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/transmission>
 
+Automatically built by Github Actions
+
 #### Volume
 
 - /data

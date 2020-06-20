@@ -3,6 +3,8 @@
 - latest, 7 ([fpm/Dockerfile](https://github.com/vgist/dockerfiles/blob/master/php/fpm/Dockerfile))
 - 5 ([fpm/Dockerfile](https://github.com/vgist/dockerfiles/blob/php5/php/fpm/Dockerfile))
 
+Automatically built by Github Actions
+
 #### Environment:
 
 | Environment          | Variable             | Default value |

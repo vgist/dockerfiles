@@ -2,6 +2,8 @@
 
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/haproxy>
 
+Automatically built by Github Actions
+
 #### Custom usage:
 
     docker run \

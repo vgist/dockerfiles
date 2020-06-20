@@ -2,6 +2,8 @@
 
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/trojan-go>
 
+Automatically built by Github Actions
+
 #### Custom usage:
 
     docker run \
