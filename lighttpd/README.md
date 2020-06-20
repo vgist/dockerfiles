@@ -2,6 +2,8 @@
 
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/lighttpd>
 
+Automatically built by Github Actions
+
 #### Environment:
 
 | Environment | Variable | Default value |

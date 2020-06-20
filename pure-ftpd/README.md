@@ -2,6 +2,8 @@
 
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/pure-ftpd>
 
+Automatically built by Github Actions
+
 #### Volume
 
 - /home/ftpuser

@@ -2,6 +2,8 @@
 
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/shadowsocks/libev/>
 
+Automatically built by Github Actions
+
 ### Environment:
 
 | Environment | Default value |

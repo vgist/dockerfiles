@@ -2,6 +2,8 @@
 
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/rutorrent>
 
+Automatically built by Github Actions
+
 #### Volume
 
 - /data

@@ -2,6 +2,8 @@
 
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/dnsmasq>
 
+Automatically built by Github Actions
+
 #### Volume:
 
 - /etc/dnsmasq.d

@@ -2,6 +2,8 @@
 
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/mariadb>
 
+Automatically built by Github Actions
+
 #### Volume:
 
 - /var/lib/mysql
