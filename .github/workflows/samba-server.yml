@@ -5,6 +5,7 @@ on:
     branches: [ master ]
     paths:
       - '.github/workflows/samba-server.yml'
+      - '!samba-server/**'
   repository_dispatch:
     types: samba-server-build
 

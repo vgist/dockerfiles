@@ -5,8 +5,9 @@ on:
     branches: [ master ]
     paths:
       - '.github/workflows/libtorrent-rasterbar.yml'
-      - 'libtorrent-rasterbar/*'
-      - '!libtorrent-rasterbar/*.md'
+      - '!libtorrent-rasterbar/**'
+  repository_dispatch:
+    types: libtorrent-rasterbar-build
 
 env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}

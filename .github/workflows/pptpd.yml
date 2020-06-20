@@ -5,6 +5,7 @@ on:
     branches: [ master ]
     paths:
       - '.github/workflows/pptpd.yml'
+      - '!pptpd/**'
   repository_dispatch:
     types: pptpd-build
 

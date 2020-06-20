@@ -5,6 +5,7 @@ on:
     branches: [ master ]
     paths:
       - '.github/workflows/dnscrypt-proxy.yml'
+      - '!dnscrypt/proxy/**'
   repository_dispatch:
     types: dnscrypt-proxy-build
 

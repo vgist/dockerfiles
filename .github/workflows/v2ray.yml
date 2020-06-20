@@ -5,6 +5,7 @@ on:
     branches: [ master ]
     paths:
       - '.github/workflows/v2ray.yml'
+      - '!v2ray/**'
   repository_dispatch:
     types: v2ray-build
 

@@ -5,6 +5,7 @@ on:
     branches: [ master ]
     paths:
       - '.github/workflows/php.yml'
+      - '!php/fpm/**'
   repository_dispatch:
     types: php-build
 

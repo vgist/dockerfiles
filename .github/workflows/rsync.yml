@@ -5,6 +5,7 @@ on:
     branches: [ master ]
     paths:
       - '.github/workflows/rsync.yml'
+      - '!rsync/**'
   repository_dispatch:
     types: rsync-build
 
