@@ -18,7 +18,7 @@ jobs:
         id: prepare
         run: |
           VERSION=3.10-beta
-          GIT_COMMIT: a68c935
+          GIT_COMMIT=3446d5a
           IMAGE_NAME=rutorrent
           DOCKER_PLATFORMS=linux/386,linux/amd64,linux/arm64,linux/arm/v6,linux/arm/v7,linux/ppc64le,linux/s390x
           echo ::set-output name=buildx_args::--platform ${DOCKER_PLATFORMS} \
