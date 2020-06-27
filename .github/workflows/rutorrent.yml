@@ -17,14 +17,14 @@ jobs:
       - name: Prepare
         id: prepare
         run: |
-          VERSION=3.10-beta
-          GIT_COMMIT=3446d5a
+          VERSION=${{ github.event.client_payload.version }}
+          [[ ! -n $VERSION ]] && VERSION=3.10
           IMAGE_NAME=rutorrent
           DOCKER_PLATFORMS=linux/386,linux/amd64,linux/arm64,linux/arm/v6,linux/arm/v7,linux/ppc64le,linux/s390x
           echo ::set-output name=buildx_args::--platform ${DOCKER_PLATFORMS} \
-            --build-arg GIT_COMMIT=${GIT_COMMIT} \
+            --build-arg VERSION=${VERSION} \
             --tag gists/${IMAGE_NAME}:latest \
-            --tag gists/${IMAGE_NAME}:${VERSION}-${GIT_COMMIT} \
+            --tag gists/${IMAGE_NAME}:${VERSION} \
             -f ./${IMAGE_NAME}/Dockerfile \
             ./${IMAGE_NAME}
       - name: Set up Docker Buildx
