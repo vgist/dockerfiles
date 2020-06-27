@@ -1,7 +1,6 @@
 FROM alpine:3.12
 
 ARG VERSION
-ARG GIT_COMMIT
 
 ENV UID=1000 \
     GID=1000 \
@@ -34,7 +33,7 @@ RUN set -xe && \
         zip && \
     apk add --no-cache tar && \
     mkdir /tmp/rutorrent && cd /tmp/rutorrent && \
-    curl -sSL https://github.com/Novik/ruTorrent/archive/${GIT_COMMIT}.tar.gz | tar xz --strip 1 && \
+    curl -sSL https://github.com/Novik/ruTorrent/archive/v${VERSION}.tar.gz | tar xz --strip 1 && \
     cd / && mv /tmp/rutorrent /var/www/rutorrent && \
     apk del tar && \
     rm -rf /var/www/rutorrent/.git*
