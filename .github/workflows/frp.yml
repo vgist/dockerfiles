@@ -48,5 +48,4 @@ jobs:
       - name: Clear
         if: always()
         run: |
-          rm -rf ${HOME}.docker/config.json
-
+          rm -rf ${HOME}/.docker/config.json
