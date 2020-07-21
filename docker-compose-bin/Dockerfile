@@ -1,13 +1,13 @@
 FROM --platform=$TARGETPLATFORM python:3.7.7-buster  AS builder
 
 # docker-compose requires pyinstaller 3.6 (check github.com/docker/compose/requirements-build.txt)
-ARG VERSION=1.26.0
+ARG VERSION
 ARG PYINSTALLER_VER=3.6
-ARG SIX_VER=1.12.0
 
 ENV LANG C.UTF-8
 
-RUN mkdir -p /build/pyinstallerbootloader && \
+RUN set -xe && \
+    mkdir -p /build/pyinstallerbootloader && \
     # Compile the pyinstaller "bootloader"
     # https://pyinstaller.readthedocs.io/en/stable/bootloader-building.html
     cd /build/pyinstallerbootloader && \
