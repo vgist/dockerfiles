@@ -5,6 +5,6 @@ ARG VERSION
 # Let's roll
 RUN set -xe && \
     apk add --no-cache \
-    smartmontools ssmtp
+    smartmontools ssmtp mailx
 
 ENTRYPOINT ["/usr/sbin/smartd", "--debug"]
