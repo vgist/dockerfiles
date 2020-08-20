@@ -5,20 +5,15 @@ ARG VERSION
 RUN set -ex && \
     apk add --no-cache --virtual .build-deps \
         boost-dev \
-        boost-system \
-        boost-thread \
-        ca-certificates \
         curl \
         g++ \
-        libressl-dev \
+        openssl-dev \
         make \
-        qt5-qtbase \
-        qt5-qttools-dev \
         tar && \
     mkdir -p /tmp/libtorrent-rasterbar && \
     cd /tmp/libtorrent-rasterbar/ && \
     curl -sSL https://github.com/arvidn/libtorrent/releases/download/libtorrent-$VERSION/libtorrent-rasterbar-$VERSION.tar.gz | tar xz --strip 1 && \
-    ./configure --prefix=/usr && \
+    ./configure CXXFLAGS="-std=c++17" --prefix=/usr --disable-dependency-tracking && \
     make -j$(nproc) && make install-strip && \
     cd / && \
     runDeps="$( \

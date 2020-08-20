@@ -1,4 +1,4 @@
-FROM --platform=$TARGETPLATFORM gists/libtorrent-rasterbar:1.2.8
+FROM --platform=$TARGETPLATFORM gists/libtorrent-rasterbar:latest
 
 ARG VERSION
 
@@ -11,13 +11,10 @@ RUN set -ex && \
     apk add --no-cache su-exec && \
     apk add --no-cache --virtual .build-deps \
         boost-dev \
-        boost-system \
-        boost-thread \
-        ca-certificates \
         curl \
         g++ \
         libcap \
-        libressl-dev \
+        openssl-dev \
         make \
         qt5-qtbase \
         qt5-qttools-dev \
@@ -25,8 +22,8 @@ RUN set -ex && \
     mkdir -p /tmp/qbittorrent && \
     cd /tmp/qbittorrent && \
     curl -sSL https://github.com/qbittorrent/qBittorrent/archive/release-$VERSION.tar.gz | tar xz --strip 1 && \
-    ./configure --prefix=/usr --disable-gui --disable-stacktrace && \
-    make -j$(nproc) && make install && \
+    ./configure CXXFLAGS="-std=c++17" --prefix=/usr --disable-dependency-tracking --disable-gui --disable-qt-dbus && \
+    make -j$(nproc) install && \
     # Set capability to bind privileged ports as non-root user for qbittorrent-nox
     setcap 'cap_net_bind_service=+ep' /usr/bin/qbittorrent-nox && \
     cd / && \
