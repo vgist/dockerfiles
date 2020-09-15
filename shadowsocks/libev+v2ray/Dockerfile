@@ -1,6 +1,6 @@
-FROM gists/v2ray-plugin:1.3.0 AS builder
+FROM gists/v2ray-plugin:latest AS builder
 
-FROM gists/shadowsocks-libev:3.3.4
+FROM gists/shadowsocks-libev:latest
 
 ENV SERVER_ADDR=0.0.0.0 \
     SERVER_PORT=8388 \
