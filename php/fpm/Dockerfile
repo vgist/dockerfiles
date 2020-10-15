@@ -50,6 +50,7 @@ RUN set -xe && \
         php7-soap \
         php7-sodium \
         php7-sqlite3 \
+        php7-tokenizer \
         php7-xmlreader \
         php7-xmlrpc \
         php7-zip \
