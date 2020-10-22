@@ -20,6 +20,7 @@ ENV MEMORY_LIMIT=256M \
 # Let's roll
 RUN set -xe && \
     apk add --no-cache \
+        composer \
         php7-bcmath \
         php7-bz2 \
         php7-curl \
