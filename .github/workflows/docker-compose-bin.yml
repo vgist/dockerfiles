@@ -18,7 +18,7 @@ jobs:
         id: prepare
         run: |
           VERSION=${{ github.event.client_payload.version }}
-          [[ ! -n $VERSION ]] && VERSION=1.27.3
+          [[ ! -n $VERSION ]] && VERSION=1.27.4
           IMAGE_NAME=docker-compose-bin
           DOCKER_PLATFORMS=linux/386,linux/amd64,linux/arm64,linux/arm/v6,linux/arm/v7
           echo ::set-output name=buildx_args::--platform ${DOCKER_PLATFORMS} \
