@@ -6,7 +6,8 @@ Automatically built by Github Actions
 
 #### Volume
 
-- /var/lib/mpd
+- /music
+- /var/lib/mpd/playlists
 
 #### Custom usage:
 
@@ -16,7 +17,8 @@ Automatically built by Github Actions
         --device /dev/snd \
         -p 6600:6600 \
         -p 8000:8000 \
-        -v /your/music:/var/lib/mpd/music \
+        -v /your/music:/music \
+        -v /your/playlists:/var/lib/mpd/playlists \
         gists/mpd
 
 #### Compose example:
@@ -27,7 +29,8 @@ Automatically built by Github Actions
         - "6600:6600"
         - "8000:8000"
       volumes:
-        - /your/music:/var/lib/mpd/music
+        - /your/music:/music
+        - /your/playlists:/var/lib/mpd/playlists \
       devices:
         - /dev/snd
       restart: always
