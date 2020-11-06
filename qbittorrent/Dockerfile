@@ -11,6 +11,7 @@ RUN set -ex && \
     apk add --no-cache su-exec && \
     apk add --no-cache --virtual .build-deps \
         boost-dev \
+        cmake \
         curl \
         g++ \
         libcap \
@@ -22,8 +23,14 @@ RUN set -ex && \
     mkdir -p /tmp/qbittorrent && \
     cd /tmp/qbittorrent && \
     curl -sSL https://github.com/qbittorrent/qBittorrent/archive/release-$VERSION.tar.gz | tar xz --strip 1 && \
-    ./configure CXXFLAGS="-std=c++17" --prefix=/usr --disable-dependency-tracking --disable-gui --disable-qt-dbus && \
-    make -j$(nproc) install && \
+    cmake -B builddir \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_CXX_STANDARD=17 \
+        -DCMAKE_INSTALL_PREFIX:PATH=/usr \
+        -DSTACKTRACE=OFF \
+        -DDBUS=OFF -DGUI=OFF && \
+    cmake --build builddir --parallel $((`nproc`+1)) && \
+    cmake --install builddir && \
     # Set capability to bind privileged ports as non-root user for qbittorrent-nox
     setcap 'cap_net_bind_service=+ep' /usr/bin/qbittorrent-nox && \
     cd / && \

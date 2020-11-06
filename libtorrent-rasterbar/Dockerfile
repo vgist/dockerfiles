@@ -4,17 +4,26 @@ ARG VERSION
 
 RUN set -ex && \
     apk add --no-cache --virtual .build-deps \
+        git \
         boost-dev \
+        cmake \
         curl \
         g++ \
         openssl-dev \
         make \
         tar && \
-    mkdir -p /tmp/libtorrent-rasterbar && \
-    cd /tmp/libtorrent-rasterbar/ && \
-    curl -sSL https://github.com/arvidn/libtorrent/releases/download/libtorrent-$VERSION/libtorrent-rasterbar-$VERSION.tar.gz | tar xz --strip 1 && \
-    ./configure CXXFLAGS="-std=c++17" --prefix=/usr --disable-dependency-tracking && \
-    make -j$(nproc) && make install-strip && \
+    # mkdir -p /tmp/libtorrent-rasterbar && \
+    # cd /tmp/libtorrent-rasterbar/ && \
+    # curl -sSL https://github.com/arvidn/libtorrent/releases/download/${VERSION%.*}/libtorrent-rasterbar-$VERSION.tar.gz | tar xz --strip 1 && \
+    cd /tmp && \
+    git clone https://github.com/arvidn/libtorrent.git && cd libtorrent && git submodule update --init && \
+    cmake -B builddir \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_CXX_STANDARD=17 \
+        -DCMAKE_INSTALL_PREFIX:PATH=/usr \
+        -DCMAKE_INSTALL_LIBDIR=lib && \
+    cmake --build builddir --parallel $((`nproc`+1)) && \
+    cmake --install builddir && \
     cd / && \
     runDeps="$( \
         scanelf --needed --nobanner /usr/lib/libtorrent-* \
