@@ -38,8 +38,8 @@ jobs:
       - name: Build
         uses: docker/build-push-action@v2
         with:
-          context: ./shadowsocks/${{ steps.prepare.outputs.image-name }}
-          file: ./shadowsocks/${{ steps.prepare.outputs.image-name }}/Dockerfile
+          context: ./${{ steps.prepare.outputs.image-name }}
+          file: ./${{ steps.prepare.outputs.image-name }}/Dockerfile
           platforms: linux/386,linux/amd64,linux/arm64,linux/arm/v6,linux/arm/v7,linux/ppc64le,linux/s390x
           push: ${{ github.event_name != 'pull_request' }}
           build-args: ${{ steps.prepare.outputs.build_args }}
