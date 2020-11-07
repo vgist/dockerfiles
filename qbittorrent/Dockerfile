@@ -28,6 +28,7 @@ RUN set -ex && \
         -DCMAKE_CXX_STANDARD=17 \
         -DCMAKE_INSTALL_PREFIX:PATH=/usr \
         -DSTACKTRACE=OFF \
+        -DQBT_VER_STATUS="" \
         -DDBUS=OFF -DGUI=OFF && \
     cmake --build builddir --parallel $((`nproc`+1)) && \
     cmake --install builddir && \
