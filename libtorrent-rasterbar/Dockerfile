@@ -12,11 +12,10 @@ RUN set -ex && \
         openssl-dev \
         make \
         tar && \
-    # mkdir -p /tmp/libtorrent-rasterbar && \
-    # cd /tmp/libtorrent-rasterbar/ && \
-    # curl -sSL https://github.com/arvidn/libtorrent/releases/download/${VERSION%.*}/libtorrent-rasterbar-$VERSION.tar.gz | tar xz --strip 1 && \
-    cd /tmp && \
-    git clone https://github.com/arvidn/libtorrent.git && cd libtorrent && git submodule update --init && \
+    mkdir -p /tmp/libtorrent-rasterbar && \
+    cd /tmp/libtorrent-rasterbar/ && \
+    #curl -sSL https://github.com/arvidn/libtorrent/releases/download/v${VERSION%.*}/libtorrent-rasterbar-$VERSION.tar.gz | tar xz --strip 1 && \
+    curl -sSL https://github.com/arvidn/libtorrent/releases/download/v${VERSION}/libtorrent-rasterbar-$VERSION.tar.gz | tar xz --strip 1 && \
     cmake -B builddir \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_CXX_STANDARD=17 \
