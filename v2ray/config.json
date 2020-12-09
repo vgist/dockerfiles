@@ -1,25 +1,87 @@
 {
-  "log" : {
-    "access": "/var/log/v2ray/access.log",
-    "error": "/var/log/v2ray/error.log",
+  "log": {
+    // "access": "/path/to/access/log/file",
+    // "error": "/path/to/error/log/file",
+    // Log level, one of "debug", "info", "warning", "error", "none"
     "loglevel": "warning"
   },
-  "inbound": {
+  "inbounds": [{
     "port": 1080,
     "listen": "0.0.0.0",
-    "protocol": "vmess",
+    "tag": "socks-inbound",
+    "protocol": "socks",
     "settings": {
-      "clients": [
-        {
-          "id": "60ca58e9-003e-4c01-98de-c2223ae49153",
-          "level": 1,
-          "alterId": 64
-        }
-      ]
+      "auth": "noauth",
+      "udp": false,
+      "ip": "127.0.0.1"
+    },
+
+    "sniffing": {
+      "enabled": true,
+      "destOverride": ["http", "tls"]
+    }
+  }],
+  "outbounds": [{
+    "protocol": "freedom",
+    "settings": {},
+    "tag": "direct"
+  },{
+    "protocol": "blackhole",
+    "settings": {},
+    "tag": "blocked"
+  }],
+
+  "routing": {
+    "domainStrategy": "IPOnDemand",
+    "rules":[
+      {
+        "type": "field",
+        "ip": ["geoip:private"],
+        "outboundTag": "blocked"
+      },
+      {
+        "type": "field",
+        "domain": ["geosite:category-ads"],
+        "outboundTag": "blocked"
+      }
+    ]
+  },
+
+  "dns": {
+    "hosts": {
+      "domain:v2ray.com": "www.vicemc.net",
+      "domain:github.io": "pages.github.com",
+      "domain:wikipedia.org": "www.wikimedia.org",
+      "domain:shadowsocks.org": "electronicsrealm.com"
+    },
+    "servers": [
+      "1.1.1.1",
+      {
+        "address": "114.114.114.114",
+        "port": 53,
+        "domains": [
+          "geosite:cn"
+        ]
+      },
+      "8.8.8.8",
+      "localhost"
+    ]
+  },
+
+  "policy": {
+    "levels": {
+      "0": {
+        "uplinkOnly": 0,
+        "downlinkOnly": 0
+      }
+    },
+    "system": {
+      "statsInboundUplink": false,
+      "statsInboundDownlink": false,
+      "statsOutboundUplink": false,
+      "statsOutboundDownlink": false
     }
   },
-  "outbound": {
-    "protocol": "freedom",
-    "settings": {}
-  }
+
+  "other": {}
 }
