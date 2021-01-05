@@ -30,7 +30,7 @@ Automatically built by Github Actions
         -p 6881:6881 \
         -p 6881:6881/udp \
         -p 8080:8080 \
-        -v /path/data:/data
+        -v /path/data:/data \
         gists/qbittorrent
 
 #### Compose example:
