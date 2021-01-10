@@ -19,7 +19,7 @@ jobs:
         id: prepare
         run: |
           VERSION=${{ github.event.client_payload.version }}
-          [[ ! -n $VERSION ]] && VERSION=1.2.0
+          [[ ! -n $VERSION ]] && VERSION=1.2.1
           IMAGE_NAME=xray
           TAGS="gists/${IMAGE_NAME}:${VERSION},gists/${IMAGE_NAME}:latest"
           echo ::set-output name=build_args::VERSION=${VERSION}
