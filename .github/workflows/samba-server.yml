@@ -19,7 +19,7 @@ jobs:
         id: prepare
         run: |
           VERSION=${{ github.event.client_payload.version }}
-          [[ ! -n $VERSION ]] && VERSION=4.12.9
+          [[ ! -n $VERSION ]] && VERSION=4.13.3
           IMAGE_NAME=samba-server
           TAGS="gists/${IMAGE_NAME}:${VERSION},gists/${IMAGE_NAME}:latest"
           echo ::set-output name=build_args::VERSION=${VERSION}
