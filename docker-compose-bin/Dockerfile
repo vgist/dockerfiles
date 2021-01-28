@@ -26,7 +26,7 @@ RUN set -xe && \
     pyinstaller docker-compose.spec && \
     mv dist/docker-compose /usr/bin/docker-compose
 
-FROM alpine:3.12
+FROM alpine:3.13
 COPY --from=builder /usr/bin/docker-compose /usr/bin/docker-compose
 # Copy out the generated binary
 VOLUME /dist

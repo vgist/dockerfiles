@@ -26,7 +26,7 @@ RUN set -xe && \
     curl -sSL https://github.com/v2ray/domain-list-community/raw/release/dlc.dat -o release/geosite.dat
 
 
-FROM alpine:3.12
+FROM alpine:3.13
 
 COPY --from=builder /root/release /usr/bin/trojan-go
 COPY --from=builder /root/example/server.json /etc/trojan-go/config.json
