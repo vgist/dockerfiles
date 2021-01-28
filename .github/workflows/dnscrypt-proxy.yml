@@ -19,7 +19,7 @@ jobs:
         id: prepare
         run: |
           VERSION=${{ github.event.client_payload.version }}
-          [[ ! -n $VERSION ]] && VERSION=2.0.42
+          [[ ! -n $VERSION ]] && VERSION=2.0.45
           IMAGE_NAME=dnscrypt-proxy
           TAGS="gists/${IMAGE_NAME}:${VERSION},gists/${IMAGE_NAME}:latest"
           echo ::set-output name=build_args::VERSION=${VERSION}
