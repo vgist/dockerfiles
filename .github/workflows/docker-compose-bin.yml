@@ -19,7 +19,7 @@ jobs:
         id: prepare
         run: |
           VERSION=${{ github.event.client_payload.version }}
-          [[ ! -n $VERSION ]] && VERSION=1.27.4
+          [[ ! -n $VERSION ]] && VERSION=1.28.2
           IMAGE_NAME=docker-compose-bin
           TAGS="gists/${IMAGE_NAME}:${VERSION},gists/${IMAGE_NAME}:latest"
           echo ::set-output name=build_args::VERSION=${VERSION}
