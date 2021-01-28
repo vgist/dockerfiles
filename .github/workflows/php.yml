@@ -19,7 +19,7 @@ jobs:
         id: prepare
         run: |
           VERSION=${{ github.event.client_payload.version }}
-          [[ ! -n $VERSION ]] && VERSION=7.3.24
+          [[ ! -n $VERSION ]] && VERSION=7.4.14
           IMAGE_NAME=php
           TAGS="gists/${IMAGE_NAME}:${VERSION},gists/${IMAGE_NAME}:latest"
           echo ::set-output name=build_args::VERSION=${VERSION}
