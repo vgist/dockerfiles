@@ -9,7 +9,7 @@ Automatically built by Github Actions
 - [Dockerfile](https://github.com/vgist/dockerfiles/blob/master/docker-compose-bin/Dockerfile)
 - [workflow](https://github.com/vgist/dockerfiles/blob/master/.github/workflows/docker-compose-bin.yml)
 
-Support architectures: `arm32v6`, `amd64`, `arm32v7`, `arm64v8`, `i386`
+Support architectures: `i386`, `amd64`, `arm32v6`, `arm32v7`, `arm64v8`
 
 ## Get binary docker-compose on your current platform
 
