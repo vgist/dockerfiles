@@ -14,7 +14,7 @@ RUN set -ex && \
         tar && \
     mkdir -p /tmp/libtorrent-rasterbar && \
     cd /tmp/libtorrent-rasterbar/ && \
-    curl -sSL https://github.com/arvidn/libtorrent/releases/latest/download/libtorrent-rasterbar-$VERSION.tar.gz | tar xz --strip 1 && \
+    curl -sSL https://github.com/arvidn/libtorrent/releases/download/v$VERSION/libtorrent-rasterbar-$VERSION.tar.gz | tar xz --strip 1 && \
     cmake -B builddir \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_CXX_STANDARD=17 \
