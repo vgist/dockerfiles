@@ -22,8 +22,8 @@ RUN set -xe && \
     mkdir release && \
     go build -v -tags "full" -ldflags "-s -w" -o release && \
     setcap 'cap_net_bind_service=+ep' ./release/trojan-go && \
-    curl -sSL https://github.com/v2ray/geoip/raw/release/geoip.dat -o release/geoip.dat && \
-    curl -sSL https://github.com/v2ray/domain-list-community/raw/release/dlc.dat -o release/geosite.dat
+    curl -sSL https://github.com/v2fly/geoip/raw/release/geoip.dat -o release/geoip.dat && \
+    curl -sSL https://github.com/v2fly/domain-list-community/raw/release/dlc.dat -o release/geosite.dat
 
 
 FROM alpine:3.13

@@ -10,7 +10,7 @@ Automatically built by Github Actions
         -d \
         --name trojan-go \
         -p 443:443 \
-        -v $(pwd)/config.json:/etc/trojan-go/config.json \
+        -v $(pwd)/config.json:/etc/trojan-go/config.json \  # or config.yml
         -v $(pwd)/your.crt:/any/path/your.crt \             # same path as the config.json
         -v $(pwd)/your.key:/any/path/your.key \
         gists/trojan-go
@@ -23,7 +23,7 @@ Automatically built by Github Actions
       ports:
         - "443:443"
       volumes:
-        - ./config.json:/etc/trojan-go/config.json
+        - ./config.json:/etc/trojan-go/config.json          # or config.yml
         - ./your.crt:/any/path/your.crt                     # same path as the config.json
         - ./your.key:/any/path/your.key
       restart: always
