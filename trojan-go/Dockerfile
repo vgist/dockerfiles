@@ -28,9 +28,23 @@ RUN set -xe && \
 
 FROM alpine:3.13
 
+ENV PATH=/usr/bin/trojan-go:$PATH \
+    REMOTE=www.bing.com:80 \
+    LOCAL=0.0.0.0:443 \
+    KEY=/data/server.key \
+    CERT=/data/server.crt \
+    PASSWORD=
+
 COPY --from=builder /root/release /usr/bin/trojan-go
-COPY --from=builder /root/example/server.json /etc/trojan-go/config.json
 
-ENV PATH /usr/bin/trojan-go:$PATH
+VOLUME /data
 
-CMD ["trojan-go", "-config", "/etc/trojan-go/config.json"]
+EXPOSE 443
+
+CMD trojan-go \
+    -server \
+    -remote $REMOTE \
+    -local $LOCAL \
+    -key $KEY \
+    -cert $CERT \
+    -password ${PASSWORD:-$(hostname)}
