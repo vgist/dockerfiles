@@ -1,13 +1,10 @@
 name: transmission
 
 on:
-  push:
-    branches: [ master ]
-    paths:
-      - '.github/workflows/transmission.yml'
-      - '!transmission/**'
-  repository_dispatch:
-    types: transmission-build
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'version'
 
 jobs:
   build:
@@ -18,8 +15,8 @@ jobs:
       - name: Prepare
         id: prepare
         run: |
-          VERSION=${{ github.event.client_payload.version }}
-          [[ ! -n $VERSION ]] && VERSION="3.00"
+          VERSION=${{ github.event.input.version }}
+          VERSION=${VERSION:-3.00}
           IMAGE_NAME=transmission
           TAGS="gists/${IMAGE_NAME}:${VERSION},gists/${IMAGE_NAME}:latest"
           echo ::set-output name=build_args::VERSION=${VERSION}

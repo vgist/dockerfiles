@@ -1,13 +1,10 @@
 name: xray
 
 on:
-  push:
-    branches: [ master ]
-    paths:
-      - '.github/workflows/xray.yml'
-      - '!xray/**'
-  repository_dispatch:
-    types: xray-build
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'version'
 
 jobs:
   build:
@@ -18,8 +15,8 @@ jobs:
       - name: Prepare
         id: prepare
         run: |
-          VERSION=${{ github.event.client_payload.version }}
-          [[ ! -n $VERSION ]] && VERSION=1.4.2
+          VERSION=${{ github.event.input.version }}
+          VERSION=${VERSION:-1.4.2}
           IMAGE_NAME=xray
           TAGS="gists/${IMAGE_NAME}:${VERSION},gists/${IMAGE_NAME}:latest"
           echo ::set-output name=build_args::VERSION=${VERSION}

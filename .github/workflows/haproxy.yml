@@ -1,13 +1,10 @@
 name: haproxy
 
 on:
-  push:
-    branches: [ master ]
-    paths:
-      - '.github/workflows/haproxy.yml'
-      - '!haproxy/**'
-  repository_dispatch:
-    types: haproxy-build
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'version'
 
 jobs:
   build:
@@ -18,8 +15,8 @@ jobs:
       - name: Prepare
         id: prepare
         run: |
-          VERSION=${{ github.event.client_payload.version }}
-          [[ ! -n $VERSION ]] && VERSION=2.2.7
+          VERSION=${{ github.event.input.version }}
+          VERSION=${VERSION:-2.2.14}
           IMAGE_NAME=haproxy
           TAGS="gists/${IMAGE_NAME}:${VERSION},gists/${IMAGE_NAME}:latest"
           echo ::set-output name=build_args::VERSION=${VERSION}

@@ -1,13 +1,10 @@
 name: shadowsocks-libev
 
 on:
-  push:
-    branches: [ master ]
-    paths:
-      - '.github/workflows/shadowsocks-libev.yml'
-      - '!shadowsocks/libev/**'
-  repository_dispatch:
-    types: shadowsocks-libev-build
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'version'
 
 jobs:
   build:
@@ -18,8 +15,8 @@ jobs:
       - name: Prepare
         id: prepare
         run: |
-          VERSION=${{ github.event.client_payload.version }}
-          [[ ! -n $VERSION ]] && VERSION=3.3.5
+          VERSION=${{ github.event.input.version }}
+          VERSION=${VERSION:-3.3.5}
           IMAGE_NAME=shadowsocks-libev
           TAGS="gists/${IMAGE_NAME}:${VERSION},gists/${IMAGE_NAME}:latest"
           echo ::set-output name=build_args::VERSION=${VERSION}

@@ -1,13 +1,10 @@
 name: rutorrent
 
 on:
-  push:
-    branches: [ master ]
-    paths:
-      - '.github/workflows/rutorrent.yml'
-      - '!rutorrent/**'
-  repository_dispatch:
-    types: rutorrent-build
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'version'
 
 jobs:
   build:
@@ -18,8 +15,8 @@ jobs:
       - name: Prepare
         id: prepare
         run: |
-          VERSION=${{ github.event.client_payload.version }}
-          [[ ! -n $VERSION ]] && VERSION=3.10
+          VERSION=${{ github.event.input.version }}
+          VERSION=${VERSION:-3.10}
           IMAGE_NAME=rutorrent
           TAGS="gists/${IMAGE_NAME}:${VERSION},gists/${IMAGE_NAME}:latest"
           echo ::set-output name=build_args::VERSION=${VERSION}

@@ -1,13 +1,10 @@
 name: trojan
 
 on:
-  push:
-    branches: [ master ]
-    paths:
-      - '.github/workflows/trojan.yml'
-      - '!trojan/**'
-  repository_dispatch:
-    types: trojan-build
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'version'
 
 jobs:
   build:
@@ -18,8 +15,8 @@ jobs:
       - name: Prepare
         id: prepare
         run: |
-          VERSION=${{ github.event.client_payload.version }}
-          [[ ! -n $VERSION ]] && VERSION=1.16.0
+          VERSION=${{ github.event.input.version }}
+          VERSION=${VERSION:-1.16.0}
           IMAGE_NAME=trojan
           TAGS="gists/${IMAGE_NAME}:${VERSION},gists/${IMAGE_NAME}:latest"
           echo ::set-output name=build_args::VERSION=${VERSION}

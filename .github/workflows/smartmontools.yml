@@ -1,13 +1,10 @@
 name: smartmontools
 
 on:
-  push:
-    branches: [ master ]
-    paths:
-      - '.github/workflows/smartmontools.yml'
-      - '!smartmontools/**'
-  repository_dispatch:
-    types: smartmontools-build
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'version'
 
 jobs:
   build:
@@ -18,8 +15,8 @@ jobs:
       - name: Prepare
         id: prepare
         run: |
-          VERSION=${{ github.event.client_payload.version }}
-          [[ ! -n $VERSION ]] && VERSION=7.2
+          VERSION=${{ github.event.input.version }}
+          VERSION=${VERSION:-7.2}
           IMAGE_NAME=smartmontools
           TAGS="gists/${IMAGE_NAME}:${VERSION},gists/${IMAGE_NAME}:latest"
           echo ::set-output name=build_args::VERSION=${VERSION}

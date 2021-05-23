@@ -1,13 +1,10 @@
 name: v2ray
 
 on:
-  push:
-    branches: [ master ]
-    paths:
-      - '.github/workflows/v2ray.yml'
-      - '!v2ray/**'
-  repository_dispatch:
-    types: v2ray-build
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'version'
 
 jobs:
   build:
@@ -18,8 +15,8 @@ jobs:
       - name: Prepare
         id: prepare
         run: |
-          VERSION=${{ github.event.client_payload.version }}
-          [[ ! -n $VERSION ]] && VERSION=4.39.1
+          VERSION=${{ github.event.input.version }}
+          VERSION=${VERSION:-4.39.1}
           IMAGE_NAME=v2ray
           TAGS="gists/${IMAGE_NAME}:${VERSION},gists/${IMAGE_NAME}:latest"
           echo ::set-output name=build_args::VERSION=${VERSION}
