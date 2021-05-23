@@ -1,13 +1,10 @@
 name: php
 
 on:
-  push:
-    branches: [ master ]
-    paths:
-      - '.github/workflows/php.yml'
-      - '!php/fpm/**'
-  repository_dispatch:
-    types: php-build
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'version'
 
 jobs:
   build:
@@ -18,8 +15,8 @@ jobs:
       - name: Prepare
         id: prepare
         run: |
-          VERSION=${{ github.event.client_payload.version }}
-          [[ ! -n $VERSION ]] && VERSION=7.4.14
+          VERSION=${{ github.event.input.version }}
+          VERSION=${VERSION:-7.4.19}
           IMAGE_NAME=php
           TAGS="gists/${IMAGE_NAME}:${VERSION},gists/${IMAGE_NAME}:latest"
           echo ::set-output name=build_args::VERSION=${VERSION}

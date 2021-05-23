@@ -1,13 +1,10 @@
 name: speedtest-cli
 
 on:
-  push:
-    branches: [ master ]
-    paths:
-      - '.github/workflows/speedtest-cli.yml'
-      - '!speedtest-cli/**'
-  repository_dispatch:
-    types: speedtest-cli-build
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'version'
 
 jobs:
   build:
@@ -18,8 +15,8 @@ jobs:
       - name: Prepare
         id: prepare
         run: |
-          VERSION=${{ github.event.client_payload.version }}
-          [[ ! -n $VERSION ]] && VERSION=1.0.0
+          VERSION=${{ github.event.input.version }}
+          VERSION=${VERSION:-1.0.0}
           IMAGE_NAME=speedtest-cli
           TAGS="gists/${IMAGE_NAME}:${VERSION},gists/${IMAGE_NAME}:latest"
           echo ::set-output name=build_args::VERSION=${VERSION}

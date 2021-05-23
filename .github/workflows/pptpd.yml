@@ -1,13 +1,10 @@
 name: pptpd
 
 on:
-  push:
-    branches: [ master ]
-    paths:
-      - '.github/workflows/pptpd.yml'
-      - '!pptpd/**'
-  repository_dispatch:
-    types: pptpd-build
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'version'
 
 jobs:
   build:
@@ -18,8 +15,8 @@ jobs:
       - name: Prepare
         id: prepare
         run: |
-          VERSION=${{ github.event.client_payload.version }}
-          [[ ! -n $VERSION ]] && VERSION=1.4.0
+          VERSION=${{ github.event.input.version }}
+          VERSION=${VERSION:-1.4.0}
           IMAGE_NAME=pptpd
           TAGS="gists/${IMAGE_NAME}:${VERSION},gists/${IMAGE_NAME}:latest"
           echo ::set-output name=build_args::VERSION=${VERSION}

@@ -1,13 +1,10 @@
 name: samba-server
 
 on:
-  push:
-    branches: [ master ]
-    paths:
-      - '.github/workflows/samba-server.yml'
-      - '!samba-server/**'
-  repository_dispatch:
-    types: samba-server-build
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'version'
 
 jobs:
   build:
@@ -18,8 +15,8 @@ jobs:
       - name: Prepare
         id: prepare
         run: |
-          VERSION=${{ github.event.client_payload.version }}
-          [[ ! -n $VERSION ]] && VERSION=4.13.3
+          VERSION=${{ github.event.input.version }}
+          VERSION=${VERSION:-4.13.8}
           IMAGE_NAME=samba-server
           TAGS="gists/${IMAGE_NAME}:${VERSION},gists/${IMAGE_NAME}:latest"
           echo ::set-output name=build_args::VERSION=${VERSION}

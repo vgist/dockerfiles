@@ -1,13 +1,10 @@
 name: rsync
 
 on:
-  push:
-    branches: [ master ]
-    paths:
-      - '.github/workflows/rsync.yml'
-      - '!rsync/**'
-  repository_dispatch:
-    types: rsync-build
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'version'
 
 jobs:
   build:
@@ -18,8 +15,8 @@ jobs:
       - name: Prepare
         id: prepare
         run: |
-          VERSION=${{ github.event.client_payload.version }}
-          [[ ! -n $VERSION ]] && VERSION=3.2.3
+          VERSION=${{ github.event.input.version }}
+          VERSION=${VERSION:-3.2.3}
           IMAGE_NAME=rsync
           TAGS="gists/${IMAGE_NAME}:${VERSION},gists/${IMAGE_NAME}:latest"
           echo ::set-output name=build_args::VERSION=${VERSION}

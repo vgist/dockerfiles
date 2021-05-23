@@ -1,13 +1,10 @@
 name: lighttpd
 
 on:
-  push:
-    branches: [ master ]
-    paths:
-      - '.github/workflows/lighttpd.yml'
-      - '!lighttpd/**'
-  repository_dispatch:
-    types: lighttpd-build
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'version'
 
 jobs:
   build:
@@ -18,8 +15,8 @@ jobs:
       - name: Prepare
         id: prepare
         run: |
-          VERSION=${{ github.event.client_payload.version }}
-          [[ ! -n $VERSION ]] && VERSION=1.4.57
+          VERSION=${{ github.event.input.version }}
+          VERSION=${VERSION:-1.4.57}
           IMAGE_NAME=lighttpd
           TAGS="gists/${IMAGE_NAME}:${VERSION},gists/${IMAGE_NAME}:latest"
           echo ::set-output name=build_args::VERSION=${VERSION}

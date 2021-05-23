@@ -1,13 +1,10 @@
 name: dnsmasq
 
 on:
-  push:
-    branches: [ master ]
-    paths:
-      - '.github/workflows/dnsmasq.yml'
-      - '!dnsmasq/**'
-  repository_dispatch:
-    types: dnsmasq-build
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'version'
 
 jobs:
   build:
@@ -18,8 +15,8 @@ jobs:
       - name: Prepare
         id: prepare
         run: |
-          VERSION=${{ github.event.client_payload.version }}
-          [[ ! -n $VERSION ]] && VERSION=2.84
+          VERSION=${{ github.event.input.version }}
+          VERSION=${VERSION:-2.85}
           IMAGE_NAME=dnsmasq
           TAGS="gists/${IMAGE_NAME}:${VERSION},gists/${IMAGE_NAME}:latest"
           echo ::set-output name=build_args::VERSION=${VERSION}
