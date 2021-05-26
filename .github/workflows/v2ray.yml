@@ -16,7 +16,7 @@ jobs:
         id: prepare
         run: |
           VERSION=${{ github.event.input.version }}
-          VERSION=${VERSION:-4.39.1}
+          VERSION=${VERSION:-4.39.2}
           IMAGE_NAME=v2ray
           TAGS="gists/${IMAGE_NAME}:${VERSION},gists/${IMAGE_NAME}:latest"
           echo ::set-output name=build_args::VERSION=${VERSION}
