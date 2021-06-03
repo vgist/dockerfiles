@@ -16,7 +16,7 @@ jobs:
         id: prepare
         run: |
           VERSION=${{ github.event.input.version }}
-          VERSION=${VERSION:-0.10.3}
+          VERSION=${VERSION:-0.10.4}
           IMAGE_NAME=trojan-go
           TAGS="gists/${IMAGE_NAME}:${VERSION},gists/${IMAGE_NAME}:latest"
           echo ::set-output name=build_args::VERSION=${VERSION}
