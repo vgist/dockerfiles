@@ -29,7 +29,7 @@ jobs:
           echo ::set-output name=version::${VERSION}
           echo ::set-output name=build_args::VERSION=${VERSION}
           echo ::set-output name=image-name::${IMAGE_NAME}
-          echo ::set-output name=tags::${TAGS}
+          echo ::set-output name=tags::${TAGS}-${VERSION}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
@@ -67,22 +67,22 @@ jobs:
           export DOCKER_CLI_EXPERIMENTAL=enabled
           docker manifest create \
             gists/libtorrent-rasterbar:${{ needs.build.outputs.version }} \
-            gists/libtorrent-rasterbar:linux-386 \
-            gists/libtorrent-rasterbar:linux-amd64 \
-            gists/libtorrent-rasterbar:linux-arm64 \
-            gists/libtorrent-rasterbar:linux-arm-v7 \
-            gists/libtorrent-rasterbar:linux-arm-v6 \
-            gists/libtorrent-rasterbar:linux-ppc64le \
-            gists/libtorrent-rasterbar:linux-s390x
+            gists/libtorrent-rasterbar:linux-386-${{ needs.build.outputs.version }} \
+            gists/libtorrent-rasterbar:linux-amd64-${{ needs.build.outputs.version }} \
+            gists/libtorrent-rasterbar:linux-arm64-${{ needs.build.outputs.version }} \
+            gists/libtorrent-rasterbar:linux-arm-v7-${{ needs.build.outputs.version }} \
+            gists/libtorrent-rasterbar:linux-arm-v6-${{ needs.build.outputs.version }} \
+            gists/libtorrent-rasterbar:linux-ppc64le-${{ needs.build.outputs.version }} \
+            gists/libtorrent-rasterbar:linux-s390x-${{ needs.build.outputs.version }}
           docker manifest create \
             gists/libtorrent-rasterbar:latest \
-            gists/libtorrent-rasterbar:linux-386 \
-            gists/libtorrent-rasterbar:linux-amd64 \
-            gists/libtorrent-rasterbar:linux-arm64 \
-            gists/libtorrent-rasterbar:linux-arm-v7 \
-            gists/libtorrent-rasterbar:linux-arm-v6 \
-            gists/libtorrent-rasterbar:linux-ppc64le \
-            gists/libtorrent-rasterbar:linux-s390x
+            gists/libtorrent-rasterbar:linux-386-${{ needs.build.outputs.version }} \
+            gists/libtorrent-rasterbar:linux-amd64-${{ needs.build.outputs.version }} \
+            gists/libtorrent-rasterbar:linux-arm64-${{ needs.build.outputs.version }} \
+            gists/libtorrent-rasterbar:linux-arm-v7-${{ needs.build.outputs.version }} \
+            gists/libtorrent-rasterbar:linux-arm-v6-${{ needs.build.outputs.version }} \
+            gists/libtorrent-rasterbar:linux-ppc64le-${{ needs.build.outputs.version }} \
+            gists/libtorrent-rasterbar:linux-s390x-${{ needs.build.outputs.version }}
       - name: Manifest push
         if: success()
         run: |
