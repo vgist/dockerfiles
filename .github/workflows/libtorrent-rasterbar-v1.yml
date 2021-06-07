@@ -23,7 +23,7 @@ jobs:
         run: |
           IMAGE_NAME=libtorrent-rasterbar
           VERSION=${{ github.event.input.version }}
-          VERSION=${VERSION:-1.2.13}
+          VERSION=${VERSION:-1.2.14}
           TAGS=${{ matrix.architecture }}
           TAGS=gists/${IMAGE_NAME}:${TAGS//\//-}
           echo ::set-output name=version::${VERSION}
