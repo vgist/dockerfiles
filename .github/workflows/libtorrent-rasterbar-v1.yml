@@ -3,8 +3,10 @@ name: libtorrent-rasterbar RC_1_2
 on:
   workflow_dispatch:
     inputs:
-      name:
+      version:
         description: 'version'
+        required: true
+        default: '1.2.14'
 
 jobs:
   build:
@@ -22,8 +24,7 @@ jobs:
         id: prepare
         run: |
           IMAGE_NAME=libtorrent-rasterbar
-          VERSION=${{ github.event.input.version }}
-          VERSION=${VERSION:-1.2.14}
+          VERSION=${{ github.event.inputs.version }}
           TAGS=${{ matrix.architecture }}
           TAGS=gists/${IMAGE_NAME}:${TAGS//\//-}
           echo ::set-output name=version::${VERSION}
