@@ -3,8 +3,10 @@ name: pure-ftpd
 on:
   workflow_dispatch:
     inputs:
-      name:
+      version:
         description: 'version'
+        required: true
+        default: '1.0.49'
 
 jobs:
   build:
@@ -15,8 +17,7 @@ jobs:
       - name: Prepare
         id: prepare
         run: |
-          VERSION=${{ github.event.input.version }}
-          VERSION=${VERSION:-1.0.49}
+          VERSION=${{ github.event.inputs.version }}
           IMAGE_NAME=pure-ftpd
           TAGS="gists/${IMAGE_NAME}:${VERSION},gists/${IMAGE_NAME}:latest"
           echo ::set-output name=build_args::VERSION=${VERSION}
