@@ -29,7 +29,7 @@ RUN set -ex && \
     curl -sSL https://github.com/shadowsocks/shadowsocks-libev/releases/latest/download/shadowsocks-libev-$VERSION.tar.gz | \
     tar xz --strip 1 && \
     ./configure --prefix=/usr --disable-documentation && \
-    make -j $((`nproc`+1)) install && \
+    make -j `nproc` install && \
     ls /usr/bin/ss-* | xargs -n1 setcap 'cap_net_bind_service+ep' && \
     runDeps="$( \
         scanelf --needed --nobanner /usr/bin/ss-* \

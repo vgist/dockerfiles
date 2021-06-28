@@ -15,7 +15,7 @@ RUN apk add --no-cache --virtual .build-deps \
     curl -sSL https://github.com/trojan-gfw/trojan/archive/v$VERSION.tar.gz \
     | tar xz --strip 1 && \
     cmake -DDEFAULT_CONFIG=/etc/trojan/config.json . && \
-    make -j $(nproc) && strip -s trojan && \
+    make -j `nproc` && strip -s trojan && \
     setcap 'cap_net_bind_service=+ep' ./trojan && \
     mv trojan /usr/bin/ && \
     mv examples/server.json-example /etc/trojan/config.json && \
