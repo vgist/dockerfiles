@@ -30,7 +30,7 @@ RUN set -ex && \
         -DSTACKTRACE=OFF \
         -DQBT_VER_STATUS="" \
         -DDBUS=OFF -DGUI=OFF && \
-    cmake --build builddir --parallel $((`nproc`+1)) && \
+    cmake --build builddir --parallel `nproc` && \
     cmake --install builddir && \
     # Set capability to bind privileged ports as non-root user for qbittorrent-nox
     setcap 'cap_net_bind_service=+ep' /usr/bin/qbittorrent-nox && \

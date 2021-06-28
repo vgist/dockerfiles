@@ -27,7 +27,7 @@ RUN set -xe && \
     tar xz --strip 1 && \
     make configure && \
     ./configure --prefix=/usr && \
-    make -j$(nproc) && make install && \
+    make -j `nproc` && make install && \
     cd / && \
     runDeps="$( \
         scanelf --needed --nobanner /usr/sbin/dnscrypt-wrapper \

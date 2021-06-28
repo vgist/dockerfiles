@@ -20,7 +20,7 @@ RUN set -ex && \
         -DCMAKE_CXX_STANDARD=17 \
         -DCMAKE_INSTALL_PREFIX:PATH=/usr \
         -DCMAKE_INSTALL_LIBDIR=lib && \
-    cmake --build builddir --parallel $((`nproc`+1)) && \
+    cmake --build builddir --parallel `nproc` && \
     cmake --install builddir && \
     cd / && \
     runDeps="$( \
