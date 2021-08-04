@@ -1,5 +1,3 @@
-![](https://images.microbadger.com/badges/version/gists/pptpd.svg) ![](https://images.microbadger.com/badges/image/gists/pptpd.svg)
-
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/pptpd>
 
 Automatically built by Github Actions

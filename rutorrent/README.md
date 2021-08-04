@@ -1,5 +1,3 @@
-![](https://images.microbadger.com/badges/version/gists/rutorrent.svg) ![](https://images.microbadger.com/badges/image/gists/rutorrent.svg)
-
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/rutorrent>
 
 Automatically built by Github Actions

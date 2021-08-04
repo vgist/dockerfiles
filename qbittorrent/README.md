@@ -1,5 +1,3 @@
-![](https://images.microbadger.com/badges/version/gists/qbittorrent.svg) ![](https://images.microbadger.com/badges/image/gists/qbittorrent.svg)
-
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/qbittorrent>
 
 Automatically built by Github Actions

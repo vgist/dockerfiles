@@ -1,5 +1,3 @@
-![](https://images.microbadger.com/badges/version/gists/docker-compose-bin.svg) ![](https://images.microbadger.com/badges/image/gists/docker-compose-bin.svg)
-
 # docker-compose binary file
 
 Fork from <https://github.com/ubiquiti/docker-compose-aarch64>

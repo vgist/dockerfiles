@@ -1,5 +1,3 @@
-![](https://images.microbadger.com/badges/version/gists/smartmontools.svg) ![](https://images.microbadger.com/badges/image/gists/smartmontools.svg)
-
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/smartmontools>
 
 Automatically built by Github Actions

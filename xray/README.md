@@ -1,5 +1,3 @@
-![](https://images.microbadger.com/badges/version/gists/xray.svg) ![](https://images.microbadger.com/badges/image/gists/xray.svg)
-
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/xray>
 
 Automatically built by Github Actions

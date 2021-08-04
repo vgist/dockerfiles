@@ -1,5 +1,3 @@
-![](https://images.microbadger.com/badges/version/gists/trojan.svg) ![](https://images.microbadger.com/badges/image/gists/trojan.svg)
-
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/trojan>
 
 Automatically built by Github Actions

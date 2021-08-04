@@ -1,5 +1,3 @@
-![](https://images.microbadger.com/badges/version/gists/mariadb.svg) ![](https://images.microbadger.com/badges/image/gists/mariadb.svg)
-
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/mariadb>
 
 Automatically built by Github Actions

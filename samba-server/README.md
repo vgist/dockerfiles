@@ -1,5 +1,3 @@
-![](https://images.microbadger.com/badges/version/gists/samba-server.svg) ![](https://images.microbadger.com/badges/image/gists/samba-server.svg)
-
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/samba-server>
 
 Automatically built by Github Actions

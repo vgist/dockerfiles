@@ -1,5 +1,3 @@
-![](https://images.microbadger.com/badges/version/gists/frp.svg) ![](https://images.microbadger.com/badges/image/gists/frp.svg)
-
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/frp>
 
 Automatically built by Github Actions

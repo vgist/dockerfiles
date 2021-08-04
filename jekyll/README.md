@@ -1,5 +1,3 @@
-![](https://images.microbadger.com/badges/version/gists/jekyll.svg) ![](https://images.microbadger.com/badges/image/gists/jekyll.svg)
-
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/jekyll>
 
 Automatically built by Github Actions

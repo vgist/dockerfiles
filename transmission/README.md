@@ -1,5 +1,3 @@
-![](https://images.microbadger.com/badges/version/gists/transmission.svg) ![](https://images.microbadger.com/badges/image/gists/transmission.svg)
-
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/transmission>
 
 Automatically built by Github Actions

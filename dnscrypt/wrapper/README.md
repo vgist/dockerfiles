@@ -1,5 +1,3 @@
-![](https://images.microbadger.com/badges/version/gists/dnscrypt-wrapper.svg) ![](https://images.microbadger.com/badges/image/gists/dnscrypt-wrapper.svg)
-
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/dnscrypt/wrapper>
 
 Automatically built by Github Actions
