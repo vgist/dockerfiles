@@ -1,5 +1,3 @@
-![](https://images.microbadger.com/badges/version/gists/haproxy.svg) ![](https://images.microbadger.com/badges/image/gists/haproxy.svg)
-
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/haproxy>
 
 Automatically built by Github Actions

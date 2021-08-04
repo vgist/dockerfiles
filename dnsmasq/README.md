@@ -1,5 +1,3 @@
-![](https://images.microbadger.com/badges/version/gists/dnsmasq.svg) ![](https://images.microbadger.com/badges/image/gists/dnsmasq.svg)
-
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/dnsmasq>
 
 Automatically built by Github Actions

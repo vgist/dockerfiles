@@ -1,5 +1,3 @@
-![](https://images.microbadger.com/badges/version/gists/nfs-server.svg) ![](https://images.microbadger.com/badges/image/gists/nfs-server.svg)
-
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/nfs-server>
 
 Automatically built by Github Actions

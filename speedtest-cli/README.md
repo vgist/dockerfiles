@@ -1,5 +1,3 @@
-![](https://images.microbadger.com/badges/version/gists/speedtest-cli.svg) ![](https://images.microbadger.com/badges/image/gists/speedtest-cli.svg)
-
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/speedtest-cli>
 
 Automatically built by Github Actions

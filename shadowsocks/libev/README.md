@@ -1,5 +1,3 @@
-![](https://images.microbadger.com/badges/version/gists/shadowsocks-libev.svg) ![](https://images.microbadger.com/badges/image/gists/shadowsocks-libev.svg)
-
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/shadowsocks/libev/>
 
 Automatically built by Github Actions

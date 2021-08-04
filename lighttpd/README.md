@@ -1,5 +1,3 @@
-![](https://images.microbadger.com/badges/version/gists/lighttpd.svg) ![](https://images.microbadger.com/badges/image/gists/lighttpd.svg)
-
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/lighttpd>
 
 Automatically built by Github Actions

@@ -1,5 +1,3 @@
-![](https://images.microbadger.com/badges/version/gists/rsync.svg) ![](https://images.microbadger.com/badges/image/gists/rsync.svg)
-
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/rsync>
 
 Automatically built by Github Actions

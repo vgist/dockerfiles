@@ -1,5 +1,3 @@
-![](https://images.microbadger.com/badges/version/gists/dnscrypt-proxy.svg) ![](https://images.microbadger.com/badges/image/gists/dnscrypt-proxy.svg)
-
 Dockerfile <https://github.com/vgist/dockerfiles/tree/master/dnscrypt/proxy>
 
 Automatically built by Github Actions
