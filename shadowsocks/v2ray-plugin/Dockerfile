@@ -18,7 +18,7 @@ RUN set -xe && \
         git \
         libcap && \
     mkdir -p /root/plugin && cd /root/plugin && \
-    curl -sSL https://github.com/shadowsocks/v2ray-plugin/archive/v$VERSION.tar.gz | \
+    curl -sSL https://github.com/teddysun/v2ray-plugin/archive/v$VERSION.tar.gz | \
     tar xz --strip 1 && \
     go build -v -ldflags "-X main.VERSION=$VERSION -s -w" -gcflags "" -o /v2ray-plugin && \
     setcap 'cap_net_bind_service=+ep' /v2ray-plugin
