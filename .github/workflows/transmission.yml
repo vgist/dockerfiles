@@ -7,6 +7,10 @@ on:
         description: 'version'
         required: true
         default: '3.00'
+      web_version:
+        description: 'Web Control version'
+        required: true
+        default: '1.6.1-update1'
 
 jobs:
   build:
@@ -18,9 +22,11 @@ jobs:
         id: prepare
         run: |
           VERSION=${{ github.event.inputs.version }}
+          WEB_VERSION=${{ github.event.inputs.web_version }}
           IMAGE_NAME=transmission
           TAGS="gists/${IMAGE_NAME}:${VERSION},gists/${IMAGE_NAME}:latest"
-          echo ::set-output name=build_args::VERSION=${VERSION}
+          echo ::set-output name=build_args1::VERSION=${VERSION}
+          echo ::set-output name=build_args2::WEB_VERSION=${WEB_VERSION}
           echo ::set-output name=image-name::${IMAGE_NAME}
           echo ::set-output name=tags::${TAGS}
       - name: Set up QEMU
@@ -40,7 +46,9 @@ jobs:
           file: ./${{ steps.prepare.outputs.image-name }}/Dockerfile
           platforms: linux/386,linux/amd64,linux/arm64,linux/arm/v6,linux/arm/v7,linux/ppc64le,linux/s390x
           push: ${{ github.event_name != 'pull_request' }}
-          build-args: ${{ steps.prepare.outputs.build_args }}
+          build-args: |
+            ${{ steps.prepare.outputs.build_args1 }}
+            ${{ steps.prepare.outputs.build_args2 }}
           tags: ${{ steps.prepare.outputs.tags }}
       - name: Clear
         if: always()

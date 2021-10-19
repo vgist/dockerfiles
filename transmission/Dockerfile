@@ -1,6 +1,7 @@
 FROM alpine:3.14
 
 ARG VERSION
+ARG WEB_VERSION
 
 ENV UID=1000 \
     GID=1000 \
@@ -14,7 +15,7 @@ RUN set -xe && \
     apk add --no-cache curl libcap su-exec shadow tar transmission-daemon && \
     setcap 'cap_net_bind_service=+ep' /usr/bin/transmission-daemon && \
     cd /tmp && \
-    curl -sSL https://github.com/ronggang/transmission-web-control/archive/master.tar.gz | \
+    curl -sSL https://github.com/ronggang/transmission-web-control/archive/v$WEB_VERSION.tar.gz | \
     tar xz --strip 1 && \
     cp /usr/share/transmission/web/index.html /usr/share/transmission/web/index.original.html && \
     cp -rf /tmp/src/* /usr/share/transmission/web/ && \
