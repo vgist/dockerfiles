@@ -25,6 +25,7 @@ RUN set -xe && \
         php7-bz2 \
         php7-curl \
         php7-ctype \
+        php7-embed \
         php7-dom \
         php7-exif \
         php7-fileinfo \
