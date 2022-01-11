@@ -1,4 +1,4 @@
-FROM --platform=$TARGETPLATFORM gists/libtorrent-rasterbar:1.2.15
+FROM --platform=$TARGETPLATFORM gists/libtorrent-rasterbar:latest
 
 ARG VERSION
 
