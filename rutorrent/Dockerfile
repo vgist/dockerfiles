@@ -28,7 +28,6 @@ RUN set -xe && \
         mediainfo \
         mktorrent \
         sox \
-        unrar \
         unzip \
         zip && \
     apk add --no-cache tar && \
