@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM golang:alpine AS builder
+FROM --platform=$BUILDPLATFORM golang:1.17-alpine AS builder
 
 ARG TARGETPLATFORM
 ARG TARGETOS
@@ -20,7 +20,7 @@ RUN set -xe && \
     mkdir -p /root/plugin && cd /root/plugin && \
     curl -sSL https://github.com/teddysun/v2ray-plugin/archive/v$VERSION.tar.gz | \
     tar xz --strip 1 && \
-    go build -v -ldflags "-X main.VERSION=$VERSION -s -w" -gcflags "" -o /v2ray-plugin && \
+    go build -v -trimpath -ldflags "-X main.VERSION=v$VERSION -s -w -buildid=" -o /v2ray-plugin && \
     setcap 'cap_net_bind_service=+ep' /v2ray-plugin
 
 

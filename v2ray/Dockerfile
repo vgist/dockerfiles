@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM golang:alpine AS builder
+FROM --platform=$BUILDPLATFORM golang:1.17-alpine AS builder
 
 ARG TARGETPLATFORM
 ARG TARGETOS
@@ -18,11 +18,11 @@ RUN set -xe && \
     mkdir -p /root/v2ray-src && \
     cd /root/v2ray-src && \
     curl -sSL https://github.com/v2fly/v2ray-core/archive/v$VERSION.tar.gz | tar xz --strip 1 && \
-    LDFLAGS="-s -w -X v2ray.com/core.codename=user -X v2ray.com/core.build=$(date -u +'%Y-%m-%dT%H:%M:%SZ') -X v2ray.com/core.version=v$VERSION" && \
+    LDFLAGS="-s -w -buildid= -X github.com/v2fly/v2ray-core/v5.codename=user -X github.com/v2fly/v2ray-core/v5.build=$(date '+%Y%m%d-%H%M%S') -X github.com/v2fly/v2ray-core/v5.version=v$VERSION" && \
     go build -ldflags "$LDFLAGS" -v -o /v2ray ./main && \
-    go build -ldflags "$LDFLAGS" -v -o /v2ctl -tags confonly ./infra/control/main && \
     ls /v2* | xargs -n1 setcap 'cap_net_bind_service=+ep' && \
     curl -sSL https://github.com/v2ray/geoip/raw/release/geoip.dat -o /geoip.dat && \
+    curl -sSL https://github.com/v2fly/geoip/raw/release/geoip-only-cn-private.dat -o /geoip-only-cn-private.dat && \
     curl -sSL https://github.com/v2ray/domain-list-community/raw/release/dlc.dat -o /geosite.dat
 
 FROM alpine:3.15

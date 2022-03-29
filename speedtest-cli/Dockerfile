@@ -10,7 +10,7 @@ RUN apk add --no-cache --virtual .deps tar curl && \
         *)      _arch="$ARCH"   ;; \
     esac && \
     cd /tmp && \
-    curl -sSL https://bintray.com/ookla/download/download_file?file_path=ookla-speedtest-${VERSION}-${_arch}-linux.tgz | tar xz && \
+    curl -sSL https://install.speedtest.net/app/cli/ookla-speedtest-${VERSION}-linux-${_arch}.tgz | tar xz && \
     mv /tmp/speedtest /usr/local/bin/ && \
     rm -rf /tmp/speedtest.* && \
     apk del .deps
