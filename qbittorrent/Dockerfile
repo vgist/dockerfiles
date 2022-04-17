@@ -42,6 +42,7 @@ RUN set -ex && \
     )" && \
     apk add --no-cache --virtual .run-deps $runDeps && \
     apk del .build-deps && \
+    apk add --no-cache python3 py3-pip && \
     rm -rf /tmp/*
 
 COPY rootfs /
