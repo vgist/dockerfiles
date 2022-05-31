@@ -1,0 +1,5 @@
+#!/bin/sh
+
+exec 2>&1
+export TERM=xterm
+exec su - torrent -c "/usr/bin/rtorrent"

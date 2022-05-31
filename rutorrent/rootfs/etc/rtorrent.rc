@@ -32,6 +32,8 @@ network.send_buffer.size.set = 12M
 pieces.preload.type.set = 2
 network.xmlrpc.size_limit.set = 2M
 
+system.daemon.set=true
+
 schedule2 = session_save, 1200, 43200, ((session.save))
 schedule2 = scgi_permission,0,0,"execute.nothrow=chmod,\"g+w,o=\",/data/scgi.socket"
 schedule2 = watch_directory,0,5,"load.start=/data/.watch/*.torrent,\"d.custom.set=incomplete,1\""

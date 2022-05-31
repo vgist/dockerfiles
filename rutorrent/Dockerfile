@@ -21,7 +21,7 @@ RUN set -xe && \
         php8-session \
         rtorrent \
         xmlrpc-c \
-        supervisor && \
+        runit && \
     apk add --no-cache \
         --virtual .plug-deps \
         curl \
@@ -45,4 +45,6 @@ VOLUME /data
 
 EXPOSE 8080 55000
 
-CMD ["/usr/bin/entrypoint.sh"]
+ENTRYPOINT ["/usr/bin/entrypoint.sh"]
+
+CMD ["/sbin/runsvdir", "-P", "/etc/service"]

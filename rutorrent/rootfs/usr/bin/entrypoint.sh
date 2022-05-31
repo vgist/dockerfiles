@@ -20,4 +20,4 @@ chown -R torrent:torrent /var/www
 chown -R torrent:torrent /var/lib/nginx
 chown -R torrent:torrent /var/tmp/nginx
 
-/usr/bin/supervisord -c /etc/supervisord.conf
+exec "$@"
