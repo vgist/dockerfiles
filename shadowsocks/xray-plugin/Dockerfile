@@ -24,7 +24,7 @@ RUN set -xe && \
     setcap 'cap_net_bind_service=+ep' /xray-plugin
 
 
-FROM alpine:3.15
+FROM alpine:3.16
 
 COPY --from=builder /xray-plugin /usr/bin/
 

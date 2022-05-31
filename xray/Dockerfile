@@ -24,7 +24,7 @@ RUN set -xe && \
     curl -sSL https://github.com/v2ray/geoip/raw/release/geoip.dat -o /geoip.dat && \
     curl -sSL https://github.com/v2ray/domain-list-community/raw/release/dlc.dat -o /geosite.dat
 
-FROM alpine:3.15
+FROM alpine:3.16
 
 RUN apk add --no-cache ca-certificates && \
     mkdir -p /var/log/xray
