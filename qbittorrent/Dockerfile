@@ -8,17 +8,22 @@ ENV PEER_PORT=6881 \
     GID=1000
 
 RUN set -ex && \
-    apk add --no-cache curl su-exec && \
+    apk add --no-cache su-exec && \
     apk add --no-cache --virtual .build-deps \
         boost-dev \
+        curl \
         cmake \
         g++ \
+        icu-dev \
         libcap \
+        libexecinfo-dev \
         openssl-dev \
         make \
-        qt5-qtbase \
+        qt5-qtbase-dev \
+        qt5-qtsvg-dev \
         qt5-qttools-dev \
-        tar && \
+        tar \
+        zlib-dev && \
     mkdir -p /tmp/qbittorrent && \
     cd /tmp/qbittorrent && \
     curl -sSL https://github.com/qbittorrent/qBittorrent/archive/release-$VERSION.tar.gz | tar xz --strip 1 && \
