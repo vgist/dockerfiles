@@ -8,10 +8,9 @@ ENV PEER_PORT=6881 \
     GID=1000
 
 RUN set -ex && \
-    apk add --no-cache su-exec && \
+    apk add --no-cache curl su-exec && \
     apk add --no-cache --virtual .build-deps \
         boost-dev \
-        curl \
         cmake \
         g++ \
         icu-dev \
