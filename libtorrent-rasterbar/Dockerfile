@@ -1,4 +1,4 @@
-FROM alpine:3.16
+FROM alpine:3.17
 
 ARG VERSION
 
@@ -15,7 +15,7 @@ RUN set -ex && \
     mkdir -p /tmp/libtorrent-rasterbar && \
     cd /tmp/libtorrent-rasterbar/ && \
     curl -sSL https://github.com/arvidn/libtorrent/releases/download/v$VERSION/libtorrent-rasterbar-$VERSION.tar.gz | tar xz --strip 1 && \
-    cmake -B builddir \
+    cmake -Wno-dev -B builddir \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_CXX_STANDARD=17 \
         -DCMAKE_INSTALL_PREFIX:PATH=/usr \

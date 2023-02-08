@@ -15,7 +15,6 @@ RUN set -ex && \
         g++ \
         icu-dev \
         libcap \
-        libexecinfo-dev \
         openssl-dev \
         make \
         qt5-qtbase-dev \
@@ -26,7 +25,7 @@ RUN set -ex && \
     mkdir -p /tmp/qbittorrent && \
     cd /tmp/qbittorrent && \
     curl -sSL https://github.com/qbittorrent/qBittorrent/archive/release-$VERSION.tar.gz | tar xz --strip 1 && \
-    cmake -B builddir \
+    cmake -Wno-dev -B builddir \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_CXX_STANDARD=17 \
         -DCMAKE_INSTALL_PREFIX:PATH=/usr \

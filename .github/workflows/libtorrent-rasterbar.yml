@@ -6,7 +6,7 @@ on:
       version:
         description: 'version'
         required: true
-        default: '2.0.6'
+        default: '2.0.8'
 
 jobs:
   build:
@@ -19,7 +19,7 @@ jobs:
       version: ${{ steps.prepare.outputs.version }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Prepare
         id: prepare
         run: |
@@ -27,22 +27,22 @@ jobs:
           VERSION=${{ github.event.inputs.version }}
           TAGS=${{ matrix.architecture }}
           TAGS=gists/${IMAGE_NAME}:${TAGS//\//-}
-          echo ::set-output name=version::${VERSION}
-          echo ::set-output name=build_args::VERSION=${VERSION}
-          echo ::set-output name=image-name::${IMAGE_NAME}
-          echo ::set-output name=tags::${TAGS}-${VERSION}
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          echo "build_args=VERSION=${VERSION}" >> $GITHUB_OUTPUT
+          echo "image-name=${IMAGE_NAME}" >> $GITHUB_OUTPUT
+          echo "tags=${TAGS}-${VERSION}" >> $GITHUB_OUTPUT
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
         if: github.event_name != 'pull_request'
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Build
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           context: ./${{ steps.prepare.outputs.image-name }}
           file: ./${{ steps.prepare.outputs.image-name }}/Dockerfile
@@ -50,46 +50,24 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           build-args: ${{ steps.prepare.outputs.build_args }}
           tags: ${{ steps.prepare.outputs.tags }}
+          provenance: false
 
   manifest:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - uses: actions/checkout@v2
-      - name: Login to Docker Hub Registry
-        run: |
-          DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}
-          DOCKERHUB_PASSWORD=${{ secrets.DOCKERHUB_PASSWORD }}
-          echo "${DOCKERHUB_PASSWORD}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
-      - name: Manifest create
-        if: success()
-        run: |
-          # experimental features
-          export DOCKER_CLI_EXPERIMENTAL=enabled
-          docker manifest create \
-            gists/libtorrent-rasterbar:${{ needs.build.outputs.version }} \
-            gists/libtorrent-rasterbar:linux-386-${{ needs.build.outputs.version }} \
-            gists/libtorrent-rasterbar:linux-amd64-${{ needs.build.outputs.version }} \
-            gists/libtorrent-rasterbar:linux-arm64-${{ needs.build.outputs.version }} \
-            gists/libtorrent-rasterbar:linux-arm-v7-${{ needs.build.outputs.version }} \
-            gists/libtorrent-rasterbar:linux-arm-v6-${{ needs.build.outputs.version }} \
-            gists/libtorrent-rasterbar:linux-ppc64le-${{ needs.build.outputs.version }} \
-            gists/libtorrent-rasterbar:linux-s390x-${{ needs.build.outputs.version }}
-          docker manifest create \
-            gists/libtorrent-rasterbar:latest \
-            gists/libtorrent-rasterbar:linux-386-${{ needs.build.outputs.version }} \
-            gists/libtorrent-rasterbar:linux-amd64-${{ needs.build.outputs.version }} \
-            gists/libtorrent-rasterbar:linux-arm64-${{ needs.build.outputs.version }} \
-            gists/libtorrent-rasterbar:linux-arm-v7-${{ needs.build.outputs.version }} \
-            gists/libtorrent-rasterbar:linux-arm-v6-${{ needs.build.outputs.version }} \
-            gists/libtorrent-rasterbar:linux-ppc64le-${{ needs.build.outputs.version }} \
-            gists/libtorrent-rasterbar:linux-s390x-${{ needs.build.outputs.version }}
-      - name: Manifest push
-        if: success()
-        run: |
-          export DOCKER_CLI_EXPERIMENTAL=enabled
-          docker manifest push gists/libtorrent-rasterbar:${{ needs.build.outputs.version }}
-          docker manifest push gists/libtorrent-rasterbar:latest
+      - name: Login to DockerHub
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Manifest create and push
+        uses: Noelware/docker-manifest-action@master
+        with:
+          inputs: gists/libtorrent-rasterbar:${{ needs.build.outputs.version }},gists/libtorrent-rasterbar:latest
+          images: gists/libtorrent-rasterbar:linux-386-${{ needs.build.outputs.version }},gists/libtorrent-rasterbar:linux-amd64-${{ needs.build.outputs.version }},gists/libtorrent-rasterbar:linux-arm64-${{ needs.build.outputs.version }},gists/libtorrent-rasterbar:linux-arm-v7-${{ needs.build.outputs.version }},gists/libtorrent-rasterbar:linux-arm-v6-${{ needs.build.outputs.version }},gists/libtorrent-rasterbar:linux-ppc64le-${{ needs.build.outputs.version }},gists/libtorrent-rasterbar:linux-s390x-${{ needs.build.outputs.version }}
+          push: true
       - name: Clear
         if: always()
         run: |
