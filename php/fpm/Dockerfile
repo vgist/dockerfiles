@@ -1,4 +1,4 @@
-FROM alpine:3.16
+FROM alpine:3.17
 
 ARG VERSION
 
@@ -21,42 +21,42 @@ ENV MEMORY_LIMIT=256M \
 RUN set -xe && \
     apk add --no-cache \
         composer \
-        php8-bcmath \
-        php8-bz2 \
-        php8-curl \
-        php8-ctype \
-        php8-embed \
-        php8-dom \
-        php8-exif \
-        php8-fileinfo \
-        php8-gd \
-        php8-gettext \
-        php8-gmp \
-        php8-iconv \
-        php8-json \
-        php8-mbstring \
-        php8-mysqli \
-        php8-mysqlnd \
-        php8-odbc \
-        php8-opcache \
-        php8-openssl \
-        php8-pecl-imagick \
-        php8-pdo \
-        php8-pdo_dblib \
-        php8-pdo_mysql \
-        php8-pdo_odbc \
-        php8-pdo_pgsql \
-        php8-pdo_sqlite \
-        php8-session \
-        php8-simplexml \
-        php8-soap \
-        php8-sodium \
-        php8-sqlite3 \
-        php8-tokenizer \
-        php8-xmlreader \
-        php8-zip \
-        php8-fpm \
-        php8
+        php81-bcmath \
+        php81-bz2 \
+        php81-curl \
+        php81-ctype \
+        php81-embed \
+        php81-dom \
+        php81-exif \
+        php81-fileinfo \
+        php81-gd \
+        php81-gettext \
+        php81-gmp \
+        php81-iconv \
+        php81-json \
+        php81-mbstring \
+        php81-mysqli \
+        php81-mysqlnd \
+        php81-odbc \
+        php81-opcache \
+        php81-openssl \
+        php81-pecl-imagick \
+        php81-pdo \
+        php81-pdo_dblib \
+        php81-pdo_mysql \
+        php81-pdo_odbc \
+        php81-pdo_pgsql \
+        php81-pdo_sqlite \
+        php81-session \
+        php81-simplexml \
+        php81-soap \
+        php81-sodium \
+        php81-sqlite3 \
+        php81-tokenizer \
+        php81-xmlreader \
+        php81-zip \
+        php81-fpm \
+        php81
 
 COPY entrypoint.sh /usr/bin/entrypoint.sh
 
@@ -66,4 +66,4 @@ VOLUME ["/var/www"]
 
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 
-CMD ["/usr/sbin/php-fpm8"]
+CMD ["/usr/sbin/php-fpm81"]
