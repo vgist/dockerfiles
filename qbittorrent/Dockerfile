@@ -24,7 +24,6 @@ RUN set -ex && \
     mkdir -p /tmp/qbittorrent && \
     cd /tmp/qbittorrent && \
     curl -sSL https://github.com/qbittorrent/qBittorrent/archive/release-$VERSION.tar.gz | tar xz --strip 1 && \
-    curl -sSL https://github.com/qbittorrent/qBittorrent/pull/17994.patch | patch -p1 && \
     cmake -Wno-dev -B builddir \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_CXX_STANDARD=17 \
