@@ -1,4 +1,4 @@
-FROM alpine:3.16
+FROM alpine:3.17
 
 ARG VERSION
 
@@ -15,10 +15,10 @@ RUN set -xe && \
         ca-certificates \
         libtorrent \
         nginx \
-        php8 \
-        php8-fpm \
-        php8-json \
-        php8-session \
+        php81 \
+        php81-fpm \
+        php81-json \
+        php81-session \
         rtorrent \
         xmlrpc-c \
         runit && \
@@ -33,8 +33,8 @@ RUN set -xe && \
         zip && \
     apk add --no-cache tar && \
     mkdir /tmp/rutorrent && cd /tmp/rutorrent && \
-    curl -sSL https://github.com/Novik/ruTorrent/archive/v${VERSION}.tar.gz | tar xz --strip 1 && \
-    sed -i "s|'USE_UNRAR', true, true|'USE_UNRAR', false, false|g" /tmp/rutorrent/plugins/unpack/conf.php && \
+    curl -sSL https://github.com/Novik/ruTorrent/archive/${VERSION}.tar.gz | tar xz --strip 1 && \
+    sed -i "s|'USE_UNRAR', true|'USE_UNRAR', false|g" /tmp/rutorrent/plugins/unpack/conf.php && \
     cd / && mv /tmp/rutorrent /var/www/rutorrent && \
     apk del tar && \
     rm -rf /var/www/rutorrent/.git*
