@@ -33,7 +33,7 @@ RUN set -xe && \
         zip && \
     apk add --no-cache tar && \
     mkdir /tmp/rutorrent && cd /tmp/rutorrent && \
-    curl -sSL https://github.com/Novik/ruTorrent/archive/${VERSION}.tar.gz | tar xz --strip 1 && \
+    curl -sSL https://github.com/Novik/ruTorrent/archive/v${VERSION}.tar.gz | tar xz --strip 1 && \
     sed -i "s|'USE_UNRAR', true|'USE_UNRAR', false|g" /tmp/rutorrent/plugins/unpack/conf.php && \
     cd / && mv /tmp/rutorrent /var/www/rutorrent && \
     apk del tar && \

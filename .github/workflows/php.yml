@@ -6,7 +6,7 @@ on:
       version:
         description: 'version'
         required: true
-        default: '8.1.15'
+        default: '8.1.18'
 
 jobs:
   build:

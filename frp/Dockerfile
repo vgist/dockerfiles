@@ -18,7 +18,7 @@ RUN apk add --no-cache curl build-base git libcap && \
     ls /frp* | xargs -n1 setcap 'cap_net_bind_service+ep' && \
     cp ./conf/frp* /etc/
 
-FROM alpine:3.16
+FROM alpine:3.17
 
 COPY --from=builder /frp* /usr/bin/
 COPY --from=builder /etc/frp* /etc/

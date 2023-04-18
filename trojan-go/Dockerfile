@@ -26,7 +26,7 @@ RUN set -xe && \
     curl -sSL https://github.com/v2fly/domain-list-community/raw/release/dlc.dat -o release/geosite.dat
 
 
-FROM alpine:3.16
+FROM alpine:3.17
 
 ENV PATH=/usr/bin/trojan-go:$PATH \
     REMOTE=www.bing.com:80 \

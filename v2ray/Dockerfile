@@ -25,7 +25,7 @@ RUN set -xe && \
     curl -sSL https://github.com/v2fly/geoip/raw/release/geoip-only-cn-private.dat -o /geoip-only-cn-private.dat && \
     curl -sSL https://github.com/v2ray/domain-list-community/raw/release/dlc.dat -o /geosite.dat
 
-FROM alpine:3.16
+FROM alpine:3.17
 
 RUN apk add --no-cache ca-certificates && \
     mkdir -p /var/log/v2ray
