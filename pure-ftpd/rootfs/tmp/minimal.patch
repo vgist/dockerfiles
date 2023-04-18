@@ -1,8 +1,8 @@
 diff --git a/src/ftpd.c b/src/ftpd.c
-index 53f4de4..003734d 100644
+index 60b95b6..6aee9bc 100644
 --- a/src/ftpd.c
 +++ b/src/ftpd.c
-@@ -1069,8 +1069,6 @@ void dobanner(const int type)
+@@ -1080,8 +1080,6 @@ void dobanner(const int type)
  
  #endif
  
@@ -11,7 +11,7 @@ index 53f4de4..003734d 100644
  int modernformat(const char *file, char *target, size_t target_size,
                   const char * const prefix)
  {
-@@ -1217,8 +1215,6 @@ void doallo(const off_t size)
+@@ -1228,8 +1226,6 @@ void doallo(const off_t size)
      }
  }
  
@@ -20,4 +20,3 @@ index 53f4de4..003734d 100644
  void dositetime(void)
  {
      char tmp[64];
-
