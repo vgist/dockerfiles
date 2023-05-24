@@ -6,7 +6,7 @@ on:
       version:
         description: 'version'
         required: true
-        default: '3.00'
+        default: '4.0.3'
       web_version:
         description: 'Web Control version'
         required: true

@@ -1,4 +1,4 @@
-FROM alpine:3.17
+FROM alpine:3.18
 
 ARG VERSION
 ARG WEB_VERSION
@@ -17,8 +17,8 @@ RUN set -xe && \
     cd /tmp && \
     curl -sSL https://github.com/ronggang/transmission-web-control/archive/v$WEB_VERSION.tar.gz | \
     tar xz --strip 1 && \
-    cp /usr/share/transmission/web/index.html /usr/share/transmission/web/index.original.html && \
-    cp -rf /tmp/src/* /usr/share/transmission/web/ && \
+    cp /usr/share/transmission/public_html/index.html /usr/share/transmission/public_html/index.original.html && \
+    cp -rf /tmp/src/* /usr/share/transmission/public_html/ && \
     apk del curl libcap tar && \
     rm -rf /tmp/*
 
