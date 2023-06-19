@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM golang:1.17-alpine AS builder
+FROM --platform=$BUILDPLATFORM golang:alpine AS builder
 
 ARG TARGETPLATFORM
 ARG TARGETOS
@@ -24,7 +24,7 @@ RUN set -xe && \
     setcap 'cap_net_bind_service=+ep' /v2ray-plugin
 
 
-FROM alpine:3.17
+FROM alpine:3.18
 
 COPY --from=builder /v2ray-plugin /usr/bin/
 
