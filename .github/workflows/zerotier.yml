@@ -1,4 +1,4 @@
-name: ZeroTier One
+name: ZeroTier
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
       version:
         description: 'version'
         required: true
-        default: '1.10.2'
+        default: '1.12.1'
 
 jobs:
   build:
@@ -18,7 +18,7 @@ jobs:
         id: prepare
         run: |
           VERSION=${{ github.event.inputs.version }}
-          IMAGE_NAME=zerotier-one
+          IMAGE_NAME=zerotier
           TAGS="gists/${IMAGE_NAME}:${VERSION},gists/${IMAGE_NAME}:latest"
           echo "build_args=VERSION=${VERSION}" >> $GITHUB_OUTPUT
           echo "image-name=${IMAGE_NAME}" >> $GITHUB_OUTPUT
@@ -38,7 +38,7 @@ jobs:
         with:
           context: ./${{ steps.prepare.outputs.image-name }}
           file: ./${{ steps.prepare.outputs.image-name }}/Dockerfile
-          platforms: linux/386,linux/amd64,linux/arm64,linux/arm/v6,linux/arm/v7,linux/ppc64le
+          platforms: linux/386,linux/amd64,linux/arm64,linux/arm/v6,linux/arm/v7,linux/ppc64le,linux/s390x
           push: ${{ github.event_name != 'pull_request' }}
           build-args: ${{ steps.prepare.outputs.build_args }}
           tags: ${{ steps.prepare.outputs.tags }}
