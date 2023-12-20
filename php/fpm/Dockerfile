@@ -32,7 +32,6 @@ RUN set -xe && \
         php82-gettext \
         php82-gmp \
         php82-iconv \
-        php82-json \
         php82-mbstring \
         php82-mysqli \
         php82-mysqlnd \
