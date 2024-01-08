@@ -24,7 +24,7 @@ RUN set -xe && \
     setcap 'cap_net_bind_service=+ep' /v2ray-plugin
 
 
-FROM alpine:3.18
+FROM alpine:3.19
 
 COPY --from=builder /v2ray-plugin /usr/bin/
 

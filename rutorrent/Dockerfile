@@ -1,4 +1,4 @@
-FROM alpine:3.18
+FROM alpine:3.19
 
 ARG VERSION
 
@@ -15,10 +15,10 @@ RUN set -xe && \
         ca-certificates \
         libtorrent \
         nginx \
-        php81 \
-        php81-fpm \
-        php81-json \
-        php81-session \
+        php82 \
+        php82-fpm \
+        php82-json \
+        php82-session \
         rtorrent \
         xmlrpc-c \
         runit && \

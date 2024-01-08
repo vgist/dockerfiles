@@ -1,4 +1,4 @@
 #!/bin/sh
 
 exec 2>&1
-exec /usr/sbin/php-fpm81 --nodaemonize
+exec /usr/sbin/php-fpm82 --nodaemonize
