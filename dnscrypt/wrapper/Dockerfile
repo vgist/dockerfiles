@@ -20,7 +20,6 @@ RUN set -xe && \
         build-base \
         curl \
         libevent-dev \
-        libexecinfo-dev \
         libsodium-dev && \
     mkdir /tmp/build && cd /tmp/build && \
     curl -sSL https://github.com/Cofyc/dnscrypt-wrapper/archive/v$VERSION.tar.gz | \
