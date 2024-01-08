@@ -20,41 +20,41 @@ ENV MEMORY_LIMIT=256M \
 # Let's roll
 RUN set -xe && \
     apk add --no-cache \
-        php82-bcmath \
-        php82-bz2 \
-        php82-curl \
-        php82-ctype \
-        php82-embed \
-        php82-dom \
-        php82-exif \
-        php82-fileinfo \
-        php82-gd \
-        php82-gettext \
-        php82-gmp \
-        php82-iconv \
-        php82-mbstring \
-        php82-mysqli \
-        php82-mysqlnd \
-        php82-odbc \
-        php82-opcache \
-        php82-openssl \
-        php82-pecl-imagick \
-        php82-pdo \
-        php82-pdo_dblib \
-        php82-pdo_mysql \
-        php82-pdo_odbc \
-        php82-pdo_pgsql \
-        php82-pdo_sqlite \
-        php82-session \
-        php82-simplexml \
-        php82-soap \
-        php82-sodium \
-        php82-sqlite3 \
-        php82-tokenizer \
-        php82-xmlreader \
-        php82-zip \
-        php82-fpm \
-        php82
+        php83-bcmath \
+        php83-bz2 \
+        php83-curl \
+        php83-ctype \
+        php83-embed \
+        php83-dom \
+        php83-exif \
+        php83-fileinfo \
+        php83-gd \
+        php83-gettext \
+        php83-gmp \
+        php83-iconv \
+        php83-mbstring \
+        php83-mysqli \
+        php83-mysqlnd \
+        php83-odbc \
+        php83-opcache \
+        php83-openssl \
+        php83-pecl-imagick \
+        php83-pdo \
+        php83-pdo_dblib \
+        php83-pdo_mysql \
+        php83-pdo_odbc \
+        php83-pdo_pgsql \
+        php83-pdo_sqlite \
+        php83-session \
+        php83-simplexml \
+        php83-soap \
+        php83-sodium \
+        php83-sqlite3 \
+        php83-tokenizer \
+        php83-xmlreader \
+        php83-zip \
+        php83-fpm \
+        php83
 
 COPY entrypoint.sh /usr/bin/entrypoint.sh
 
@@ -64,4 +64,4 @@ VOLUME ["/var/www"]
 
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 
-CMD ["/usr/sbin/php-fpm82"]
+CMD ["/usr/sbin/php-fpm83"]
