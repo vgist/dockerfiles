@@ -14,7 +14,7 @@ Automatically built by Github Actions
 ##### username & password
 
 - username: admin
-- password: adminadmin
+- password: randomly generated every start, use `docker logs qbittorrent` to see temporary password
 
 #### Volume
 
