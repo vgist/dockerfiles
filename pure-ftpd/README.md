@@ -45,7 +45,7 @@ Automatically built by Github Actions
 
 ##### ftpuser permision
 
-    docker exec -it pure-ftpd chown ftpuser:ftpuser -R /home/ftpuser
+    docker exec -it pure-ftpd chown ftpuser:ftpgroup -R /home/ftpuser
 
 ##### ftpuser is OS user, test_user is the FTP virtual user
 
