@@ -1,4 +1,4 @@
-FROM alpine:3 as stage
+FROM alpine:3 AS builder
 
 ARG VERSION
 
@@ -20,7 +20,7 @@ FROM alpine:3
 ARG VERSION
 ENV PEER_PORT=9993
 
-COPY --from=stage /tmp/zerotier-one /usr/sbin
+COPY --from=builder /tmp/zerotier-one /usr/sbin
 
 RUN set -ex && \
     ln -sf /usr/sbin/zerotier-one /usr/sbin/zerotier-idtool && \
