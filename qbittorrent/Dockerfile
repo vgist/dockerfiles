@@ -13,7 +13,7 @@ RUN set -ex && \
         boost-dev \
         build-base \
         cmake \
-        ninjia \
+        ninja \
         icu-dev \
         libcap \
         openssl-dev \
