@@ -6,7 +6,7 @@ on:
       version:
         description: 'version'
         required: true
-        default: '0.53.2'
+        default: '0.61.0'
 
 jobs:
   build:
