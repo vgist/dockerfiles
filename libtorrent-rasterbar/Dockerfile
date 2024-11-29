@@ -9,15 +9,16 @@ RUN set -ex && \
         cmake \
         curl \
         g++ \
+        ninja \
         openssl-dev \
         make \
         tar && \
     mkdir -p /tmp/libtorrent-rasterbar && \
     cd /tmp/libtorrent-rasterbar/ && \
     curl -sSL https://github.com/arvidn/libtorrent/releases/download/v$VERSION/libtorrent-rasterbar-$VERSION.tar.gz | tar xz --strip 1 && \
-    cmake -Wno-dev -B builddir \
+    cmake -Wno-dev -B builddir -G Ninja \
         -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_CXX_STANDARD=17 \
+        -DCMAKE_CXX_STANDARD=20 \
         -DCMAKE_INSTALL_PREFIX:PATH=/usr \
         -DCMAKE_INSTALL_LIBDIR=lib && \
     cmake --build builddir --parallel `nproc` && \

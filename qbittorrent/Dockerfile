@@ -13,23 +13,23 @@ RUN set -ex && \
         boost-dev \
         build-base \
         cmake \
+        ninjia \
         icu-dev \
         libcap \
         openssl-dev \
-        qt5-qtbase-dev \
-        qt5-qtsvg-dev \
-        qt5-qttools-dev \
+        qt6-qtbase-dev \
+        qt6-qtsvg-dev \
+        qt6-qttools-dev \
         tar \
         zlib-dev && \
     mkdir -p /tmp/qbittorrent && \
     cd /tmp/qbittorrent && \
     curl -sSL https://github.com/qbittorrent/qBittorrent/archive/release-$VERSION.tar.gz | tar xz --strip 1 && \
-    cmake -Wno-dev -B builddir \
+    cmake -Wno-dev -B builddir -G Ninja \
         -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_CXX_STANDARD=17 \
+        -DCMAKE_CXX_STANDARD=20 \
         -DCMAKE_INSTALL_PREFIX:PATH=/usr \
         -DSTACKTRACE=OFF \
-        -DQBT_VER_STATUS="" \
         -DDBUS=OFF -DGUI=OFF && \
     cmake --build builddir --parallel `nproc` && \
     cmake --install builddir && \
