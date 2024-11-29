@@ -1,4 +1,4 @@
-FROM alpine:3.19 as stage
+FROM alpine:3 as stage
 
 ARG VERSION
 
@@ -15,7 +15,7 @@ RUN set -ex && \
     curl -sSL https://github.com/zerotier/ZeroTierOne/archive/refs/tags/$VERSION.tar.gz | tar xz --strip 1 && \
     make -j `nproc` && make selftest
 
-FROM alpine:3.19
+FROM alpine:3
 
 ARG VERSION
 ENV PEER_PORT=9993
