@@ -6,8 +6,7 @@ ENV SERVER_ADDR=0.0.0.0 \
     SERVER_PORT=8388 \
     METHOD=aes-128-gcm \
     TIMEOUT=300 \
-    DNS_ADDR=8.8.8.8 \
-    PASSWORD=
+    DNS_ADDR=8.8.8.8
 
 RUN set -ex && \
     apk add --no-cache \
@@ -45,6 +44,8 @@ RUN set -ex && \
     cd / && rm -rf /tmp/*
 
 EXPOSE $SERVER_PORT
+
+SHELL ["/bin/sh", "-c"]
 
 CMD ss-server \
     -s $SERVER_ADDR \
