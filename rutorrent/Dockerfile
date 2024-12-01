@@ -16,6 +16,7 @@ RUN set -xe && \
         libtorrent \
         nginx \
         php83 \
+        php83-dom \
         php83-fpm \
         php83-json \
         php83-session \
