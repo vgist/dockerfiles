@@ -15,10 +15,10 @@ RUN set -xe && \
         ca-certificates \
         libtorrent \
         nginx \
-        php82 \
-        php82-fpm \
-        php82-json \
-        php82-session \
+        php83 \
+        php83-fpm \
+        php83-json \
+        php83-session \
         rtorrent \
         xmlrpc-c \
         runit && \
