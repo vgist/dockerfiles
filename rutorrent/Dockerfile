@@ -21,6 +21,7 @@ RUN set -xe && \
         php83-json \
         php83-session \
         rtorrent \
+        shadow \
         xmlrpc-c \
         runit && \
     apk add --no-cache \

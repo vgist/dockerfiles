@@ -6,7 +6,9 @@ set -e
 
 [[ "$DEBUG" == "true" ]] && set -x
 
-addgroup -g ${GID} torrent && adduser -h /data -s /bin/sh -G torrent -D -u ${UID} torrent
+adduser -h /data -s /bin/sh -D torrent
+groupmod -g ${GID} -o torrent && usermod -u ${UID} -g ${GID} -o torrent
+
 mkdir -p /data/torrents /data/.watch /data/.session /var/tmp/nginx
 
 [[ -f /data/.rtorrent.rc ]] || cp /etc/rtorrent.rc /data/.rtorrent.rc
