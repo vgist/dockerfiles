@@ -11,6 +11,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        architecture: [linux/386, linux/amd64, linux/arm64, linux/arm/v7, linux/arm/v6, linux/ppc64le, linux/riscv64, linux/s390x]
+      max-parallel: 8
+    outputs:
+      version: ${{ steps.prepare.outputs.version }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -19,10 +25,12 @@ jobs:
         run: |
           VERSION=${{ github.event.inputs.version }}
           IMAGE_NAME=zerotier
-          TAGS="gists/${IMAGE_NAME}:${VERSION},gists/${IMAGE_NAME}:latest"
+          TAGS=${{ matrix.architecture }}
+          TAGS=gists/${IMAGE_NAME}:${TAGS//\//-}
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
           echo "build_args=VERSION=${VERSION}" >> $GITHUB_OUTPUT
           echo "image-name=${IMAGE_NAME}" >> $GITHUB_OUTPUT
-          echo "tags=${TAGS}" >> $GITHUB_OUTPUT
+          echo "tags=${TAGS}-${VERSION}" >> $GITHUB_OUTPUT
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
@@ -38,7 +46,25 @@ jobs:
         with:
           context: ./${{ steps.prepare.outputs.image-name }}
           file: ./${{ steps.prepare.outputs.image-name }}/Dockerfile
-          platforms: linux/386,linux/amd64,linux/arm64,linux/arm/v6,linux/arm/v7,linux/ppc64le,linux/s390x
+          platforms: ${{ matrix.architecture }}
           push: ${{ github.event_name != 'pull_request' }}
           build-args: ${{ steps.prepare.outputs.build_args }}
           tags: ${{ steps.prepare.outputs.tags }}
+          provenance: false
+
+  manifest:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Login to DockerHub
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Manifest create and push
+        uses: Noelware/docker-manifest-action@master
+        with:
+          inputs: gists/zerotier:${{ needs.build.outputs.version }},gists/zerotier:latest
+          images: gists/zerotier:linux-386-${{ needs.build.outputs.version }},gists/zerotier:linux-amd64-${{ needs.build.outputs.version }},gists/zerotier:linux-arm64-${{ needs.build.outputs.version }},gists/zerotier:linux-arm-v7-${{ needs.build.outputs.version }},gists/zerotier:linux-arm-v6-${{ needs.build.outputs.version }},gists/zerotier:linux-ppc64le-${{ needs.build.outputs.version }},gists/zerotier:linux-riscv64-${{ needs.build.outputs.version }},gists/zerotier:linux-s390x-${{ needs.build.outputs.version }}
+          push: true
