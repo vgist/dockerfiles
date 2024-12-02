@@ -6,15 +6,19 @@ set -e
 
 [[ "$DEBUG" == "true" ]] && set -x
 
-getent group qbittorrent >/dev/null || addgroup -g ${GID} qbittorrent
-getent passwd qbittorrent >/dev/null || adduser -h /data -s /bin/sh -G qbittorrent -D -u ${UID} qbittorrent
+adduser -h /data -s /bin/sh -D qbittorrent
+groupmod -g ${GID} -o qbittorrent
+usermod -u ${UID} -g ${GID} -o qbittorrent
 
-mkdir -p /data/.config/qBittorrent
+ConfPath=/data/.config/qBittorrent
+Config=$ConfPath/qBittorrent.conf
 
-[[ ! -f /data/.config/qBittorrent/qBittorrent.conf ]] && cp /etc/qBittorrent.conf /data/.config/qBittorrent/
-
-sed -i "s|Connection\\\PortRangeMin=.*|Connection\\\PortRangeMin=${PEER_PORT}|i" /data/.config/qBittorrent/qBittorrent.conf
-sed -i "s|WebUI\\\Port=.*|WebUI\\\Port=${WEB_PORT}|i" /data/.config/qBittorrent/qBittorrent.conf
+if [ ! -f "$Config" ]; then
+    mkdir -p $ConfPath
+    cp /etc/qBittorrent.conf $ConfPath
+    sed -i "s|Connection\\\PortRangeMin=.*|Connection\\\PortRangeMin=${PEER_PORT}|i" $Config
+    sed -i "s|WebUI\\\Port=.*|WebUI\\\Port=${WEB_PORT}|i" $Config
+fi
 
 chown -R qbittorrent:qbittorrent /data
 
