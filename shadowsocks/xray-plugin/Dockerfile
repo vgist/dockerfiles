@@ -1,10 +1,10 @@
-FROM golang:alpine AS builder
+FROM --platform=$BUILDPLATFORM golang:alpine AS builder
 
 ARG TARGETPLATFORM
 ARG TARGETOS
 ARG TARGETARCH
 ARG VERSION
-ARG CGO_ENABLED=on
+ARG CGO_ENABLED=off
 
 ENV GOOS=$TARGETOS \
     GOARCH=$TARGETARCH
@@ -20,6 +20,7 @@ RUN set -xe && \
     mkdir -p /root/plugin && cd /root/plugin && \
     curl -sSL https://github.com/teddysun/xray-plugin/archive/v$VERSION.tar.gz | \
     tar xz --strip 1 && \
+    GOOS=$TARGETOS GOARCH=$TARGETARCH CGO_ENABLED=0 \
     go build -v -ldflags "-X main.VERSION=$VERSION -s -w" -gcflags "" -o /xray-plugin && \
     setcap 'cap_net_bind_service=+ep' /xray-plugin
 

@@ -1,10 +1,10 @@
-FROM golang:alpine AS builder
+FROM --platform=$BUILDPLATFORM golang:alpine AS builder
 
 ARG TARGETPLATFORM
 ARG TARGETOS
 ARG TARGETARCH
 ARG VERSION
-ARG CGO_ENABLED=on
+ARG CGO_ENABLED=off
 
 ENV GOOS=$TARGETOS \
     GOARCH=$TARGETARCH
@@ -19,6 +19,7 @@ RUN set -xe && \
     cd /root/v2ray-src && \
     curl -sSL https://github.com/v2fly/v2ray-core/archive/v$VERSION.tar.gz | tar xz --strip 1 && \
     LDFLAGS="-s -w -buildid= -X github.com/v2fly/v2ray-core/v5.codename=user -X github.com/v2fly/v2ray-core/v5.build=$(date '+%Y%m%d-%H%M%S') -X github.com/v2fly/v2ray-core/v5.version=v$VERSION" && \
+    GOOS=$TARGETOS GOARCH=$TARGETARCH CGO_ENABLED=0 \
     go build -ldflags "$LDFLAGS" -v -o /v2ray ./main && \
     ls /v2* | xargs -n1 setcap 'cap_net_bind_service=+ep' && \
     curl -sSL https://github.com/v2ray/geoip/raw/release/geoip.dat -o /geoip.dat && \

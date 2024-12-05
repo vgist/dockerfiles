@@ -1,10 +1,10 @@
-FROM golang:alpine AS builder
+FROM --platform=$BUILDPLATFORM golang:alpine AS builder
 
 ARG TARGETPLATFORM
 ARG TARGETOS
 ARG TARGETARCH
 ARG VERSION
-ARG CGO_ENABLED=on
+ARG CGO_ENABLED=off
 
 ENV GOOS=$TARGETOS \
     GOARCH=$TARGETARCH
@@ -19,6 +19,7 @@ RUN set -xe && \
     cd /root/xray-src && \
     curl -sSL https://github.com/XTLS/Xray-core/archive/v$VERSION.tar.gz | tar xz --strip 1 && \
     LDFLAGS="-s -w -buildid=" && \
+    GOOS=$TARGETOS GOARCH=$TARGETARCH CGO_ENABLED=0 \
     go build -v -o /xray -trimpath -ldflags "$LDFLAGS" ./main && \
     setcap 'cap_net_bind_service=+ep' /xray && \
     curl -sSL https://github.com/v2ray/geoip/raw/release/geoip.dat -o /geoip.dat && \

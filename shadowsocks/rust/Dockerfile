@@ -77,5 +77,4 @@ CMD ssserver \
     -m $METHOD \
     --timeout $TIMEOUT \
     --dns $DNS_ADDR \
-    --tcp-no-delay \
     -U
