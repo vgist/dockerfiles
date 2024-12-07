@@ -40,3 +40,20 @@ Automatically built by Github Actions
         - USERNAME=yourname
         - PASSWORD=yourpassword
       restart: always
+
+#### Trouble
+
+container fails to start and say:
+
+    rtorrent: std::bad_alloc
+
+you can run docker with --ulimit
+
+    docker run --ulimit nofile=your-value:your-value ......
+
+or your docker-compose
+
+    ulimits:
+      nofile:
+        hard: your-value
+        soft: your-value

@@ -49,4 +49,4 @@ EXPOSE 8080 55000
 
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 
-CMD ["/sbin/runsvdir", "-P", "/etc/service"]
+CMD ["/usr/sbin/runsvdir", "-P", "/etc/service"]
