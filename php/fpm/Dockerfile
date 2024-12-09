@@ -32,6 +32,7 @@ RUN set -xe && \
         php83-gettext \
         php83-gmp \
         php83-iconv \
+        php83-intl \
         php83-mbstring \
         php83-mysqli \
         php83-mysqlnd \
