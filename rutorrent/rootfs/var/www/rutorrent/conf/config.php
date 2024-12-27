@@ -1,5 +1,5 @@
 <?php
-	$httpUserAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36';
+	$httpUserAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36';
 	$httpTimeOut = 30;
 	$httpUseGzip = true;
 	$httpIP = null;
@@ -25,12 +25,11 @@
 	$forbidUserSettings = false;
 	$scgi_port = 0;
 	$scgi_host = "unix:///data/scgi.socket";
-	//$scgi_host = "127.0.0.1";
 	$XMLRPCMountPoint = "/RPC2";
 	$throttleMaxSpeed = 327625*1024;
 	$pathToExternals = array(
 		"php" 	=> '/usr/bin/php',
-		"pgrep" => '/usr/bin/pgrep',
+		"pgrep"	=> '/usr/bin/pgrep',
 		"curl"	=> '/usr/bin/curl',
 		"gzip"	=> '/usr/bin/gzip',
 		"id"	=> '/usr/bin/id',
@@ -38,8 +37,7 @@
 	);
 	$localHostedMode = true;
 	$cachedPluginLoading = false;
-	$pluginJSCacheExpire = 3*60;
-	$miscCacheExpire = 3*60*24;
+	$pluginMinification = true;
 	$localhosts = array(
 		"127.0.0.1",
 		"localhost",

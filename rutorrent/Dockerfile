@@ -1,11 +1,10 @@
-FROM alpine:3
+FROM gists/rtorrent:latest
 
 ARG VERSION
 
 ENV UID=1000 \
     GID=1000 \
-    USERNAME=admin \
-    PASSWORD=
+    USERNAME=admin
 
 # Let's roll
 RUN set -xe && \
@@ -13,16 +12,15 @@ RUN set -xe && \
         --virtual .run-deps \
         apache2-utils \
         ca-certificates \
-        libtorrent \
         nginx \
         php83 \
         php83-dom \
         php83-fpm \
         php83-json \
+        php83-mbstring \
         php83-session \
-        rtorrent \
         shadow \
-        xmlrpc-c \
+        tinyxml2 \
         runit && \
     apk add --no-cache \
         --virtual .plug-deps \

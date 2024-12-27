@@ -1,43 +1,105 @@
-network.scgi.open_local = /data/scgi.socket
-encoding.add = UTF-8
+## Instance layout (base paths)
+method.insert = cfg.basedir,  private|const|string, (cat,"/data/")
+method.insert = cfg.download, private|const|string, (cat,(cfg.basedir),"download/")
+method.insert = cfg.logs,     private|const|string, (cat,(cfg.basedir),"log/")
+method.insert = cfg.logfile,  private|const|string, (cat,(cfg.logs),"rtorrent-",(system.time),".log")
+method.insert = cfg.session,  private|const|string, (cat,(cfg.basedir),".session/")
+method.insert = cfg.watch,    private|const|string, (cat,(cfg.basedir),".watch/")
+
+## Create instance directories
+execute.throw = sh, -c, (cat,\
+    "mkdir -p \"",(cfg.download),"\" ",\
+    "\"",(cfg.logs),"\" ",\
+    "\"",(cfg.session),"\" ",\
+    "\"",(cfg.watch),"/load\" ",\
+    "\"",(cfg.watch),"/start\" ")
+
+## Listening port for incoming peer traffic (fixed; you can also randomize it)
 network.port_range.set = 55000-55000
 network.port_random.set = no
-pieces.hash.on_completion.set = no
-directory.default.set = /data/torrents
-session.path.set = /data/.session
-protocol.encryption.set = allow_incoming, try_outgoing, enable_retry
-trackers.use_udp.set = no
-dht.mode.set = off
+
+## Tracker-less torrent and UDP tracker support
+## (conservative settings for 'private' trackers, change for 'public')
+dht.mode.set = disable
 protocol.pex.set = no
-system.file.max_size.set = 2048G
+trackers.use_udp.set = no
 
-throttle.global_down.max_rate.set_kb = 0
-throttle.global_up.max_rate.set_kb = 0
-throttle.max_downloads.global.set = 256
-throttle.max_uploads.global.set = 256
-throttle.min_peers.normal.set = 8
-throttle.max_peers.normal.set = 32
-throttle.min_peers.seed.set = -1
-throttle.max_peers.seed.set = -1
-throttle.max_downloads.set = 32
-throttle.max_uploads.set = 16
-trackers.numwant.set = 8
-pieces.memory.max.set = 256M
+## Peer settings
+throttle.max_uploads.set = 100
+throttle.max_uploads.global.set = 250
 
-network.max_open_sockets.set = 1024
-network.max_open_files.set = 5120
-network.http.max_open.set = 8
+throttle.min_peers.normal.set = 20
+throttle.max_peers.normal.set = 60
+throttle.min_peers.seed.set = 30
+throttle.max_peers.seed.set = 80
+trackers.numwant.set = 80
+
+protocol.encryption.set = allow_incoming, try_outgoing, enable_retry
+
+## Limits for file handle resources, this is optimized for
+## an `ulimit` of 1024 (a common default). You MUST leave
+## a ceiling of handles reserved for rTorrent's internal needs!
+network.http.max_open.set = 50
+network.max_open_files.set = 600
+network.max_open_sockets.set = 300
+
+## Memory resource usage (increase if you have a large number of items loaded,
+## and/or the available resources to spend)
+pieces.memory.max.set = 512M
+network.xmlrpc.size_limit.set = 4M
+
+## Basic operational settings (no need to change these)
+session.path.set = (cat, (cfg.session))
+directory.default.set = (cat, (cfg.download))
+log.execute = (cat, (cfg.logs), "execute.log")
+#log.xmlrpc = (cat, (cfg.logs), "xmlrpc.log")
+execute.nothrow = sh, -c, (cat, "echo >",\
+    (session.path), "rtorrent.pid", " ",(system.pid))
+
+## Other operational settings (check & adapt)
+encoding.add = UTF-8
+system.umask.set = 0027
+system.cwd.set = (directory.default)
+network.http.dns_cache_timeout.set = 25
 network.receive_buffer.size.set = 4M
 network.send_buffer.size.set = 12M
-pieces.preload.type.set = 2
-network.xmlrpc.size_limit.set = 2M
+schedule2 = monitor_diskspace, 1, 30, ((close_low_diskspace, 500M))
+pieces.hash.on_completion.set = no
+#view.sort_current = seeding, greater=d.ratio=
+#keys.layout.set = qwerty
+#network.http.capath.set = "/etc/ssl/certs"
+#network.http.ssl_verify_peer.set = 0
+#network.http.ssl_verify_host.set = 0
 
+## Some additional values and commands
+method.insert = system.startup_time, value|const, (system.time)
+method.insert = d.data_path, simple,\
+    "if=(d.is_multi_file),\
+        (cat, (d.directory), /),\
+        (cat, (d.directory), /, (d.name))"
+method.insert = d.session_file, simple, "cat=(session.path), (d.hash), .torrent"
+
+## Watch directories (add more as you like, but use unique schedule names)
+## Add torrent
+schedule2 = watch_load, 11, 10, ((load.verbose, (cat, (cfg.watch), "load/*.torrent")))
+## Add & download straight away
+schedule2 = watch_start, 10, 10, ((load.start_verbose, (cat, (cfg.watch), "start/*.torrent")))
+
+## Run the rTorrent process as a daemon in the background
+## (and control via XMLRPC sockets)
 system.daemon.set=true
+network.scgi.open_local = (cat, (cfg.basedir), scgi.socket)
+execute.nothrow = chmod, 770, (cat, (cfg.basedir), scgi.socket)
 
-schedule2 = session_save, 1200, 43200, ((session.save))
-schedule2 = scgi_permission,0,0,"execute.nothrow=chmod,\"g+w,o=\",/data/scgi.socket"
-schedule2 = watch_directory,0,5,"load.start=/data/.watch/*.torrent,\"d.custom.set=incomplete,1\""
-schedule2 = untied_directory,5,5,"stop_untied=/data/.watch/*.torrent"
-schedule2 = espace_disque_insuffisant,1,30,close_low_diskspace=500M
+## Logging:
+##   Levels = critical error warn notice info debug
+##   Groups = connection_* dht_* peer_* rpc_* storage_* thread_* tracker_* torrent_*
+print = (cat, "Logging to ", (cfg.logfile))
+log.open_file = "log", (cfg.logfile)
+log.add_output = "info", "log"
+#log.add_output = "tracker_debug", "log"
 
+## rutorrent plugins
 execute2 = {sh,-c,/usr/bin/php /var/www/rutorrent/php/initplugins.php torrent &}
+
+### END of rtorrent.rc ###
