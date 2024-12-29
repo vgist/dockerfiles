@@ -15,7 +15,7 @@ VOLUME ["/var/lib/mysql"]
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
-CMD /usr/bin/mysqld \
+CMD /usr/bin/mariadbd \
     --user=mysql \
     --console \
     --skip-name-resolve \
