@@ -1,4 +1,4 @@
-FROM alpine:3.19
+FROM alpine:3
 
 ARG VERSION
 
@@ -19,7 +19,7 @@ RUN set -ex && \
         libtool \
         linux-headers \
         libsodium-dev \
-        mbedtls-dev \
+        mbedtls2-dev \
         pcre-dev \
         tar \
         c-ares-dev && \
