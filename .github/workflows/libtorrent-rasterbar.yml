@@ -6,7 +6,7 @@ on:
       version:
         description: 'version'
         required: true
-        default: '2.0.10'
+        default: '2.0.11'
 
 env:
   REGISTRY_IMAGE: gists/libtorrent-rasterbar
@@ -23,7 +23,7 @@ jobs:
           - linux/arm64
           - linux/arm/v6
           - linux/arm/v7
-          - linux/ppc64le
+          #- linux/ppc64le
           - linux/riscv64
           - linux/s390x
     outputs:

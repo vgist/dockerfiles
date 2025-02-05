@@ -16,12 +16,13 @@ RUN set -ex && \
     mkdir -p /tmp/libtorrent-rasterbar && \
     cd /tmp/libtorrent-rasterbar/ && \
     curl -sSL https://github.com/arvidn/libtorrent/releases/download/v$VERSION/libtorrent-rasterbar-$VERSION.tar.gz | tar xz --strip 1 && \
-    cmake -Wno-dev -B builddir -G Ninja \
+    cmake -B builddir -G Ninja \
+        -DBUILD_SHARED_LIBS=OFF \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_CXX_STANDARD=20 \
         -DCMAKE_INSTALL_PREFIX:PATH=/usr \
         -DCMAKE_INSTALL_LIBDIR=lib && \
-    cmake --build builddir --parallel `nproc` && \
+    cmake --build builddir -j $(nproc) && \
     cmake --install builddir && \
     cd / && \
     runDeps="$( \
