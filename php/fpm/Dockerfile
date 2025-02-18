@@ -54,6 +54,7 @@ RUN set -xe && \
         php84-sodium \
         php84-sqlite3 \
         php84-tokenizer \
+        php84-xml \
         php84-xmlreader \
         php84-zip
 
