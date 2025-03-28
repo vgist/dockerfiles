@@ -47,6 +47,7 @@ RUN set -xe && \
         php84-pdo_odbc \
         php84-pdo_pgsql \
         php84-pdo_sqlite \
+        php84-posix \
         php84-pecl-imagick \
         php84-session \
         php84-simplexml \
