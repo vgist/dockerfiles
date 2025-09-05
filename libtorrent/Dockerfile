@@ -19,8 +19,8 @@ RUN set -ex && \
         tinyxml2-dev \
         zlib-dev \
         tar && \
-    mkdir -p /tmp/libtorrent && cd /tmp/libtorrent && \
-    curl -sSL https://github.com/rakshasa/libtorrent/archive/refs/tags/v$VERSION.tar.gz | tar xz --strip 1 && \
+    mkdir -p /tmp/libtorrent && cd $_ && \
+    curl -sSL https://github.com/rakshasa/rtorrent/releases/download/v$VERSION/libtorrent-$VERSION.tar.gz | tar xz --strip 1 && \
     autoreconf -iv && \
     ./configure --prefix=/usr \
                 --disable-debug \

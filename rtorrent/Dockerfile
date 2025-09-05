@@ -19,14 +19,13 @@ RUN set -ex && \
         tinyxml2-dev \
         zlib-dev \
         tar && \
-    mkdir -p /tmp/rtorrent && cd /tmp/rtorrent && \
-    curl -sSL https://github.com/rakshasa/rtorrent/archive/refs/tags/v$VERSION.tar.gz | tar xz --strip 1 && \
+    mkdir -p /tmp/rtorrent && cd $_ && \
+    curl -sSL https://github.com/rakshasa/rtorrent/releases/download/v$VERSION/rtorrent-$VERSION.tar.gz | tar xz --strip 1 && \
     autoreconf -iv && \
     ./configure --prefix=/usr \
                 --sysconfdir=/etc \
                 --mandir=/usr/share/man \
                 --localstatedir=/var \
-                --enable-ipv6 \
                 --disable-debug \
                 --with-xmlrpc-tinyxml2 && \
     make && make install && cd && \
