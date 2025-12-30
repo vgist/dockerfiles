@@ -18,6 +18,7 @@ RUN set -ex && \
         libcap \
         openssl-dev \
         qt6-qtbase-dev \
+        qt6-qtbase-private-dev \
         qt6-qtsvg-dev \
         qt6-qttools-dev \
         tar \
