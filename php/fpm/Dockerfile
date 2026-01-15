@@ -20,44 +20,43 @@ ENV MEMORY_LIMIT=256M \
 # Let's roll
 RUN set -xe && \
     apk add --no-cache \
-        php84 \
-        php84-bcmath \
-        php84-bz2 \
-        php84-ctype \
-        php84-curl \
-        php84-dom \
-        php84-embed \
-        php84-exif \
-        php84-fileinfo \
-        php84-fpm \
-        php84-gd \
-        php84-gettext \
-        php84-gmp \
-        php84-iconv \
-        php84-intl \
-        php84-mbstring \
-        php84-mysqli \
-        php84-mysqlnd \
-        php84-odbc \
-        php84-opcache \
-        php84-openssl \
-        php84-pdo \
-        php84-pdo_dblib \
-        php84-pdo_mysql \
-        php84-pdo_odbc \
-        php84-pdo_pgsql \
-        php84-pdo_sqlite \
-        php84-posix \
-        php84-pecl-imagick \
-        php84-session \
-        php84-simplexml \
-        php84-soap \
-        php84-sodium \
-        php84-sqlite3 \
-        php84-tokenizer \
-        php84-xml \
-        php84-xmlreader \
-        php84-zip
+        php85 \
+        php85-bcmath \
+        php85-bz2 \
+        php85-ctype \
+        php85-curl \
+        php85-dom \
+        php85-embed \
+        php85-exif \
+        php85-fileinfo \
+        php85-fpm \
+        php85-gd \
+        php85-gettext \
+        php85-gmp \
+        php85-iconv \
+        php85-intl \
+        php85-mbstring \
+        php85-mysqli \
+        php85-mysqlnd \
+        php85-odbc \
+        php85-openssl \
+        php85-pdo \
+        php85-pdo_dblib \
+        php85-pdo_mysql \
+        php85-pdo_odbc \
+        php85-pdo_pgsql \
+        php85-pdo_sqlite \
+        php85-posix \
+        php85-pecl-imagick \
+        php85-session \
+        php85-simplexml \
+        php85-soap \
+        php85-sodium \
+        php85-sqlite3 \
+        php85-tokenizer \
+        php85-xml \
+        php85-xmlreader \
+        php85-zip
 
 COPY entrypoint.sh /usr/bin/entrypoint.sh
 
@@ -67,4 +66,4 @@ VOLUME ["/var/www"]
 
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 
-CMD ["/usr/sbin/php-fpm84"]
+CMD ["/usr/sbin/php-fpm85"]

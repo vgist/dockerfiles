@@ -32,7 +32,7 @@ Automatically built by Github Actions
         --name php-fpm \
         -v /path/www:/var/www \
         -e UPLOAD_MAX_FILESIZE=128M
-        gists/php:7
+        gists/php
 
 #### Compose example:
 
@@ -67,11 +67,11 @@ volumes:
 
 #### nginx configuration with php-fpm
 
-with php7-fpm on gists/php:7
+with php8-fpm on gists/php
 
-    fastcgi_pass    unix:/run/php/php7-fpm.sock;
+    fastcgi_pass    unix:/run/php/php8-fpm.sock;
 
-with php5-fpm on gists/php:5:
+with php5-fpm on gists/php:5
 
     fastcgi_pass    unix:/run/php/php5-fpm.sock;
 
