@@ -13,24 +13,27 @@ RUN set -ex && \
         --virtual .build-deps \
         autoconf \
         build-base \
+        cmake \
         curl \
+        git \
         libev-dev \
         libcap \
         libtool \
         linux-headers \
         libsodium-dev \
         mbedtls2-dev \
-        pcre-dev \
+        pcre2-dev \
         tar \
         c-ares-dev && \
-    mkdir -p /tmp/ss && cd $_ && \
-    curl -sSL https://github.com/shadowsocks/shadowsocks-libev/releases/latest/download/shadowsocks-libev-$VERSION.tar.gz | \
-    tar xz --strip 1 && \
-    for i in "89b5f98" "5617841" "920dbac" "36d9993" "b68157e" "cfe0c2c" "13f4720" "7e5922a" "e04b73d" "ed23402" "4bbbe21" "8bcffa5" "a19328a" "49ead5e" "0a7d178" "abcf85e" "b911755" "46382c2" "0c23224" "1630764" "d61d09a" "3bcf258" "9afa3ca"; do \
-        curl -sSL https://github.com/shadowsocks/shadowsocks-libev/commit/$i.patch | patch -p1; \
-    done && \
-    ./configure --prefix=/usr --disable-documentation && \
-    make -j `nproc` install && \
+    git clone https://github.com/shadowsocks/shadowsocks-libev.git /tmp/ss && \
+    cd /tmp/ss && git checkout v$VERSION && \
+    git submodule update --init --recursive && \
+    cmake -B builddir -Wno-dev \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DWITH_STATIC:BOOL=OFF \
+        -DCMAKE_INSTALL_PREFIX:PATH=/usr && \
+    cmake --build builddir -j$(nproc) && \
+    cmake --install builddir && \
     ls /usr/bin/ss-* | xargs -n1 setcap 'cap_net_bind_service+ep' && \
     runDeps="$( \
         scanelf --needed --nobanner /usr/bin/ss-* \
